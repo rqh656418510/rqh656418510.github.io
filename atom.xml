@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.techgrow.cn/"/>
-  <updated>2021-01-23T01:12:32.000Z</updated>
+  <updated>2021-01-26T12:43:28.000Z</updated>
   <id>https://www.techgrow.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux 管理 Crontab 服务</title>
+    <link href="https://www.techgrow.cn/posts/vbd8mmaf.html"/>
+    <id>https://www.techgrow.cn/posts/vbd8mmaf.html</id>
+    <published>2021-01-26T12:43:28.000Z</published>
+    <updated>2021-01-26T12:43:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><strong>前言</strong></p></blockquote><p>本文主要介绍如何在 Linux 系统上安装和管理 Crontab 服务，适用于 Debian、CentOS7 系统。</p><blockquote><p><strong>Crontab 服务安装（CentOS7）</strong></p></blockquote><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword"># yum</span> instal crontabs</span><br></pre></td></tr></tbody></table></figure><blockquote><p><strong>Crontab 服务安装（Debian）</strong></p></blockquote><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword"># apt</span>-get install cron</span><br></pre></td></tr></tbody></table></figure><a id="more"></a><blockquote><p><strong>Crontab 服务管理（CentOS7）</strong></p></blockquote><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动Crontab服务</span></span><br><span class="line"><span class="keyword"># systemctl</span> start crond</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭Crontab服务</span></span><br><span class="line"><span class="keyword"># systemctl</span> stop crond</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启Crontab服务</span></span><br><span class="line"><span class="keyword"># systemctl</span> restart crond</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Crontab服务的运行状态</span></span><br><span class="line"><span class="keyword"># systemctl</span> status crond</span><br></pre></td></tr></tbody></table></figure><blockquote><p><strong>Crontab 服务管理（Debian）</strong></p></blockquote><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动Crontab服务</span></span><br><span class="line"><span class="keyword"># service</span> cron start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭Crontab服务</span></span><br><span class="line"><span class="keyword"># service</span> cron stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启Crontab服务</span></span><br><span class="line"><span class="keyword"># service</span> cron restart</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Crontab服务的运行状态</span></span><br><span class="line"><span class="keyword"># service</span> cron status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者使用以下命令替代</span></span><br><span class="line"><span class="comment"># /etc/init.d/cron stop</span></span><br><span class="line"><span class="comment"># /etc/init.d/cron start</span></span><br><span class="line"><span class="comment"># /etc/init.d/cron status</span></span><br><span class="line"><span class="comment"># /etc/init.d/cron restart</span></span><br></pre></td></tr></tbody></table></figure><blockquote><p><strong>Crontab 日志管理（CentOS7）</strong></p></blockquote><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看Crontab的日志信息</span></span><br><span class="line"><span class="keyword"># tail</span><span class="params"> -f</span><span class="params"> -n</span> 10 /var/<span class="built_in">log</span>/cron</span><br></pre></td></tr></tbody></table></figure><blockquote><p><strong>Crontab 日志管理（Debian）</strong></p></blockquote><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装rsyslog服务</span></span><br><span class="line"><span class="keyword"># apt</span>-get install rsyslog</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建Crontab的日志文件</span></span><br><span class="line"><span class="keyword"># touch</span> /var/<span class="built_in">log</span>/cron.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启Crontab的日志记录</span></span><br><span class="line"><span class="keyword"># vim</span>  /etc/rsyslog.conf</span><br><span class="line">cron.*            /var/<span class="built_in">log</span>/cron.<span class="built_in">log</span>     <span class="comment">#取消这行内容的注释即可</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动rsyslog服务</span></span><br><span class="line"><span class="keyword"># service</span> rsyslog start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Crontab的日志信息</span></span><br><span class="line"><span class="keyword"># tail</span><span class="params"> -f</span><span class="params"> -n</span> 10 /var/<span class="built_in">log</span>/cron.<span class="built_in">log</span></span><br></pre></td></tr></tbody></table></figure><blockquote><p><strong>Crontab 任务管理（CentOS7）</strong></p></blockquote><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编辑并保存当前用户的计划任务</span></span><br><span class="line"><span class="keyword"># crontab</span><span class="params"> -e</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前用户的所有计划任务</span></span><br><span class="line"><span class="keyword"># crontab</span><span class="params"> -l</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑root用户的计划任务（依赖root用户的权限）</span></span><br><span class="line"><span class="keyword"># vim</span> /var/spool/cron/root</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看root用户的计划任务（依赖root用户的权限）</span></span><br><span class="line"><span class="keyword"># cat</span> /var/spool/cron/root</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑www用户的计划任务（依赖root或者www用户的权限）</span></span><br><span class="line"><span class="keyword"># vim</span> /var/spool/cron/www</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看www用户的计划任务（依赖root或者www用户的权限）</span></span><br><span class="line"><span class="keyword"># cat</span> /var/spool/cron/www</span><br></pre></td></tr></tbody></table></figure><blockquote><p><strong>Crontab 任务管理（Debian）</strong></p></blockquote><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编辑并保存当前用户的计划任务</span></span><br><span class="line"><span class="keyword"># crontab</span><span class="params"> -e</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前用户的所有计划任务</span></span><br><span class="line"><span class="keyword"># crontab</span><span class="params"> -l</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑root用户的计划任务（依赖root用户的权限）</span></span><br><span class="line"><span class="keyword"># vim</span> /var/spool/cron/crontabs/root</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看root用户的计划任务（依赖root用户的权限）</span></span><br><span class="line"><span class="keyword"># cat</span> /var/spool/cron/crontabs/root</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑www用户的计划任务（依赖root或者www用户的权限）</span></span><br><span class="line"><span class="keyword"># vim</span> /var/spool/cron/crontabs/www</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看www用户的计划任务（依赖root或者www用户的权限）</span></span><br><span class="line"><span class="keyword"># cat</span> /var/spool/cron/crontabs/www</span><br></pre></td></tr></tbody></table></figure><blockquote><p><strong>参考资料</strong></p></blockquote><ul><li><a href="https://blog.csdn.net/jamex/article/details/103995436" rel="noopener" target="_blank">使用 Shell 脚本或命令行添加 Crontab 定时任务</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      本文主要介绍如何在Linux系统上安装和管理Crontab服务，适用于Debian/CentOS7系统。
+    
+    </summary>
+    
+    
+    
+      <category term="Linux" scheme="https://www.techgrow.cn/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Centos7 安装 ExpressVPN 客户端</title>
@@ -190,9 +211,9 @@
     
     
     
-      <category term="分布式" scheme="https://www.techgrow.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
       <category term="数据库" scheme="https://www.techgrow.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="分布式" scheme="https://www.techgrow.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
   </entry>
   
@@ -213,9 +234,9 @@
     
     
     
-      <category term="分布式" scheme="https://www.techgrow.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
       <category term="数据库" scheme="https://www.techgrow.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="分布式" scheme="https://www.techgrow.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
   </entry>
   
@@ -438,29 +459,6 @@
     
     
       <category term="Docker" scheme="https://www.techgrow.cn/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Manjaro 安装图解教程</title>
-    <link href="https://www.techgrow.cn/posts/eadad846.html"/>
-    <id>https://www.techgrow.cn/posts/eadad846.html</id>
-    <published>2020-04-19T14:35:43.000Z</published>
-    <updated>2020-04-19T14:35:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><strong>官方桌面环境比较</strong></p></blockquote><ul><li>XFCE 资源占用少，稳定</li><li> GNOME 定制性差，资源占用中等</li><li> KDE 定制性高，资源占用多，运行比较卡</li></ul><blockquote><p><strong>官方桌面环境图</strong></p></blockquote><p><div class="img-lazyload-container" style="width:1058px;background:url(/img/loading.gif);background-repeat:no-repeat;background-position:center;"><img data-original="../../../asset/2020/04/manjaro-desktop-env.png" height="472" width="1058" style="padding-top:44.61247637051039%"></div></p><a id="more"></a><blockquote><p><strong>社区桌面环境图</strong></p></blockquote><p><div class="img-lazyload-container" style="width:1064px;background:url(/img/loading.gif);background-repeat:no-repeat;background-position:center;"><img data-original="../../../asset/2020/04/manjaro-desktop-env-2.png" height="671" width="1064" style="padding-top:63.06390977443609%"></div></p>]]></content>
-    
-    <summary type="html">
-    
-      本文主要介绍如何安装Manjaro。
-    
-    </summary>
-    
-    
-      <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
-    
-    
-      <category term="Manjaro" scheme="https://www.techgrow.cn/tags/Manjaro/"/>
     
   </entry>
   
