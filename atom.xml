@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.techgrow.cn/"/>
-  <updated>2021-03-09T13:12:29.000Z</updated>
+  <updated>2021-03-11T14:34:29.000Z</updated>
   <id>https://www.techgrow.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kubernetes 之一核心概念介绍</title>
+    <link href="https://www.techgrow.cn/posts/b728042a.html"/>
+    <id>https://www.techgrow.cn/posts/b728042a.html</id>
+    <published>2021-03-11T14:34:29.000Z</published>
+    <updated>2021-03-11T14:34:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<div id="toc-status" style="display:none"><div class="toc-article"><!-- toc --><!-- tocstop --></div></div>]]></content>
+    
+    <summary type="html">
+    
+      本文主要介绍Kubernetes的核心概念。
+    
+    </summary>
+    
+    
+    
+      <category term="容器化" scheme="https://www.techgrow.cn/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>Knife4j 基础使用教程</title>
@@ -148,7 +169,7 @@
       <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
     
-      <category term="HarmonyOS" scheme="https://www.techgrow.cn/tags/HarmonyOS/"/>
+      <category term="移动端" scheme="https://www.techgrow.cn/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
     
   </entry>
   
@@ -436,29 +457,6 @@
     
     
       <category term="开发工具" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日常网站收藏</title>
-    <link href="https://www.techgrow.cn/posts/16fab331.html"/>
-    <id>https://www.techgrow.cn/posts/16fab331.html</id>
-    <published>2020-05-19T13:25:35.000Z</published>
-    <updated>2020-05-19T13:25:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><strong>博客</strong></p></blockquote><ul><li><a href="https://blog.codingnow.com/" rel="noopener" target="_blank">云风的 BLOG</a></li><li><a href="http://www.pengzhihui.xyz/" rel="noopener" target="_blank">稚晖的 BLOG（博主入选华为天才少年计划）</a></li><li>成为一个更好的 Java 程序员：<a href="https://github.com/crisxuan/bestJavaer" rel="noopener" target="_blank">Github Repo</a></li><li>Java 工程师成神之路：<a href="https://github.com/hollischuang/toBeTopJavaer" rel="noopener" target="_blank">Github Repo</a>、<a href="http://hollischuang.gitee.io/tobetopjavaer" rel="noopener" target="_blank">Gitee Pages</a></li></ul><blockquote><p><strong>PDF 资源</strong></p></blockquote><ul><li><a href="https://www.aibooks.cc/book/biancheng" rel="noopener" target="_blank">PDF 电子书</a></li></ul><blockquote><p><strong>Docker</strong></p></blockquote><ul><li><a href="http://get.daocloud.io/" rel="noopener" target="_blank">Docker 的安装包以及周边高速镜像</a></li></ul><blockquote><p><strong>网站测速、网站优化工具</strong></p></blockquote><ul><li><a href="http://tool.chinaz.com/sitespeed/" rel="noopener" target="_blank">站长工具 - 网速测试</a></li><li><a href="https://gtmetrix.com/" rel="noopener" target="_blank">GTmetrix - 网站速度诊断</a></li><li><a href="http://www.webkaka.com/webCheck.aspx" rel="noopener" target="_blank">Webkaka - 网站速度测试</a></li><li><a href="http://pagespeed.webkaka.com/" rel="noopener" target="_blank">Webkaka - 网站速度诊断</a></li></ul><blockquote><p><strong>Chrome 插件</strong></p></blockquote><ul><li><a href="https://github.com/rqh656418510/ChromeAppHeroes" rel="noopener" target="_blank">Chrome 插件英雄榜</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      日常网站收藏。
-    
-    </summary>
-    
-    
-      <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
-    
-    
-      <category term="随笔" scheme="https://www.techgrow.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
