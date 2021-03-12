@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Clay的技术博客</title>
   
-  <subtitle>用进废退 | 工字不出头</subtitle>
+  <subtitle>用进废退</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.techgrow.cn/"/>
