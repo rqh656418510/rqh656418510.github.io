@@ -253,9 +253,9 @@
       <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
     
-      <category term="开发工具" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
       <category term="Centos" scheme="https://www.techgrow.cn/tags/Centos/"/>
+    
+      <category term="开发工具" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
@@ -369,7 +369,7 @@
   </entry>
   
   <entry>
-    <title>Spring Security + OAuth 2.0 + JWT 踩坑记录</title>
+    <title>Spring Security + OAuth 2.0 + JWT 开发随笔</title>
     <link href="https://www.techgrow.cn/posts/894ad1eb.html"/>
     <id>https://www.techgrow.cn/posts/894ad1eb.html</id>
     <published>2020-08-18T15:29:37.000Z</published>
@@ -413,7 +413,7 @@
   </entry>
   
   <entry>
-    <title>Eureka 踩坑记录</title>
+    <title>Eureka 开发随笔</title>
     <link href="https://www.techgrow.cn/posts/6cbc15f0.html"/>
     <id>https://www.techgrow.cn/posts/6cbc15f0.html</id>
     <published>2020-07-12T15:19:38.000Z</published>
