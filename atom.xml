@@ -23,6 +23,8 @@
     <published>2021-04-04T13:38:44.000Z</published>
     <updated>2021-04-04T13:38:44.000Z</updated>
     
+    <content type="html"><![CDATA[<div id="toc-status" style="display:none"><div class="toc-article"><!-- toc --><ul><li><a href="#qian-yan">前言</a><ul><li><a href="#guan-fang-jiao-cheng">官方教程</a></li></ul></li></ul><!-- tocstop --></div></div><h2><span id="qian-yan">前言</span><a href="#qian-yan" class="header-anchor"></a></h2><h3><span id="guan-fang-jiao-cheng">官方教程</span><a href="#guan-fang-jiao-cheng" class="header-anchor"></a></h3><ul><li><a href="https://hub.docker.com/r/elsdoerfer/gitolite" rel="noopener" target="_blank">Docker Install Gitolite</a></li><li><a href="/posts/3a44097a.html">Centos7 使用 Gitolite 搭建 Git 服务器</a></li></ul>]]></content>
+    
     <summary type="html">
     
       本文主要介绍使用 Docker 基于 Gitolite 搭建 Git 服务器
