@@ -3,7 +3,7 @@
 const pjax = new Pjax({
   selectors: [
     'head title',
-    'script[type="application/json"]',
+    'head meta[name^="hexo-config-"]',
     '.main-inner',
     '.post-toc-wrap',
     '.languages',
@@ -16,7 +16,7 @@ const pjax = new Pjax({
 });
 
 document.addEventListener('pjax:success', () => {
-  pjax.executeScripts(document.querySelectorAll('script[data-pjax]'));
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
   NexT.boot.refresh();
   // Define Motion Sequence & Bootstrap Motion.
   if (CONFIG.motion.enable) {

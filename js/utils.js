@@ -14,21 +14,6 @@ if (typeof DOMTokenList.prototype.replace !== 'function') {
   };
 }
 
-(function() {
-  const onPageLoaded = () => document.dispatchEvent(
-    new Event('page:loaded', {
-      bubbles: true
-    })
-  );
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('readystatechange', onPageLoaded, {once: true});
-  } else {
-    onPageLoaded();
-  }
-  document.addEventListener('pjax:success', onPageLoaded);
-})();
-
 NexT.utils = {
 
   /**
@@ -87,7 +72,7 @@ NexT.utils = {
    */
   registerCopyCode: function() {
     let figure = document.querySelectorAll('figure.highlight');
-    if (figure.length === 0) figure = document.querySelectorAll('pre:not(.mermaid)');
+    if (figure.length === 0) figure = document.querySelectorAll('pre');
     figure.forEach(element => {
       element.querySelectorAll('.code .line span').forEach(span => {
         span.classList.forEach(name => {
@@ -337,53 +322,33 @@ NexT.utils = {
     }
   },
 
-  getScript: (url, {
-    condition = false,
-    attributes: {
-      id = '',
-      async = false,
-      defer = false,
-      crossOrigin = '',
-      dataset = {},
-      ...otherAttributes
-    } = {},
-    parentNode = null
-  } = {}) => new Promise((resolve, reject) => {
+  getScript: function(url, callback, condition) {
     if (condition) {
-      resolve();
+      callback();
     } else {
       const script = document.createElement('script');
-
-      if (id) script.id = id;
-      if (crossOrigin) script.crossOrigin = crossOrigin;
-      script.async = async;
-      script.defer = defer;
-      Object.assign(script.dataset, dataset);
-      Object.entries(otherAttributes).forEach(([name, value]) => {
-        script.setAttribute(name, String(value));
-      });
-
-      script.onload = resolve;
-      script.onerror = reject;
-
+      script.onload = () => {
+        setTimeout(callback);
+      };
       script.src = url;
-      (parentNode || document.head).appendChild(script);
+      document.head.appendChild(script);
     }
-  }),
+  },
 
-  loadComments: (selector) => new Promise((resolve) => {
+  loadComments: function(selector, callback) {
     const element = document.querySelector(selector);
     if (!CONFIG.comments.lazyload || !element) {
-      resolve();
+      callback();
       return;
     }
     const intersectionObserver = new IntersectionObserver((entries, observer) => {
       const entry = entries[0];
-      if (!entry.isIntersecting) return;
-
-      resolve();
-      observer.disconnect();
+      if (entry.isIntersecting) {
+        callback();
+        observer.disconnect();
+      }
     });
     intersectionObserver.observe(element);
-  })
+    return intersectionObserver;
+  }
 };
