@@ -11,7 +11,7 @@ if (!CONFIG.google_analytics.only_pageview) {
       gtag('js', new Date());
       gtag('config', CONFIG.google_analytics.tracking_id);
     }
-
+    
     document.addEventListener('pjax:success', () => {
       gtag('event', 'page_view', {
         page_location: location.href,
