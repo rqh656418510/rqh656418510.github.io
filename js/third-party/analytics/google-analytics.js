@@ -2,12 +2,15 @@
 
 if (!CONFIG.google_analytics.only_pageview) {
   if (CONFIG.hostname === location.hostname) {
+    var host = window.location.host;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function() {
       dataLayer.push(arguments);
     };
-    gtag('js', new Date());
-    gtag('config', CONFIG.google_analytics.tracking_id);
+    if (host.indexOf("127.0.0.1") == -1 && host.indexOf("localhost") == -1) {
+      gtag('js', new Date());
+      gtag('config', CONFIG.google_analytics.tracking_id);
+    }
 
     document.addEventListener('pjax:success', () => {
       gtag('event', 'page_view', {
