@@ -14,16 +14,12 @@ var options = {
 }
 const darkmode = new Darkmode(options);
 darkmode.showWidget();
-</script><script>
+</script><script class="next-config" data-name="waline" type="application/json">{&quot;lang&quot;:&quot;zh-cn&quot;,&quot;enable&quot;:true,&quot;serverURL&quot;:&quot;https:&#x2F;&#x2F;waline.techgrow.cn:9360&quot;,&quot;placeholder&quot;:&quot;支持匿名评论啦，若希望及时收到作者的反馈，建议登录评论或者在上方留下邮箱哦 (๑•̀ㅂ•́)و✧&quot;,&quot;avatar&quot;:&quot;retro&quot;,&quot;meta&quot;:[&quot;nick&quot;,&quot;mail&quot;,&quot;link&quot;],&quot;pageSize&quot;:10,&quot;visitor&quot;:false,&quot;comment_count&quot;:true,&quot;requiredFields&quot;:[],&quot;libUrl&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;@waline&#x2F;client@0.15.0&#x2F;dist&#x2F;Waline.min.js&quot;,&quot;el&quot;:&quot;#waline-comments&quot;,&quot;path&quot;:&quot;&#x2F;posts&#x2F;b5897f52.html&quot;}</script><script>
 document.addEventListener('page:loaded', () => {
-  NexT.utils.getScript("https://cdn.jsdelivr.net/npm/@waline/client@0.14.8/dist/Waline.min.js")
-    .then(() => {
-      new Waline(Object.assign({
-        lang: 'zh-CN'
-      }, {"enable":true,"serverURL":"https://waline.techgrow.cn:9360","placeholder":"支持匿名评论啦，若希望及时收到作者的反馈，建议登录评论或者在上方留下邮箱哦 (๑•̀ㅂ•́)و✧","avatar":"retro","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"lang":"zh-cn","libUrl":"https://cdn.jsdelivr.net/npm/@waline/client@0.14.8/dist/Waline.min.js"}, {
-        el: '#waline-comments',
-        path: "/posts/b5897f52.html",
-      }));
-    }, window.Waline);
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
 });
 </script><script>function isMobile(){var i=navigator.userAgent.toLowerCase(),a="ipad"==i.match(/ipad/i),o="iphone os"==i.match(/iphone os/i),e="midp"==i.match(/midp/i),n="rv:1.2.3.4"==i.match(/rv:1.2.3.4/i),c="ucweb"==i.match(/ucweb/i),l="android"==i.match(/android/i),r="windows ce"==i.match(/windows ce/i),d="windows mobile"==i.match(/windows mobile/i);return!!(a||o||e||n||c||l||r||d)}var openOnMobile=isMobile(),showOnMobile=!1,aplayerEnable=!0;$(document).ready(function(){aplayerEnable&&(openOnMobile&&!showOnMobile||$("#aplayer").css("display","block"))}),$(window).load(function(){aplayerEnable&&$(".aplayer\\-icon.aplayer\\-icon\\-lrc").trigger("click")})</script></body></html>
