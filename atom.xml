@@ -6,7 +6,7 @@
   <link href="https://www.techgrow.cn/atom.xml" rel="self"/>
   
   <link href="https://www.techgrow.cn/"/>
-  <updated>2021-05-03T13:48:23.000Z</updated>
+  <updated>2021-05-18T12:48:23.000Z</updated>
   <id>https://www.techgrow.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL 常用命令</title>
+    <link href="https://www.techgrow.cn/posts/31eec5f6.html"/>
+    <id>https://www.techgrow.cn/posts/31eec5f6.html</id>
+    <published>2021-05-18T12:48:23.000Z</published>
+    <updated>2021-05-18T12:48:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<!-- toc --><h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><p>创建普通用户，并完全授权访问特定的数据库</p><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">'clay'</span>@<span class="string">'%'</span> identified <span class="keyword">by</span> <span class="string">'123456'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> mysql_db.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">'clay'</span>@<span class="string">'%'</span>;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></tbody></table></figure><h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><p>删除用户及权限</p><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> <span class="string">'clay'</span>@<span class="string">'%'</span>;</span><br></pre></td></tr></tbody></table></figure><h3 id="创建只读用户"><a href="#创建只读用户" class="headerlink" title="创建只读用户"></a>创建只读用户</h3><p>创建普通用户，并授权特定数据库的只读权限</p><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> mysql_db.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">'clay'</span>@<span class="string">'%'</span> identified <span class="keyword">by</span> <span class="string">'123456'</span>;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></tbody></table></figure><h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><h3 id="查看用户的权限"><a href="#查看用户的权限" class="headerlink" title="查看用户的权限"></a>查看用户的权限</h3><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> grants <span class="keyword">for</span> <span class="string">'clay'</span>@<span class="string">'%'</span>;</span><br></pre></td></tr></tbody></table></figure><h3 id="授权-Root-用户远程登录"><a href="#授权-Root-用户远程登录" class="headerlink" title="授权 Root 用户远程登录"></a>授权 Root 用户远程登录</h3><p><code>*.*</code> 代表所有数据库所有权限，<code>'root'@'%'</code> 中的 <code>root</code> 代表用户名，<code>%</code> 代表所有的访问地址，<code>123456</code> 是登录密码</p><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">'123456'</span> <span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION;</span><br><span class="line"></span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></tbody></table></figure>]]></content>
+    
+    
+    <summary type="html">本文主要记录MySQL的常用命令。</summary>
+    
+    
+    
+    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
+    
+    
+    <category term="数据库" scheme="https://www.techgrow.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>Centos 7 安装 R 语言</title>
@@ -394,27 +415,6 @@
     <category term="微服务" scheme="https://www.techgrow.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
     <category term="Java" scheme="https://www.techgrow.cn/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JetBrains IDEA 2020.3.2 破解激活教程</title>
-    <link href="https://www.techgrow.cn/posts/3644bd49.html"/>
-    <id>https://www.techgrow.cn/posts/3644bd49.html</id>
-    <published>2021-02-28T13:18:36.000Z</published>
-    <updated>2021-02-28T13:18:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><strong>前言</strong></p></blockquote><p>本教程适用于 JetBrains IDEA 2020.3.2 以下所有版本（包括 IDEA 2020 全系列），并支持以最新的方式将 IDEA 2020.3.2 激活到 2099 年，亲测激活成功！！！</p><blockquote><p><strong>资源下载</strong></p></blockquote><ul><li>JetBrains IDEA 下载：<a href="https://www.jetbrains.com/idea/">官网</a></li><li> JetBrains IDEA&nbsp;破解补丁下载：<a href="/downloads/2021/02/jetbrains-idea-2020.3.2-crack.zip">本站</a></li><li> JetBrains IDEA&nbsp;破解补丁下载：<a href="https://pan.baidu.com/s/14xmwiqxU12GoP-4qH6HJDw">百度网盘</a> 提取码：shqt</li><li>JetBrains IDEA 2020 历史版本下载：<a href="https://pan.baidu.com/s/1hLsWu5bISKdy22a3Ll2h8g">百度网盘</a> 提取码：1234</li></ul><blockquote><p><strong>第一步</strong></p></blockquote><p>更改 hosts 文件，将 hosts 文件中有关 Jetbrains 的配置行全部删除掉，若没有则请忽略此步骤。Windows 系统的 hosts 文件路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>，Linux 和 Mac 系统的 hosts 文件路径为：<code>/etc/hosts</code>，一般情况下只需删除以下两行内容即可：</p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0.0.0.0 www.jetbrains.com</span><br><span class="line">0.0.0.0 account.jetbrains.com</span><br></pre></td></tr></tbody></table></figure><span id="more"></span><blockquote><p><strong>第二步</strong></p></blockquote><p>下载安装 JetBrains IDEA，然后启动 IDEA 并选择试⽤（Evaluate for free）模式进⼊软件（如下图），首次启动后的配置项根据自己的需要勾选即可，此步骤不会影响后面破解的过程。假设软件之前已经在试用或者试用过而且过期了，那么可以先删除 IDEA 的所有配置文件，然后再重新启动软件，IDEA 配置文件所在的目录如下：</p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Windows系统</span><br><span class="line">C:\Documents and Settings\Administrator\.idea-2020.3\config</span><br><span class="line">C:\Documents and Settings\Administrator\.idea-2020.3\system</span><br><span class="line"></span><br><span class="line"># Linux/Mac系统</span><br><span class="line">~/.config/JetBrains/IntelliJIdea2020.3</span><br><span class="line">~/.local/share/JetBrains/IntelliJIdea2020.3</span><br></pre></td></tr></tbody></table></figure><p><img data-src="../../../asset/2021/03/jetbrains-idea-crack-1.png" alt="jetbrains-idea-crack-1"></p><blockquote><p><strong>第三步</strong></p></blockquote><p>下载并解压破解补丁的压缩文件，得到 <code>BetterIntelliJ.zip</code> 文件和激活 KEY，切记以后不能随意删除或者移动 <code>BetterIntelliJ.zip</code> 文件的位置，否则 IDEA 激活之后还会失效。</p><blockquote><p><strong>第四步</strong></p></blockquote><p>JetBrains IDEA 启动后（试用模式），手动选择创建或者打开一个项目，进入到 IDEA 的主界面。在菜单栏导航到：File -&gt; Settings -&gt; Plugins -&gt; Install Plugin From Disk，然后找到 <code>BetterIntelliJ.zip</code> 文件开始安装破解插件。当破解插件安装完成后，手动重启 IDEA 让插件生效，建议检查 IDEA 的进程是否真正关闭了。<strong>特别注意，以后不能随意在 IDEA 的插件市场更新 <code>BetterIntelliJ</code> 破解插件的版本，否则 IDEA 的破解激活会失效。</strong></p><p><img data-src="../../../asset/2021/03/jetbrains-idea-crack-2.png" alt="jetBrains-idea-crack-2"></p><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-4014850419768221" data-ad-slot="7606918662"></ins><script>     (adsbygoogle = window.adsbygoogle || []).push({});</script><blockquote><p><strong>第五步</strong></p></blockquote><p>检查破解插件是否安装成功，IDEA 的菜单栏导航到：Help -&gt; Edit Custom Vm Options，如果配置文件末尾出现了一行 <code>-javaagent:/xxxx/BetterIntelliJ-1.16.jar</code>，则说明破解插件安装成功。值得一提的是，在 Linux/Mac 64 位系统环境下，破解插件所用的配置文件的路径为 <code>/${HOME}/.config/JetBrains/IntelliJIdea2020.3/idea64.vmoptions</code>，而不是 IDEA 自身安装目录下的 <code>idea64.vmoptions</code> 配置文件。</p><p><img data-src="../../../asset/2021/03/jetbrains-idea-crack-3.png" alt="jetBrains-idea-crack-3"></p><p>破解插件在不同系统平台的正确配置如下：</p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Windows系统</span><br><span class="line">-javaagent:C:\Users\Public\.BetterIntelliJ\BetterIntelliJ-版本号.jar</span><br><span class="line"></span><br><span class="line"># Linux/Mac系统</span><br><span class="line">-javaagent:${HOME}/.BetterIntelliJ/BetterIntelliJ-版本号.jar</span><br></pre></td></tr></tbody></table></figure><blockquote><p><strong>第六步</strong></p></blockquote><p>IDEA 的菜单导航到：Help -&gt; Register -&gt; Add New License，将破解补丁压缩文件里的激活 KEY 复制到 IDEA 激活码的输入框里，然后点击 <code>Activate</code> 激活按钮即可，如下图所示：</p><p><img data-src="../../../asset/2021/03/jetbrains-idea-crack-4.png" alt="jetBrains-idea-crack-4"></p><blockquote><p><strong>第七步</strong></p></blockquote><p>查看 IDEA 是否破解成功，IDEA 的菜单栏导航到：Help -&gt; About，若出现下图的信息则说明破解成功。</p><p><img data-src="../../../asset/2021/03/jetbrains-idea-crack-5.png" alt="jetBrains-idea-crack-5"></p>]]></content>
-    
-    
-    <summary type="html">本文主要介绍如何破解激活IDEA2020.3.2版本，包括破解补丁和激活码的使用。</summary>
-    
-    
-    
-    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
-    
-    
-    <category term="开发工具" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
