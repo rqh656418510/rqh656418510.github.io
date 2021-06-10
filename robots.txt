@@ -13,6 +13,7 @@ Disallow: /asset/
 Disallow: /video/
 Disallow: /music/
 Disallow: /search/
+Disallow: /uploads/
 Disallow: /private/
 Disallow: /downloads/
 Disallow: /categories/
