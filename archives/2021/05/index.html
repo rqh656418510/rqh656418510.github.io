@@ -19,6 +19,43 @@ darkmode.showWidget();
     var qiniu_domain = "https://qiniu.techgrow.cn";
     var qiniu_token_url = "https://api.techgrow.cn:9080/qiniu/sdk/token";
 
+    // date format
+    Date.prototype.format = function(fmt) {
+      var o = {
+        "M+": this.getMonth() + 1,
+        "d+": this.getDate(),
+        "h+": this.getHours(),
+        "m+": this.getMinutes(),
+        "s+": this.getSeconds(),
+        "q+": Math.floor((this.getMonth() + 3) / 3),
+        "S": this.getMilliseconds()
+      };
+      if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+      }
+      for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+          fmt = fmt.replace(
+            RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+      }
+      return fmt;
+    }
+
+    // generate uuid
+    function uuid() {
+      var s = [];
+      var hexDigits = "0123456789abcdef";
+      for (var i = 0; i < 36; i++) {
+        s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+      }
+      s[14] = "4";
+      s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);
+      s[8] = s[13] = s[18] = s[23] = "-";
+      var uuid = s.join("");
+      return uuid;
+    }
+
     // sync get request
     function syncGet(url) {
       var xhr = null;
@@ -33,6 +70,14 @@ darkmode.showWidget();
         return xhr.responseText;
       }
       return null;
+    }
+
+    // get upload file path
+    function getUploadFilePath() {
+      var now = new Date();
+      var name = uuid().replace(/-/g, "");
+      var nowStr = now.format("/yyyy/MM/dd/");
+      return "uploads" + nowStr + name;
     }
 
     // get qiniu token
@@ -63,10 +108,10 @@ darkmode.showWidget();
     // upload image
     function uploadImage(file) {
       return new Promise((resolve, reject) => {
-        var key = null;
         var config = null;
         var putExtra = null;
         var token = getToken();
+        var key = getUploadFilePath();
         // upload init
         var observable = qiniu.upload(file, key, token, putExtra, config);
         // upload start
@@ -80,7 +125,7 @@ darkmode.showWidget();
           },
           complete(res) {
             // upload complete
-            resolve(qiniu_domain + "/" + res.hash);
+            resolve(qiniu_domain + "/" + key);
           }
         });
       });
@@ -96,4 +141,4 @@ document.addEventListener('page:loaded', () => {
     new Waline(CONFIG.waline);
   });
 });
-</script><script>function isMobile(){var i=navigator.userAgent.toLowerCase(),a="ipad"==i.match(/ipad/i),o="iphone os"==i.match(/iphone os/i),e="midp"==i.match(/midp/i),n="rv:1.2.3.4"==i.match(/rv:1.2.3.4/i),c="ucweb"==i.match(/ucweb/i),l="android"==i.match(/android/i),r="windows ce"==i.match(/windows ce/i),d="windows mobile"==i.match(/windows mobile/i);return!!(a||o||e||n||c||l||r||d)}var openOnMobile=isMobile(),showOnMobile=!1,aplayerEnable=!0;$(document).ready(function(){aplayerEnable&&(openOnMobile&&!showOnMobile||$("#aplayer").css("display","block"))}),$(window).load(function(){aplayerEnable&&$(".aplayer\\-icon.aplayer\\-icon\\-lrc").trigger("click")})</script></body></html>
+</script><div class="comments" id="waline-comments" style="display:none"></div><script>function isMobile(){var i=navigator.userAgent.toLowerCase(),a="ipad"==i.match(/ipad/i),o="iphone os"==i.match(/iphone os/i),e="midp"==i.match(/midp/i),n="rv:1.2.3.4"==i.match(/rv:1.2.3.4/i),c="ucweb"==i.match(/ucweb/i),l="android"==i.match(/android/i),r="windows ce"==i.match(/windows ce/i),d="windows mobile"==i.match(/windows mobile/i);return!!(a||o||e||n||c||l||r||d)}var openOnMobile=isMobile(),showOnMobile=!1,aplayerEnable=!0;$(document).ready(function(){aplayerEnable&&(openOnMobile&&!showOnMobile||$("#aplayer").css("display","block"))}),$(window).load(function(){aplayerEnable&&$(".aplayer\\-icon.aplayer\\-icon\\-lrc").trigger("click")})</script></body></html>
