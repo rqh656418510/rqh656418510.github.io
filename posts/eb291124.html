@@ -87,9 +87,17 @@ darkmode.showWidget();
         var json = JSON.parse(result)
         if (json.code === 200) {
           return json.data;
+        } else if (json.code === 400) {
+          alert(json.msg || "图片上传失败，非法请求来源!");
+        } else if (json.code === 429) {
+          alert(json.msg || "图片上传太频繁，请稍后再试!");
+        } else if (json.code === 500) {
+          alert(json.msg || "图片上传失败，系统内部出错!");
+        } else {
+          alert("图片上载失败，发生未知错误!");
         }
       } catch (err) {
-        console.error("failed to get qiniu token: " + err.message);
+        alert("图片上载失败，发生未知错误!");
       }
       return null;
     }
