@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+Allow: /tags/
+Allow: /page/
+Allow: /posts/
+Allow: /archives/
+Allow: /fonts/
+Disallow: /css/
+Disallow: /lib/
+Disallow: /img/
+Disallow: /book/
+Disallow: /asset/
+Disallow: /video/
+Disallow: /music/
+Disallow: /search/
+Disallow: /private/
+Disallow: /downloads/
+Disallow: /categories/
+
+Sitemap: https://www.techgrow.cn/sitemap.xml
+Sitemap: https://www.techgrow.cn/baidusitemap.xml
+Sitemap: https://www.techgrow.cn/sogousitemap.xml
