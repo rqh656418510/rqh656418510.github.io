@@ -12,6 +12,7 @@ Disallow: /book/
 Disallow: /asset/
 Disallow: /video/
 Disallow: /music/
+Disallow: /links/
 Disallow: /search/
 Disallow: /private/
 Disallow: /downloads/
