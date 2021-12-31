@@ -6,7 +6,7 @@
   <link href="https://www.techgrow.cn/atom.xml" rel="self"/>
   
   <link href="https://www.techgrow.cn/"/>
-  <updated>2021-12-28T14:25:46.000Z</updated>
+  <updated>2021-12-29T14:25:49.000Z</updated>
   <id>https://www.techgrow.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CMake 入门指南之一</title>
+    <link href="https://www.techgrow.cn/posts/65d4f633.html"/>
+    <id>https://www.techgrow.cn/posts/65d4f633.html</id>
+    <published>2021-12-29T14:25:49.000Z</published>
+    <updated>2021-12-29T14:25:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<!-- toc --><h2 id="CMake3-安装"><a href="#CMake3-安装" class="headerlink" title="CMake3 安装"></a>CMake3 安装</h2><ul><li>CentOS/Fedora</li></ul><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install -y cmake3</span></span><br></pre></td></tr></tbody></table></figure><ul><li>Debian/Ubuntu</li></ul><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> apt-get install -y cmake3</span></span><br></pre></td></tr></tbody></table></figure><span id="more"></span><h2 id="CMake-命令行编译"><a href="#CMake-命令行编译" class="headerlink" title="CMake 命令行编译"></a>CMake 命令行编译</h2><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入项目根目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> my_project</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建构建目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir build</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入构建目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> build</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 生成makefile</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cmake3 ..</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译生成可执行文件</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> make</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 运行可执行程序</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./my_project</span></span><br></pre></td></tr></tbody></table></figure>]]></content>
+    
+    
+    <summary type="html">本文主要介绍 CMake 的入门教程，包括 Windows/Linux 系统如何使用 CMake 构建 C++ 和 C 语言项目。</summary>
+    
+    
+    
+    
+    <category term="Linux系统编程" scheme="https://www.techgrow.cn/tags/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/"/>
+    
+    <category term="C语言" scheme="https://www.techgrow.cn/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+    <category term="C++" scheme="https://www.techgrow.cn/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>Centos7 升级 OpenSSL</title>
@@ -383,27 +406,6 @@
     
     
     <summary type="html">本文主要介绍如何解决 Windows 系统使用 NPM 时遇到的各种问题。</summary>
-    
-    
-    
-    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
-    
-    
-    <category term="Windows系统" scheme="https://www.techgrow.cn/tags/Windows%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows 10 系统备份与还原常见错误解决</title>
-    <link href="https://www.techgrow.cn/posts/490dddd2.html"/>
-    <id>https://www.techgrow.cn/posts/490dddd2.html</id>
-    <published>2021-11-02T13:55:33.000Z</published>
-    <updated>2021-11-02T13:55:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<!-- toc --><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Windows 10 中的备份和还原（Windows 7）作为 Microsoft Windows 组件，继承了 Windows 7 的功能，该功能使您可以备份与恢复文件以及创建系统映像。如果在 Windows 的早期版本中使用 <code>备份</code> 和 <code>还原</code> 来备份文件或创建系统映像，则仍可以在 Windows 10 中恢复这些备份。此外，Windows 10 还包括另一个备份与恢复工具 - <code>文件历史记录</code>，它只备份文档，音乐，图片，视频和桌面文件夹中文件的版本，以及 PC 上可用的 OneDrive 文件。如果要使用 <code>文件历史记录</code> 备份位于其他位置的其他文件，可以将其移至这些文件夹之一，然后再进行备份。保存备份的两个目标地址支持外部硬盘驱动器（例如 USB 闪存驱动器）和网络位置。</p><span id="more"></span><h2 id="系统备份常见错误"><a href="#系统备份常见错误" class="headerlink" title="系统备份常见错误"></a>系统备份常见错误</h2><h3 id="错误一"><a href="#错误一" class="headerlink" title="错误一"></a>错误一</h3><h4 id="错误提示信息"><a href="#错误提示信息" class="headerlink" title="错误提示信息"></a>错误提示信息</h4><p><code>无法创建卷影副本，请检查 vss 和 spp 应用程序事件日志更多信息（错误代码：0x81000019）</code></p><p>或者</p><p><code>由于内部错误，备份应用程序无法启动：卷影复制服务组件遇到意外错误（错误代码：0x80042302）</code></p><h4 id="错误解决方案一"><a href="#错误解决方案一" class="headerlink" title="错误解决方案一"></a>错误解决方案一</h4><p>这个错误可能是由于三方杀毒软件冲突或者一些 Windows 备份相关的服务被禁用导致的，具体解决步骤如下：</p><ul><li>a) 暂时关闭或卸载第三方杀毒软件</li><li> b) 使用快捷键 <code>windows + r</code>，输入 <code>services.msc</code>，打开服务控制台，并检查下列服务是否正常运行。如果服务被禁用，请将其启用，并将启动类型设置为 <code>自动</code>。</li></ul><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Volume Shadow Copy (VSS)</span><br><span class="line">Remote Procedure Call (RPCSS)</span><br><span class="line">COM+ Event System (eventsystem)</span><br><span class="line">System Event Notification Service (sens)</span><br><span class="line">Microsoft Software Shadow Copy Provider (SWPRV)</span><br></pre></td></tr></tbody></table></figure><ul><li>c) 重启 Windows 10 系统，然后再次尝试执行系统备份</li></ul><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-4014850419768221" data-ad-slot="7606918662"></ins><script>     (adsbygoogle = window.adsbygoogle || []).push({});</script><h4 id="错误解决方案二"><a href="#错误解决方案二" class="headerlink" title="错误解决方案二"></a>错误解决方案二</h4><ul><li>a) 使用快捷键 <code>windows + r</code>，输入 <code>msconfig</code></li></ul><p><img data-src="../../../asset/2021/11/windows-backup-3.png" alt="windows-backup-3"></p><ul><li>b) 点击 <code>服务</code> 标签卡，勾选 <code>隐藏所有的 Microsoft 服务</code> ，然后点击全部禁用并应用</li></ul><p><img data-src="../../../asset/2021/11/windows-backup-4.png" alt="windows-backup-4"></p><ul><li> c) 点击 <code>启动</code> 标签卡，点击 <code>打开任务管理器</code></li></ul><p><img data-src="../../../asset/2021/11/windows-backup-5.png" alt="windows-backup-5"></p><ul><li>d) 禁用全部开机启动项</li></ul><p><img data-src="../../../asset/2021/11/windows-backup-6.png" alt="windows-backup-6"></p><ul><li><p> e) 重启 Windows 10 系统，然后再次尝试执行系统备份</p></li><li><p>f) 系统成功备份后，重新启用在上面的步骤中禁用的服务和开机启动项，最后再次重启系统</p></li></ul><h3 id="错误二"><a href="#错误二" class="headerlink" title="错误二"></a>错误二</h3><h4 id="错误提示信息-1"><a href="#错误提示信息-1" class="headerlink" title="错误提示信息"></a>错误提示信息</h4><p><code>Windows 备份在源卷上创建共享保护点失败（错误代码：0×8078006B）</code></p><h4 id="错误解决方案"><a href="#错误解决方案" class="headerlink" title="错误解决方案"></a>错误解决方案</h4><p>这个错误一般是由程序冲突引起的，目前排查出是 <code>腾讯电脑管家</code> 的设置问题导致，具体解决步骤如下：</p><ul><li>a) 打开 <code>腾讯电脑管家</code> 的 <code>设置中心</code></li></ul><p><img data-src="../../../asset/2021/11/windows-backup-1.png" alt="windows-backup-1"></p><ul><li>b) 找到 <code>实时防护</code> 菜单下面的 <code>其他安全提示</code>，将 <code>开启卷影备份</code> 的勾选去掉</li></ul><p><img data-src="../../../asset/2021/11/windows-backup-2.png" alt="windows-backup-2"></p><ul><li> c) 如果上述设置仍然没办法解决问题，建议暂时关闭或卸载 <code>腾讯电脑管家</code></li></ul>]]></content>
-    
-    
-    <summary type="html">本文主要介绍 Windows 10 系统备份与还原常见错误的解决方案。</summary>
     
     
     
