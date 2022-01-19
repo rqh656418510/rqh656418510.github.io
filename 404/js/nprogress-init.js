@@ -6,7 +6,7 @@ const page_progress = true;
 $(function() {
   if (page_progress) {
     NProgress.start();
-    $(window).load(function() {
+    $(window).on('load', function() {
       NProgress.done();
     });
   }
