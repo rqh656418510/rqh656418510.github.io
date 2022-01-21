@@ -1,4 +1,4 @@
-<div id="vip-container">// 站点分析脚本（谷歌分析、百度统计）
+<div id="readmore-container">// 站点分析脚本（谷歌分析、百度统计）
 
 "use strict";
 const host = window.location.host;
@@ -54,12 +54,11 @@ function baiduTongJi() {
 				try {
 					var btw = new BTWPlugin();
 					btw.init({
-						"id": "vip-container",
+						"id": "readmore-container",
 						"blogId": "16903-1366036532869-542",
 						"name": "全栈技术驿站",
 						"qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png",
-						"keyword": "vip",
-						"visualHeight": "1317.5px"
+						"keyword": "tech"
 					});
 				} catch(e) {
 					console.warn(e.name + " : " + e.message);

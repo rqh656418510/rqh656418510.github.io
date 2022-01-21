@@ -1,4 +1,4 @@
-<div id="vip-container">// 初始化NProgress进度条
+<div id="readmore-container">// 初始化NProgress进度条
 
 "use strict";
 const page_progress = true;
@@ -19,12 +19,11 @@ $(function() {
 				try {
 					var btw = new BTWPlugin();
 					btw.init({
-						"id": "vip-container",
+						"id": "readmore-container",
 						"blogId": "16903-1366036532869-542",
 						"name": "全栈技术驿站",
 						"qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png",
-						"keyword": "vip",
-						"visualHeight": "1317.5px"
+						"keyword": "tech"
 					});
 				} catch(e) {
 					console.warn(e.name + " : " + e.message);
