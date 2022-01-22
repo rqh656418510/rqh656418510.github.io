@@ -58,7 +58,8 @@ function baiduTongJi() {
 						"blogId": "16903-1366036532869-542",
 						"name": "全栈技术驿站",
 						"qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png",
-						"keyword": "tech"
+						"keyword": "tech",
+						"random": "true"
 					});
 				} catch(e) {
 					console.warn(e.name + " : " + e.message);
