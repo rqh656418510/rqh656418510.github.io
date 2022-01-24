@@ -1,4 +1,4 @@
-<div id="readmore-container">// 站点分析脚本（谷歌分析、百度统计）
+// 站点分析脚本（谷歌分析、百度统计）
 
 "use strict";
 const host = window.location.host;
@@ -45,25 +45,3 @@ function baiduTongJi() {
   googleAnalytics();
   baiduTongJi();
 })();
-</div>
-
-			<script src="https://qiniu.techgrow.cn/js/readmore.js" type="text/javascript"></script>
-			<script>
-			var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
-			if (!isMobile) {
-				try {
-					var btw = new BTWPlugin();
-					btw.init({
-						"id": "readmore-container",
-						"blogId": "16903-1366036532869-542",
-						"name": "全栈技术驿站",
-						"qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png",
-						"keyword": "tech",
-						"random": "0.8"
-					});
-				} catch(e) {
-					console.warn(e.name + " : " + e.message);
-				}
-			}
-			</script>
-		
