@@ -130,6 +130,18 @@ function showSnackbar() {
 - 增加本地图片自动上传图床功能
 
 #### Changelog
+
+版本号：V1.2.3
+更新日期：2022-01-27
+
+- 升级jQuery版本
+- 增加谷歌站点分析
+
+版本号：V1.2.2
+更新日期：2020-03-19
+
+- FIX 代码块出现数字编号的 BUG
+
 版本号：V1.2.1
 更新日期：2018-07-12
 
@@ -156,4 +168,3 @@ function showSnackbar() {
 
 ### LICENSE
 MIT. Thanks for @barretlee.
-
