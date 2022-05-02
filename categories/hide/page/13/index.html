@@ -146,18 +146,20 @@ darkmode.showWidget();
         });
       });
     }
-  </script><script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline.techgrow.cn:9360","placeholder":"支持匿名评论啦，若希望及时收到作者的反馈，建议登录评论或者在上方的邮箱输入框留下邮箱地址哦 (๑•̀ㅂ•́)و✧","pageSize":10,"visitor":false,"comment_count":true,"requiredMeta":[],"copyright":false,"allowUploadImage":true,"login":"","dark":"body.darkmode--activated","meta":["nick","mail","link"],"libUrl":"https://unpkg.com/@waline/client@1.6.0/dist/Waline.min.js","qiniuDebug":false,"qiniuDomain":"https://qiniu.techgrow.cn","qiniuTokenUrl":"https://open.techgrow.cn/app/api/qiniu/token/upload","el":"#waline-comments","path":"/categories/hide/page/13/"}</script><script>
+  </script><script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.techgrow.cn:9360","commentCount":true,"pageview":false,"copyright":false,"allowUploadImage":true,"libUrl":"https://unpkg.com/@waline/client@2.0.7/dist/waline.js","cssUrl":"https://unpkg.com/@waline/client@2.0.7/dist/waline.css","locale":{"placeholder":"支持匿名评论啦，若希望及时收到作者的反馈，建议登录评论或者在上方的邮箱输入框留下邮箱地址哦 (๑•̀ㅂ•́)و✧"},"dark":"body.darkmode--activated","meta":["nick","mail","link"],"login":"enable","pageSize":10,"qiniuDebug":false,"qiniuDomain":"https://qiniu.techgrow.cn","qiniuTokenUrl":"https://open.techgrow.cn/app/api/qiniu/token/upload","el":"#waline","comment":true,"path":"/categories/hide/page/13/"}</script><link rel="stylesheet" href="https://unpkg.com/@waline/client@2.0.7/dist/waline.css"><script>
 document.addEventListener('page:loaded', () => {
-  if(!CONFIG.waline.allowUploadImage) {
-    CONFIG.waline.uploadImage = false;
+  if (!CONFIG.waline.allowUploadImage) {
+    CONFIG.waline.imageUploader = false;
   }
-  else if(CONFIG.waline.qiniuDomain && CONFIG.waline.qiniuTokenUrl) {
-    CONFIG.waline.uploadImage = qiniuUploadImage;
+  else if (CONFIG.waline.qiniuDomain && CONFIG.waline.qiniuTokenUrl) {
+    CONFIG.waline.imageUploader = qiniuUploadImage;
+  } else {
+   CONFIG.waline.imageUploader = true;
   }
   NexT.utils.loadComments(CONFIG.waline.el).then(() =>
     NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
-  ).then(() => {
-    new Waline(CONFIG.waline);
-  });
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
 });
 </script><div class="comments" id="waline-comments" style="display:none"></div><script>function isMobile(){var i=navigator.userAgent.toLowerCase(),e="ipad"==i.match(/ipad/i),a="iphone os"==i.match(/iphone os/i),o="midp"==i.match(/midp/i),n="rv:1.2.3.4"==i.match(/rv:1.2.3.4/i),r="ucweb"==i.match(/ucweb/i),c="android"==i.match(/android/i),l="windows ce"==i.match(/windows ce/i),d="windows mobile"==i.match(/windows mobile/i);return!!(e||a||o||n||r||c||l||d)}var openOnMobile=isMobile(),showOnMobile=!1,aplayerEnable=!0;jQuery(document).ready(function(){aplayerEnable&&(openOnMobile&&!showOnMobile||jQuery("#aplayer").css("display","block"))}),jQuery(window).on("load",function(){aplayerEnable&&jQuery(".aplayer\\-icon.aplayer\\-icon\\-lrc").trigger("click")})</script></body></html>
