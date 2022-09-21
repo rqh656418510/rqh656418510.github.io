@@ -404,23 +404,23 @@
   </entry>
   
   <entry>
-    <title>Centos7 安装 Edge 浏览器</title>
-    <link href="https://www.techgrow.cn/posts/350db602.html"/>
-    <id>https://www.techgrow.cn/posts/350db602.html</id>
-    <published>2022-03-08T13:48:23.000Z</published>
-    <updated>2022-03-08T13:48:23.000Z</updated>
+    <title>IDEA 开发随笔</title>
+    <link href="https://www.techgrow.cn/posts/6c257231.html"/>
+    <id>https://www.techgrow.cn/posts/6c257231.html</id>
+    <published>2022-03-16T13:18:36.000Z</published>
+    <updated>2022-03-16T13:18:36.000Z</updated>
     
-    <content type="html"><![CDATA[<div id="readmore-container"><!-- toc --><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>在 Edge 的 <a href="https://www.microsoftedgeinsider.com/zh-cn/download/?platform=linux">官网</a>，手动下载最新版的 RPM 安装包，或者使用以下命令进行下载：</p><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$ wget</span> https://packages.microsoft.com/yumrepos/edge/microsoft-edge-dev-101.0.1193.0-1.x86_64.rpm</span><br></pre></td></tr></tbody></table></figure><span id="more"></span><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword"># yum</span> install libatomic</span><br></pre></td></tr></tbody></table></figure><div class="admonition note"><p class="admonition-title">提示</p><p>若不提前安装 <code>libatomic</code> 库，则安装 Edge 时会出现以下错误信息。</p></div><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">错误：依赖检测失败：</span><br><span class="line">libatomic.so.1()(64bit) 被 microsoft-edge-dev-101.0.1193.0-1.x86_64 需要</span><br><span class="line">libatomic.so.1(LIBATOMIC_1.0)(64bit) 被 microsoft-edge-dev-101.0.1193.0-1.x86_64 需要</span><br></pre></td></tr></tbody></table></figure><h2 id="安装-Edge-浏览器"><a href="#安装-Edge-浏览器" class="headerlink" title="安装 Edge 浏览器"></a>安装 Edge 浏览器</h2><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword"># rpm</span><span class="params"> -ivh</span> microsoft-edge-dev-101.0.1193.0-1.x86_64.rpm</span><br></pre></td></tr></tbody></table></figure></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script>var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);if (!isMobile) {try {var plugin = new ReadmorePlugin();plugin.init({"id": "readmore-container","blogId": "96641-5333172926158-056","name": "全栈技术驿站","qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png","keyword": "Tech","lockToc": "yes","type": "hexo","random": "0.9","interval": "30","expires": "365","height": "auto"});} catch(e) {console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);}}</script>]]></content>
+    <content type="html"><![CDATA[<div id="readmore-container"><!-- toc --><h2 id="Spring-Initializr-网络连接超时"><a href="#Spring-Initializr-网络连接超时" class="headerlink" title="Spring Initializr 网络连接超时"></a>Spring Initializr 网络连接超时</h2><p>使用 Spring Initializr 工具初始化 SpringBoot 项目时，出现网络连接超时的异常。</p><h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>使用阿里云版的 Spring Initializr 来替代，在 IDEA 内搜索 <code>Alibaba Cloud Toolkit</code> 插件，安装插件后重启 IDEA。</p><p><img data-src="../../../asset/2022/09/alibaba-cloud-toolkit.png"></p><span id="more"></span><h3 id="方案二（推荐）"><a href="#方案二（推荐）" class="headerlink" title="方案二（推荐）"></a>方案二（推荐）</h3><p>配置阿里云的 <code>Spring Initializr URL</code>，在 Spring Initializr 的界面中指定服务器 URL 为 <code>https://start.aliyun.com/</code></p><p><img data-src="../../../asset/2022/09/spring-initializr-url.png"></p></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script>var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);if (!isMobile) {try {var plugin = new ReadmorePlugin();plugin.init({"id": "readmore-container","blogId": "96641-5333172926158-056","name": "全栈技术驿站","qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png","keyword": "Tech","lockToc": "yes","type": "hexo","random": "0.9","interval": "30","expires": "365","height": "auto"});} catch(e) {console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);}}</script>]]></content>
     
     
-    <summary type="html">本文主要介绍Centos7如何安装Edge浏览器。</summary>
+    <summary type="html">本文主要记录如何解决日常使用 IDEA 开发项目遇到的问题。</summary>
     
     
     
     <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
     
-    <category term="Centos" scheme="https://www.techgrow.cn/tags/Centos/"/>
+    <category term="开发工具" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
