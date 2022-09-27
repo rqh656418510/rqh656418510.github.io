@@ -6,7 +6,7 @@
   <link href="https://www.techgrow.cn/atom.xml" rel="self"/>
   
   <link href="https://www.techgrow.cn/"/>
-  <updated>2022-09-25T14:38:21.000Z</updated>
+  <updated>2022-09-27T12:34:21.000Z</updated>
   <id>https://www.techgrow.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《Rust 编程之道》摘录之一</title>
+    <link href="https://www.techgrow.cn/posts/10699400.html"/>
+    <id>https://www.techgrow.cn/posts/10699400.html</id>
+    <published>2022-09-27T12:34:21.000Z</published>
+    <updated>2022-09-27T12:34:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<div id="readmore-container"><!-- toc --></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script>var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);if (!isMobile) {try {var plugin = new ReadmorePlugin();plugin.init({"id": "readmore-container","blogId": "96641-5333172926158-056","name": "全栈技术驿站","qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png","keyword": "Tech","lockToc": "yes","type": "hexo","random": "0.9","interval": "30","expires": "365","height": "auto"});} catch(e) {console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);}}</script>]]></content>
+    
+    
+    <summary type="html">《Rust 编程之道》摘录。</summary>
+    
+    
+    
+    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
+    
+    
+    <category term="读书笔记" scheme="https://www.techgrow.cn/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="Rust" scheme="https://www.techgrow.cn/tags/Rust/"/>
+    
+  </entry>
   
   <entry>
     <title>近期关注的开源项目</title>
@@ -402,27 +425,6 @@
     
     
     <category term="开发工具" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringCloud 开发随笔</title>
-    <link href="https://www.techgrow.cn/posts/b9ecd4c2.html"/>
-    <id>https://www.techgrow.cn/posts/b9ecd4c2.html</id>
-    <published>2022-04-15T13:12:35.000Z</published>
-    <updated>2022-04-15T13:12:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<div id="readmore-container"><!-- toc --><h2 id="配置中心"><a href="#配置中心" class="headerlink" title="配置中心"></a>配置中心</h2><h3 id="Nacos-配置中心"><a href="#Nacos-配置中心" class="headerlink" title="Nacos 配置中心"></a>Nacos 配置中心</h3><h4 id="Maven-引入-Nacos-Config-不生效"><a href="#Maven-引入-Nacos-Config-不生效" class="headerlink" title="Maven 引入 Nacos Config 不生效"></a>Maven 引入 Nacos Config 不生效</h4><h5 id="错误日志信息"><a href="#错误日志信息" class="headerlink" title="错误日志信息"></a>错误日志信息</h5><p>Spring Cloud 项目引入 Nacos Config 的 Maven 依赖后，使用 <code>@Value</code> 注解无法读取 Nacos 配置中心的内容，抛出的异常信息如下</p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'common.name' in value "${common.name}"</span><br></pre></td></tr></tbody></table></figure><span id="more"></span><h5 id="第一种错误原因"><a href="#第一种错误原因" class="headerlink" title="第一种错误原因"></a>第一种错误原因</h5><p>Spring Cloud 无法读取项目中的 <code>bootstrap.yml</code> 配置文件，此时需要额外引入 <code>spring-cloud-starter-bootstrap</code> 依赖来解决</p><figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-bootstrap<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure><h5 id="第二种错误原因"><a href="#第二种错误原因" class="headerlink" title="第二种错误原因"></a>第二种错误原因</h5><p>项目中 <code>bootstrap.yml</code> 配置文件的内容有误，导致 Nacos Config Spring Cloud 无法通过正确的 <code>dataId</code> 去 Nacos 配置中心获取对应的配置信息，正确的配置示例如下所示：</p><figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">seamall-coupon</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span>                         <span class="comment"># 配置中心的地址</span></span><br><span class="line">        <span class="attr">namespace:</span> <span class="string">73975db4-5c7f-4fef-9ea9-36492bd59f45</span>     <span class="comment"># 命名空间</span></span><br><span class="line">        <span class="attr">group:</span> <span class="string">TEST_GROUP</span>                                   <span class="comment"># 配置分组</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span>                                <span class="comment"># 由于当前环境对应的 profile 为 dev，因此这里完整的 dataId 就是 seamall-coupon-dev.yaml</span></span><br></pre></td></tr></tbody></table></figure><blockquote><p>上述 <code>bootstrap.yml</code> 配置文件对应的 Nacos Config 配置内容如下图所示</p></blockquote><p><img data-src="../../../asset/2022/09/spring-cloud-nacos-config-qa-1.png"></p><blockquote><p>上述 <code>bootstrap.yml</code> 配置文件的详细说明如下</p></blockquote><p>在 <code>bootstrap.yaml</code> 配置文件中，需要配置 <code>spring.application.name</code>，因为它是构成 Nacos Config 配置管理 <code>dataId</code> 字段的一部分。值得一提的是，在 Nacos Config Spring Cloud 中，<code>dataId</code> 的完整格式如下：</p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">${prefix}-${spring.profiles.active}.${file-extension}</span><br></pre></td></tr></tbody></table></figure><ul><li><code>prefix</code> 默认为 <code>spring.application.name</code> 的值，也可以通过配置项 <code>spring.cloud.nacos.config.prefix</code> 来配置</li><li><code>file-exetension</code> 为配置内容的数据格式，可以通过配置项 <code>spring.cloud.nacos.config.file-extension</code> 来配置，目前只支持 <code>properties</code> 和 <code>yaml</code> 类型</li><li><code>spring.profiles.active</code> 即为当前环境对应的 <code>profile</code>。特别注意：当 <code>spring.profiles.active</code> 为空时，对应的连接符 <code>-</code> 也将不存在，<code>dataId</code> 的拼接格式会变成 <code>${prefix}.${file-extension}</code></li></ul></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script>var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);if (!isMobile) {try {var plugin = new ReadmorePlugin();plugin.init({"id": "readmore-container","blogId": "96641-5333172926158-056","name": "全栈技术驿站","qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png","keyword": "Tech","lockToc": "yes","type": "hexo","random": "0.9","interval": "30","expires": "365","height": "auto"});} catch(e) {console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);}}</script>]]></content>
-    
-    
-    <summary type="html">本文主要记录SpringCloud日常开发的笔记。</summary>
-    
-    
-    
-    
-    <category term="微服务" scheme="https://www.techgrow.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-    <category term="开发随笔" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
