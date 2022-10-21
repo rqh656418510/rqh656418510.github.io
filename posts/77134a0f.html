@@ -1,4 +1,702 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0"><link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico"><link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#222"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/lib/@fortawesome/fontawesome-free/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous"><link rel="stylesheet" href="/lib/animate.css/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous"><script class="next-config" data-name="main" type="application/json">{"hostname":"www.techgrow.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script><meta name="description" content="Docker镜像管理命令使用教程。"><meta property="og:type" content="article"><meta property="og:title" content="Docker 之二 Docker 镜像管理命令"><meta property="og:url" content="https://www.techgrow.cn/posts/77134a0f.html"><meta property="og:site_name" content="Clay 的技术博客"><meta property="og:description" content="Docker镜像管理命令使用教程。"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2018-12-23T15:52:20.000Z"><meta property="article:modified_time" content="2022-05-02T04:09:10.266Z"><meta property="article:author" content="Clay"><meta property="article:tag" content="容器化"><meta name="twitter:card" content="summary"><link rel="canonical" href="https://www.techgrow.cn/posts/77134a0f.html"><script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.techgrow.cn/posts/77134a0f.html","path":"posts/77134a0f.html","title":"Docker 之二 Docker 镜像管理命令"}</script><script class="next-config" data-name="calendar" type="application/json">""</script><title>Docker 之二 Docker 镜像管理命令 | Clay 的技术博客</title><script async src="https://www.googletagmanager.com/gtag/js?id=UA-135294383-1"></script><script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-135294383-1","only_pageview":false}</script><script src="/js/third-party/analytics/google-analytics.js"></script><script class="next-config" data-name="baidu_analytics" type="application/json">"84c09b30349a65573c5c642ff336969b"</script><script src="/js/third-party/analytics/baidu-analytics.js"></script><link rel="dns-prefetch" href="https://waline.techgrow.cn:9360"><noscript><link rel="stylesheet" href="/css/noscript.css"></noscript><style>.admonition{margin:1.5625em 0;padding:.6rem;overflow:hidden;font-size:.64rem;page-break-inside:avoid;border-left:.3rem solid #42b983;border-radius:.3rem;box-shadow:0 .1rem .4rem rgba(0,0,0,.05),0 0 .05rem rgba(0,0,0,.1);background-color:#fafafa}p.admonition-title{position:relative;margin:-.6rem -.6rem .8em -.6rem!important;padding:.4rem .6rem .4rem 2.5rem;font-weight:700;background-color:rgba(66,185,131,.1)}.admonition-title::before{position:absolute;top:.9rem;left:1rem;width:12px;height:12px;background-color:#42b983;border-radius:50%;content:' '}.info>.admonition-title,.todo>.admonition-title{background-color:rgba(0,184,212,.1)}.attention>.admonition-title,.caution>.admonition-title,.warning>.admonition-title{background-color:rgba(255,145,0,.1)}.error>.admonition-title,.fail>.admonition-title,.failure>.admonition-title,.missing>.admonition-title{background-color:rgba(255,82,82,.1)}.admonition.info,.admonition.todo{border-color:#00b8d4}.admonition.attention,.admonition.caution,.admonition.warning{border-color:#ff9100}.admonition.error,.admonition.fail,.admonition.failure,.admonition.missing{border-color:#ff5252}.info>.admonition-title::before,.todo>.admonition-title::before{background-color:#00b8d4;border-radius:50%}.attention>.admonition-title::before,.caution>.admonition-title::before,.warning>.admonition-title::before{background-color:#ff9100;border-radius:50%}.error>.admonition-title::before,.fail>.admonition-title::before,.failure>.admonition-title::before,.missing>.admonition-title::before{background-color:#ff5252;border-radius:50%}.admonition>:last-child{margin-bottom:0!important}</style><link rel="alternate" href="/atom.xml" title="Clay 的技术博客" type="application/atom+xml"><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head><body itemscope itemtype="http://schema.org/WebPage" class="use-motion"><script src="/lib/jquery/dist/jquery.min.js"></script><script data-pjax>!function(){var t=window.location.host;if(-1==t.indexOf("127.0.0.1")&&-1==t.indexOf("localhost")){var o=document.createElement("script"),e=window.location.protocol.split(":")[0];o.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(o,n)}}()</script><script data-ad-client="ca-pub-4014850419768221" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><link rel="stylesheet" href="/lib/aplayer/dist/APlayer.min.css"><div id="aplayer" style="display:none"></div><script src="/lib/aplayer/dist/APlayer.min.js"></script><script src="/lib/aplayer/dist/color-thief.js"></script><script src="/lib/aplayer-init.js"></script><script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script><script>function getTitle(){var t=jQuery("meta[property='og:title']");return t?t.attr("content"):""}function getDesc(){var t=jQuery("meta[property='og:description']");return t?t.attr("content"):""}function randomString(t){for(var e="ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678",n=e.length,i="",r=0;r<t;++r)i+=e.charAt(Math.floor(Math.random()*n));return i}function initWx(t){wx.config({debug:!1,appId:t.appId,nonceStr:t.nonceStr,signature:t.signature,timestamp:t.timestamp,jsApiList:["checkJsApi","onMenuShareTimeline","onMenuShareAppMessage","onMenuShareQQ"]}),wx.ready(function(){wx.onMenuShareTimeline({title:t.title,link:t.link,imgUrl:t.imgUrl,success:function(){}}),wx.onMenuShareAppMessage({title:t.title,desc:t.desc,link:t.link,imgUrl:t.imgUrl,type:"link",dataUrl:"",success:function(){}}),wx.onMenuShareQQ({title:t.title,desc:t.desc,link:t.link,imgUrl:t.imgUrl,success:function(){},cancel:function(){}})}),wx.error(function(t){})}jQuery(function(){var e=getDesc(),n=getTitle(),i=randomString(16),r=(new Date).getTime(),a=window.location.href,t="https://open.techgrow.cn/app/api/wechat/js/signature?url="+a+"&noncestr="+i+"&timestamp="+r;jQuery.getJSON(t,function(t){initWx({desc:e,title:n,link:a,nonceStr:i,timestamp:r,signature:t.data,appId:"wx1fcf69355af43d41",imgUrl:"https://www.techgrow.cn/img/wx_share.jpg"})})})</script><div style="display:none"><img src="https://www.techgrow.cn/img/wx_share.jpg" alt></div><div class="headband"></div><main class="main"><header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-container"><div class="site-nav-toggle"><div class="toggle" aria-label="切换导航栏" role="button"><span class="toggle-line"></span><span class="toggle-line"></span><span class="toggle-line"></span></div></div><div class="site-meta"><a href="/" class="brand" rel="start"><i class="logo-line"></i><p class="site-title">Clay 的技术博客</p><i class="logo-line"></i></a><p class="site-subtitle" itemprop="description">用进废退 | 艺不压身</p></div><div class="site-nav-right"><div class="toggle popup-trigger"></div></div></div><nav class="site-nav"><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-search"><a href="/search" rel="section"><i class="fa fa-search fa-fw"></i>搜索</a></li><li class="menu-item menu-item-links"><a href="/links" rel="section"><i class="fas fa-link fa-fw"></i>友链</a></li><li class="menu-item menu-item-openplatform"><a href="https://open.techgrow.cn/" rel="external nofollow" target="_blank"><i class="fa fa-toolbox fa-fw"></i>开放平台</a></li><li class="menu-item menu-item-readingnotes"><a href="https://docs.techgrow.cn/notes/" rel="external nofollow" target="_blank"><i class="fa fa-book-open-reader fa-fw"></i>读书笔记</a></li><li class="menu-item menu-item-commentmanage"><a href="https://waline.techgrow.cn:9360/ui/login?lng=zh-cn" rel="external nofollow" target="_blank"><i class="fa fa-comment fa-fw"></i>评论管理</a></li></ul></nav></div><div class="toggle sidebar-toggle" role="button"><span class="toggle-line"></span><span class="toggle-line"></span><span class="toggle-line"></span></div><aside class="sidebar"><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class="sidebar-nav"><li class="sidebar-nav-toc"> 文章目录</li><li class="sidebar-nav-overview"> 站点概览</li></ul><div class="sidebar-panel-container"><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker 帮助命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E9%95%9C%E5%83%8F%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker 镜像查看命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E9%95%9C%E5%83%8F%E6%90%9C%E7%B4%A2%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker 镜像搜索命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker 镜像下载命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E9%95%9C%E5%83%8F%E5%88%A0%E9%99%A4%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker 镜像删除命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F"><span class="nav-text">批量删除镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BADocker%E9%95%9C%E5%83%8F"><span class="nav-text">构建 Docker 镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C%E6%8E%A8%E8%8D%90"><span class="nav-text">Docker 命令帮助手册推荐</span></a></li></ol></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person"> <img class="site-author-image" itemprop="image" alt="Clay" src="/img/head.jpg"></div><div class="site-state-wrap site-overview-item animated"><nav class="site-state"><div class="site-state-item site-state-posts"> <span class="site-state-item-count">394</span> <span class="site-state-item-name">文章</span></div><div class="site-state-item site-state-tags"> <span class="site-state-item-count">40</span> <span class="site-state-item-name">标签</span></div></nav></div><div class="links-of-author site-overview-item animated"><span class="links-of-author-item"><a href="https://github.com/rqh656418510" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rqh656418510" rel="external nofollow" target="_blank"><i class="fab fa-github fa-fw"></i> GitHub</a></span><span class="links-of-author-item"><a href="mailto:rong656418510@gmail.com" title="E-Mail → mailto:rong656418510@gmail.com" rel="external nofollow" target="_blank"><i class="fa fa-envelope fa-fw"></i> E-Mail</a></span><span class="links-of-author-item"><a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i> RSS</a></span><span class="links-of-author-item"><a href="/sitemap.xml" title="SiteMap → &#x2F;sitemap.xml"><i class="fa fa-sitemap fa-fw"></i> SiteMap</a></span></div></div></div></div></aside><div class="sidebar-dimmer"></div></header><div class="back-to-top" role="button" aria-label="返回顶部"><i class="fa fa-arrow-up"></i> <span>0%</span></div><div class="reading-progress-bar"></div> <a href="https://github.com/rqh656418510" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0 0 115 115 130 115 142 142 250 250 250 0Z"/><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4L133.7 101.6C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8Z" fill="currentColor" class="octo-body"/></svg></a><noscript><div class="noscript-warning">Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class="post-block"><article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://www.techgrow.cn/posts/77134a0f.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/img/head.jpg"><meta itemprop="name" content="Clay"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Clay 的技术博客"><meta itemprop="description" content="专注于 Java、前端、移动端、微服务、分布式系统、数据库、系统架构、人工智能、大数据、云计算、物联网、虚拟化学习的技术博客。"></span><span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork"><meta itemprop="name" content="Docker 之二 Docker 镜像管理命令 | Clay 的技术博客"><meta itemprop="description" content="Docker镜像管理命令使用教程。"></span><header class="post-header"><h1 class="post-title" itemprop="name headline"> Docker 之二 Docker 镜像管理命令</h1><div class="post-meta-container"><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建时间：2018-12-23 23:52:20" itemprop="dateCreated datePublished" datetime="2018-12-23T23:52:20+08:00">2018-12-23</time></span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar-check"></i></span> <span class="post-meta-item-text">更新于</span> <time title="修改时间：2022-05-02 12:09:10" itemprop="dateModified" datetime="2022-05-02T12:09:10+08:00">2022-05-02</time></span><span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv"><span class="post-meta-item-icon"><i class="far fa-eye"></i></span> <span class="post-meta-item-text">阅读次数：</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-comment"></i></span> <span class="post-meta-item-text">评论数：</span><a title="waline" href="/posts/77134a0f.html#waline" itemprop="discussionUrl"><span class="post-comments-count waline-comment-count" data-path="/posts/77134a0f.html" itemprop="commentCount"></span></a></span><span class="post-meta-item" title="本文字数"><span class="post-meta-item-icon"><i class="far fa-file-word"></i></span> <span class="post-meta-item-text">本文字数：</span> <span>103</span></span><span class="post-meta-item" title="阅读时长"><span class="post-meta-item-icon"><i class="far fa-clock"></i></span> <span class="post-meta-item-text">阅读时长 &asymp;</span> <span>1 分钟</span></span></div></div></header><div class="post-body" itemprop="articleBody"><div id="readmore-container"><h4 id="Docker帮助命令"><a href="#Docker帮助命令" class="headerlink" title="Docker帮助命令"></a>Docker 帮助命令</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看Docker的版本</span></span><br><span class="line"><span class="keyword"># docker</span> version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Docker的详细信息</span></span><br><span class="line"><span class="keyword"># docker</span> info</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Docker的命令帮助手册</span></span><br><span class="line"><span class="keyword"># docker</span><span class="params"> --help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Docker具体某个操作的命令帮助手册</span></span><br><span class="line"><span class="keyword"># docker</span> images<span class="params"> --help</span></span><br><span class="line"><span class="keyword"># docker</span> search<span class="params"> --help</span></span><br></pre></td></tr></tbody></table></figure><span id="more"></span><h4 id="Docker镜像查看命令"><a href="#Docker镜像查看命令" class="headerlink" title="Docker镜像查看命令"></a>Docker 镜像查看命令</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法</span></span><br><span class="line"><span class="keyword"># docker</span> images [OPTIONS] [REPOSITORY[:TAG]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看本地所有镜像的列表</span></span><br><span class="line"><span class="keyword"># docker</span> images</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看本地某个镜像的信息</span></span><br><span class="line"><span class="keyword"># docker</span> images centos</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数OPTIONS</span></span><br><span class="line"><span class="comment"># -a：列出本地所有的镜像（含中间映像层）</span></span><br><span class="line"><span class="comment"># -q：只显示本地所有镜像的镜像ID</span></span><br><span class="line"><span class="comment"># --no-trunc：不截断输出</span></span><br><span class="line"><span class="comment"># --digests：显示镜像的摘要信息</span></span><br></pre></td></tr></tbody></table></figure><h4 id="Docker镜像搜索命令"><a href="#Docker镜像搜索命令" class="headerlink" title="Docker镜像搜索命令"></a>Docker 镜像搜索命令</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法</span></span><br><span class="line"><span class="keyword"># docker</span> search [OPTIONS] TERM</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索Docker-Hub中的镜像</span></span><br><span class="line"><span class="keyword"># docker</span> search tomcat</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数OPTIONS</span></span><br><span class="line"><span class="comment"># --no-trunc：不截断输出</span></span><br><span class="line"><span class="comment"># --limit：限制搜索结果的条目数量，默认值是25，例如“--limit 15”</span></span><br><span class="line"><span class="comment"># --filter：加上过滤条件进行搜索</span></span><br><span class="line"><span class="comment"># --filter=stars=3：列出点赞数不小于指定值的镜像</span></span><br><span class="line"><span class="comment"># --filter "is-official=true"： 只列出Docker官方发布的镜像</span></span><br><span class="line"><span class="comment"># --filter "is-automated=true"： 只列出automated build类型的镜像</span></span><br></pre></td></tr></tbody></table></figure><h4 id="Docker镜像下载命令"><a href="#Docker镜像下载命令" class="headerlink" title="Docker镜像下载命令"></a>Docker 镜像下载命令</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法</span></span><br><span class="line"><span class="keyword"># docker</span> pull [OPTIONS] NAME[:TAG|@DIGEST]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载Tomcat镜像，默认下载latest版本</span></span><br><span class="line"><span class="keyword"># docker</span> pull tomcat</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载指定版本的Tomcat镜像</span></span><br><span class="line"><span class="keyword"># docker</span> pull tomcat:8.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数OPTIONS</span></span><br><span class="line"><span class="comment"># -a：拉取所有tagged镜像</span></span><br><span class="line"><span class="comment"># --disable-content-trust：忽略镜像的校验，默认开启</span></span><br></pre></td></tr></tbody></table></figure><h4 id="Docker镜像删除命令"><a href="#Docker镜像删除命令" class="headerlink" title="Docker镜像删除命令"></a>Docker 镜像删除命令</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法</span></span><br><span class="line"><span class="keyword"># docker</span> rmi [OPTIONS] IMAGE [IMAGE...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定的镜像，默认删除latest版本</span></span><br><span class="line"><span class="keyword"># docker</span> rmi hello-world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强制删除指定的镜像，默认删除latest版本</span></span><br><span class="line"><span class="keyword"># docker</span> rmi<span class="params"> -f</span> hello-world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据镜像ID删除镜像</span></span><br><span class="line"><span class="keyword"># docker</span> rmi 4ab4c602aa5e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除多个镜像，默认删除latest版本</span></span><br><span class="line"><span class="keyword"># docker</span> rmi tomcat nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除本地所有镜像</span></span><br><span class="line"><span class="keyword"># docker</span> rmi $(docker images<span class="params"> -qa</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数OPTIONS</span></span><br><span class="line"><span class="comment"># -f：强制删除，即使镜像对应的容器实例正在运行</span></span><br><span class="line"><span class="comment"># --no-prune：不移除该镜像的过程镜像，默认移除</span></span><br></pre></td></tr></tbody></table></figure><h4 id="批量删除镜像"><a href="#批量删除镜像" class="headerlink" title="批量删除镜像"></a>批量删除镜像</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清理所有不被使用的镜像，正在使用的镜像和容器不会被删除，但是这个命令切忌慎用，因为它把整个docker空间都释放掉，即所有不被正在使用的镜像和容器都会被删除</span></span><br><span class="line"><span class="keyword"># docker</span> system prune<span class="params"> -a</span></span><br></pre></td></tr></tbody></table></figure><h4 id="构建Docker镜像"><a href="#构建Docker镜像" class="headerlink" title="构建Docker镜像"></a>构建 Docker 镜像</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 根据指定的Dockerfile构建新的镜像，peter/centos是新镜像的名称，1.1是tag（版本号）</span></span><br><span class="line"><span class="keyword"># docker</span> build<span class="params"> -f</span> ~/dockerfile-centos<span class="params"> -t</span> peter/centos:1.1 .</span><br></pre></td></tr></tbody></table></figure><h4 id="Docker命令帮助手册推荐"><a href="#Docker命令帮助手册推荐" class="headerlink" title="Docker命令帮助手册推荐"></a>Docker 命令帮助手册推荐</h4><p><a target="_blank" rel="external nofollow" href="http://www.runoob.com/docker/docker-command-manual.html">菜鸟教程 - Docker 命令大全</a></p></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script>var isMobile=navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);if(!isMobile)try{var plugin=new ReadmorePlugin;plugin.init({id:"readmore-container",blogId:"96641-5333172926158-056",name:"全栈技术驿站",qrcode:"https://www.techgrow.cn/img/wx_mp_qr.png",keyword:"Tech",lockToc:"yes",type:"hexo",random:"0.9",interval:"30",expires:"365",height:"auto"})}catch(e){console.warn("readmore plugin occurred error: "+e.name+" | "+e.message)}</script></div><footer class="post-footer"><div class="reward-container"><div>坚持原创技术分享，您的支持将鼓励我继续创作！</div> <button> 赞赏</button><div class="post-reward"><div> <img src="/img/pay_wx.png" alt="Clay 微信"> <span>微信</span></div><div> <img src="/img/pay_zfb.png" alt="Clay 支付宝"> <span>支付宝</span></div></div></div><div class="post-copyright"><ul><li class="post-copyright-author"> <strong>本文作者：</strong> Clay</li><li class="post-copyright-link"> <strong>本文链接：</strong> <a href="https://www.techgrow.cn/posts/77134a0f.html" title="Docker 之二 Docker 镜像管理命令">https://www.techgrow.cn/posts/77134a0f.html</a></li><li class="post-copyright-license"> <strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank"><i class="fab fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class="contactme"><div class="social-list"><div class="social-item"><span class="icon"><i class="fab fa-weixin"></i></span> <span class="label">欢迎加入微信群</span><br> <img src="/img/wx-group-qr-technology.png"></div></div></div><div class="post-tags"><a href="/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 容器化</a></div><div class="post-nav"><div class="post-nav-item"><a href="/posts/67ba58dd.html" rel="prev" title="基于树莓派安装 ImageJ"><i class="fa fa-chevron-left"></i> 基于树莓派安装 ImageJ</a></div><div class="post-nav-item"> <a href="/posts/99d66af5.html" rel="next" title="Docker 之三 Docker 容器管理命令">Docker 之三 Docker 容器管理命令<i class="fa fa-chevron-right"></i></a></div></div><div style="text-align:center"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4014850419768221" data-ad-slot="7586134725" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div></footer></article></div><div class="comments" id="waline"></div></div></main><footer class="footer"><div class="footer-inner"><div class="copyright"> Copyright &copy; 2018 – <span itemprop="copyrightYear">2022</span><span class="with-love"><i class="fa fa-heart"></i></span> <span class="author" itemprop="copyrightHolder">Clay</span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="fa fa-chart-line"></i></span> <span>站点总字数：</span> <span title="站点总字数">779k</span></span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="fa fa-coffee"></i></span> <span>站点阅读时长 &asymp;</span> <span title="站点阅读时长">11:48</span></span></div><div id="site-runtime"><span class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span><span id="runtime"></span></div><script language="javascript">function isPC(){for(var e=navigator.userAgent,t=["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"],n=0;n<t.length;n++)if(0<e.indexOf(t[n]))return!1;return!0}function siteTime(e,t){window.setTimeout("siteTime(openOnPC, start)",1e3);var n=36e5,o=24*n;t=new Date("2018-12-27 08:00:00");var i=new Date,r=(i.getFullYear(),i.getMonth(),i.getDate(),i.getHours(),i.getMinutes(),i.getSeconds(),i-t),a=Math.floor(r/31536e6),s=Math.floor(r/o-365*a),d=Math.floor((r-(365*a+s)*o)/n),l=Math.floor((r-(365*a+s)*o-d*n)/6e4),u=Math.floor((r-(365*a+s)*o-d*n-6e4*l)/1e3);document.getElementById("runtime").innerHTML="Powered by Hexo & Docker | "+a+" 年 "+s+" 日 "+d+" 小时 "+l+" 分钟 "+u+" 秒 "}var showOnMobile=!1,openOnPC=isPC(),start=new Date;siteTime(openOnPC,start),openOnPC||showOnMobile||(document.getElementById("site-runtime").style.display="none")</script><div class="busuanzi-count"><span class="post-meta-item" id="busuanzi_container_site_uv"><span class="post-meta-item-icon"><i class="fa fa-user"></i></span><span class="site-uv" title="总访客量"><span id="busuanzi_value_site_uv"></span></span></span><span class="post-meta-item" id="busuanzi_container_site_pv"><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span><span class="site-pv" title="总访问量"><span id="busuanzi_value_site_pv"></span></span></span></div><div class="beian"> <span><img src="/img/gonganbeian.png" alt></span> <span><a href="https://beian.miit.gov.cn/" rel="external nofollow" target="_blank">粤ICP备19024664号</a></span></div></div></footer><script size="200" alpha="0.5" zindex="-1" src="/lib/ribbon.js/dist/ribbon.min.js"></script><script src="/lib/animejs/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script><script src="/lib/@next-theme/pjax/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script><script src="/lib/medium-zoom/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script><script src="/lib/lozad/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script><script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script><script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"/lib/pdfobject/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script><script src="/js/third-party/tags/pdf.js"></script><script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"/lib/mermaid/dist/mermaid.min.js","integrity":"sha256-ZfzwelSToHk5YAcr9wbXAmWgyn9Jyq08fSLrLhZE89w="}}</script><script src="/js/third-party/tags/mermaid.js"></script><script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script><script>
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/lib/@fortawesome/fontawesome-free/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="/lib/animate.css/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.techgrow.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Docker镜像管理命令使用教程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 之二 Docker 镜像管理命令">
+<meta property="og:url" content="https://www.techgrow.cn/posts/77134a0f.html">
+<meta property="og:site_name" content="Clay 的技术博客">
+<meta property="og:description" content="Docker镜像管理命令使用教程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-23T15:52:20.000Z">
+<meta property="article:modified_time" content="2022-05-02T04:09:10.266Z">
+<meta property="article:author" content="Clay">
+<meta property="article:tag" content="容器化">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.techgrow.cn/posts/77134a0f.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.techgrow.cn/posts/77134a0f.html","path":"posts/77134a0f.html","title":"Docker 之二 Docker 镜像管理命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Docker 之二 Docker 镜像管理命令 | Clay 的技术博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135294383-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-135294383-1","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script class="next-config" data-name="baidu_analytics" type="application/json">"84c09b30349a65573c5c642ff336969b"</script>
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+
+
+
+
+<link rel="dns-prefetch" href="https://waline.techgrow.cn:9360">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.admonition{margin:1.5625em 0;padding:.6rem;overflow:hidden;font-size:.64rem;page-break-inside:avoid;border-left:.3rem solid #42b983;border-radius:.3rem;box-shadow:0 .1rem .4rem rgba(0,0,0,.05),0 0 .05rem rgba(0,0,0,.1);background-color:#fafafa}p.admonition-title{position:relative;margin:-.6rem -.6rem .8em -.6rem!important;padding:.4rem .6rem .4rem 2.5rem;font-weight:700;background-color:rgba(66,185,131,.1)}.admonition-title::before{position:absolute;top:.9rem;left:1rem;width:12px;height:12px;background-color:#42b983;border-radius:50%;content:' '}.info>.admonition-title,.todo>.admonition-title{background-color:rgba(0,184,212,.1)}.attention>.admonition-title,.caution>.admonition-title,.warning>.admonition-title{background-color:rgba(255,145,0,.1)}.error>.admonition-title,.fail>.admonition-title,.failure>.admonition-title,.missing>.admonition-title{background-color:rgba(255,82,82,.1)}.admonition.info,.admonition.todo{border-color:#00b8d4}.admonition.attention,.admonition.caution,.admonition.warning{border-color:#ff9100}.admonition.error,.admonition.fail,.admonition.failure,.admonition.missing{border-color:#ff5252}.info>.admonition-title::before,.todo>.admonition-title::before{background-color:#00b8d4;border-radius:50%}.attention>.admonition-title::before,.caution>.admonition-title::before,.warning>.admonition-title::before{background-color:#ff9100;border-radius:50%}.error>.admonition-title::before,.fail>.admonition-title::before,.failure>.admonition-title::before,.missing>.admonition-title::before{background-color:#ff5252;border-radius:50%}.admonition>:last-child{margin-bottom:0!important}</style><link rel="alternate" href="/atom.xml" title="Clay 的技术博客" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+
+  <!-- Global Impove -->
+  <!-- JQuery --><script src="/lib/jquery/dist/jquery.min.js"></script><!-- Baidu Push -->
+  <script data-pjax>
+  (function() {
+    var host = window.location.host;
+    if (host.indexOf("127.0.0.1") == -1 && host.indexOf("localhost") == -1) {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    }
+  })();
+  </script>
+<!-- Google Adsense -->
+  <script data-ad-client="ca-pub-4014850419768221" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Aplayer -->
+    <link rel="stylesheet" href="/lib/aplayer/dist/APlayer.min.css">
+    <div id="aplayer" style="display: none"></div>
+    <script src="/lib/aplayer/dist/APlayer.min.js"></script>
+    <script src="/lib/aplayer/dist/color-thief.js"></script>
+    <script src="/lib/aplayer-init.js"></script>
+<!-- Wechat JS SDK -->
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+  <script>
+    function getTitle(){
+        var title = jQuery("meta[property='og:title']");
+        return title ? title.attr("content") : "";
+    }
+
+    function getDesc(){
+        var desc = jQuery("meta[property='og:description']");
+        return desc ? desc.attr("content") : "";
+    }
+
+    function randomString(len) {
+        var chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
+        var tempLen = chars.length, tempStr = '';
+        for (var i = 0; i < len; ++i) {
+            tempStr += chars.charAt(Math.floor(Math.random() * tempLen));
+        }
+        return tempStr;
+    }
+
+    function initWx(config) {
+        wx.config({
+            debug: false,
+            appId: config.appId,
+            nonceStr: config.nonceStr,
+            signature: config.signature,
+            timestamp: config.timestamp,
+            jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ']
+        });
+
+        wx.ready(function () {
+
+           // 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
+           wx.onMenuShareTimeline({
+              title: config.title,
+              link: config.link,
+              imgUrl: config.imgUrl,
+              success: function () {
+
+              }
+            });
+
+            // 获取“分享给朋友”按钮点击状态及自定义分享内容接口
+            wx.onMenuShareAppMessage({
+              title: config.title,
+              desc: config.desc,
+              link: config.link,
+              imgUrl: config.imgUrl,
+              type: 'link',
+              dataUrl: '',
+              success: function () {
+
+              }
+            });
+
+            // 获取“分享到QQ”按钮点击状态及自定义分享内容接口
+            wx.onMenuShareQQ({
+              title: config.title,
+              desc: config.desc,
+              link: config.link,
+              imgUrl: config.imgUrl,
+              success: function () {
+
+              },
+              cancel: function () {
+
+              }
+            });
+        });
+
+        wx.error(function (res) {
+
+        });
+    }
+
+    jQuery(function () {
+        var desc = getDesc();
+        var title = getTitle();
+        var nonceStr = randomString(16);
+        var timestamp = new Date().getTime();
+        var currentUrl = window.location.href;
+        var apiUrl = 'https://open.techgrow.cn/app/api/wechat/js/signature';
+        var url = apiUrl + "?url=" + currentUrl + "&noncestr=" + nonceStr + "&timestamp=" + timestamp;
+        jQuery.getJSON(url, function (result) {
+            initWx({
+                desc: desc,
+                title: title,
+                link: currentUrl,
+                nonceStr: nonceStr,
+                timestamp: timestamp,
+                signature: result.data,
+                appId: 'wx1fcf69355af43d41',
+                imgUrl: 'https://www.techgrow.cn/img/wx_share.jpg'
+            });
+        })
+    });
+  </script>
+
+  <!-- 微信分享链接时显示的默认缩略图片 -->
+  <div style="display:none;"><img src="https://www.techgrow.cn/img/wx_share.jpg" alt></div>
+
+
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Clay 的技术博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">用进废退 | 艺不压身</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-search"><a href="/search" rel="section"><i class="fa fa-search fa-fw"></i>搜索</a></li><li class="menu-item menu-item-links"><a href="/links" rel="section"><i class="fas fa-link fa-fw"></i>友链</a></li><li class="menu-item menu-item-openplatform"><a href="https://open.techgrow.cn/" rel="external nofollow" target="_blank"><i class="fa fa-toolbox fa-fw"></i>开放平台</a></li><li class="menu-item menu-item-readingnotes"><a href="https://docs.techgrow.cn/notes/" rel="external nofollow" target="_blank"><i class="fa fa-book-open-reader fa-fw"></i>读书笔记</a></li><li class="menu-item menu-item-commentmanage"><a href="https://waline.techgrow.cn:9360/ui/login?lng=zh-cn" rel="external nofollow" target="_blank"><i class="fa fa-comment fa-fw"></i>评论管理</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+        <!-- 全局显示目录编号（全部文章） -->
+      <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker 帮助命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E9%95%9C%E5%83%8F%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker 镜像查看命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E9%95%9C%E5%83%8F%E6%90%9C%E7%B4%A2%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker 镜像搜索命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker 镜像下载命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E9%95%9C%E5%83%8F%E5%88%A0%E9%99%A4%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker 镜像删除命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F"><span class="nav-text">批量删除镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BADocker%E9%95%9C%E5%83%8F"><span class="nav-text">构建 Docker 镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9%E6%89%8B%E5%86%8C%E6%8E%A8%E8%8D%90"><span class="nav-text">Docker 命令帮助手册推荐</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Clay" src="/img/head.jpg">
+
+  <!-- Sidebar隐藏站点作者与站点描述 -->
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <!-- 是否启用Sidebar文章列表页的跳转链接 -->
+          <span class="site-state-item-count">394</span>
+          <span class="site-state-item-name">文章</span>
+      </div>
+
+    <!-- Sidebar是否隐藏显示文章分类 -->
+      <div class="site-state-item site-state-tags">
+        <!-- 是否启用Sidebar文章标签页的跳转链接 -->
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/rqh656418510" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;rqh656418510" rel="external nofollow" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:rong656418510@gmail.com" title="E-Mail → mailto:rong656418510@gmail.com" rel="external nofollow" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/sitemap.xml" title="SiteMap → &#x2F;sitemap.xml"><i class="fa fa-sitemap fa-fw"></i>SiteMap</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/rqh656418510" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.techgrow.cn/posts/77134a0f.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/head.jpg">
+      <meta itemprop="name" content="Clay">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Clay 的技术博客">
+      <meta itemprop="description" content="专注于 Java、前端、移动端、微服务、分布式系统、数据库、系统架构、人工智能、大数据、云计算、物联网、虚拟化学习的技术博客。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Docker 之二 Docker 镜像管理命令 | Clay 的技术博客">
+      <meta itemprop="description" content="Docker镜像管理命令使用教程。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker 之二 Docker 镜像管理命令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-12-23 23:52:20" itemprop="dateCreated datePublished" datetime="2018-12-23T23:52:20+08:00">2018-12-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-05-02 12:09:10" itemprop="dateModified" datetime="2022-05-02T12:09:10+08:00">2022-05-02</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论数：</span>
+  
+    <a title="waline" href="/posts/77134a0f.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/posts/77134a0f.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>103</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+
+          <!-- 隐藏显示文章的描述摘录 -->
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div id="readmore-container"><h4 id="Docker帮助命令"><a href="#Docker帮助命令" class="headerlink" title="Docker帮助命令"></a>Docker 帮助命令</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看Docker的版本</span></span><br><span class="line"><span class="keyword"># docker</span> version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Docker的详细信息</span></span><br><span class="line"><span class="keyword"># docker</span> info</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Docker的命令帮助手册</span></span><br><span class="line"><span class="keyword"># docker</span><span class="params"> --help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Docker具体某个操作的命令帮助手册</span></span><br><span class="line"><span class="keyword"># docker</span> images<span class="params"> --help</span></span><br><span class="line"><span class="keyword"># docker</span> search<span class="params"> --help</span></span><br></pre></td></tr></tbody></table></figure>
+<span id="more"></span>
+<h4 id="Docker镜像查看命令"><a href="#Docker镜像查看命令" class="headerlink" title="Docker镜像查看命令"></a>Docker 镜像查看命令</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法</span></span><br><span class="line"><span class="keyword"># docker</span> images [OPTIONS] [REPOSITORY[:TAG]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看本地所有镜像的列表</span></span><br><span class="line"><span class="keyword"># docker</span> images</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看本地某个镜像的信息</span></span><br><span class="line"><span class="keyword"># docker</span> images centos</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数OPTIONS</span></span><br><span class="line"><span class="comment"># -a：列出本地所有的镜像（含中间映像层）</span></span><br><span class="line"><span class="comment"># -q：只显示本地所有镜像的镜像ID</span></span><br><span class="line"><span class="comment"># --no-trunc：不截断输出</span></span><br><span class="line"><span class="comment"># --digests：显示镜像的摘要信息</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Docker镜像搜索命令"><a href="#Docker镜像搜索命令" class="headerlink" title="Docker镜像搜索命令"></a>Docker 镜像搜索命令</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法</span></span><br><span class="line"><span class="keyword"># docker</span> search [OPTIONS] TERM</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索Docker-Hub中的镜像</span></span><br><span class="line"><span class="keyword"># docker</span> search tomcat</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数OPTIONS</span></span><br><span class="line"><span class="comment"># --no-trunc：不截断输出</span></span><br><span class="line"><span class="comment"># --limit：限制搜索结果的条目数量，默认值是25，例如“--limit 15”</span></span><br><span class="line"><span class="comment"># --filter：加上过滤条件进行搜索</span></span><br><span class="line"><span class="comment"># --filter=stars=3：列出点赞数不小于指定值的镜像</span></span><br><span class="line"><span class="comment"># --filter "is-official=true"： 只列出Docker官方发布的镜像</span></span><br><span class="line"><span class="comment"># --filter "is-automated=true"： 只列出automated build类型的镜像</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Docker镜像下载命令"><a href="#Docker镜像下载命令" class="headerlink" title="Docker镜像下载命令"></a>Docker 镜像下载命令</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法</span></span><br><span class="line"><span class="keyword"># docker</span> pull [OPTIONS] NAME[:TAG|@DIGEST]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载Tomcat镜像，默认下载latest版本</span></span><br><span class="line"><span class="keyword"># docker</span> pull tomcat</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载指定版本的Tomcat镜像</span></span><br><span class="line"><span class="keyword"># docker</span> pull tomcat:8.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数OPTIONS</span></span><br><span class="line"><span class="comment"># -a：拉取所有tagged镜像</span></span><br><span class="line"><span class="comment"># --disable-content-trust：忽略镜像的校验，默认开启</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Docker镜像删除命令"><a href="#Docker镜像删除命令" class="headerlink" title="Docker镜像删除命令"></a>Docker 镜像删除命令</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法</span></span><br><span class="line"><span class="keyword"># docker</span> rmi [OPTIONS] IMAGE [IMAGE...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定的镜像，默认删除latest版本</span></span><br><span class="line"><span class="keyword"># docker</span> rmi hello-world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强制删除指定的镜像，默认删除latest版本</span></span><br><span class="line"><span class="keyword"># docker</span> rmi<span class="params"> -f</span> hello-world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据镜像ID删除镜像</span></span><br><span class="line"><span class="keyword"># docker</span> rmi 4ab4c602aa5e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除多个镜像，默认删除latest版本</span></span><br><span class="line"><span class="keyword"># docker</span> rmi tomcat nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除本地所有镜像</span></span><br><span class="line"><span class="keyword"># docker</span> rmi $(docker images<span class="params"> -qa</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数OPTIONS</span></span><br><span class="line"><span class="comment"># -f：强制删除，即使镜像对应的容器实例正在运行</span></span><br><span class="line"><span class="comment"># --no-prune：不移除该镜像的过程镜像，默认移除</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="批量删除镜像"><a href="#批量删除镜像" class="headerlink" title="批量删除镜像"></a>批量删除镜像</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清理所有不被使用的镜像，正在使用的镜像和容器不会被删除，但是这个命令切忌慎用，因为它把整个docker空间都释放掉，即所有不被正在使用的镜像和容器都会被删除</span></span><br><span class="line"><span class="keyword"># docker</span> system prune<span class="params"> -a</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="构建Docker镜像"><a href="#构建Docker镜像" class="headerlink" title="构建Docker镜像"></a>构建 Docker 镜像</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 根据指定的Dockerfile构建新的镜像，peter/centos是新镜像的名称，1.1是tag（版本号）</span></span><br><span class="line"><span class="keyword"># docker</span> build<span class="params"> -f</span> ~/dockerfile-centos<span class="params"> -t</span> peter/centos:1.1 .</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Docker命令帮助手册推荐"><a href="#Docker命令帮助手册推荐" class="headerlink" title="Docker命令帮助手册推荐"></a>Docker 命令帮助手册推荐</h4><p><a target="_blank" rel="external nofollow" href="http://www.runoob.com/docker/docker-command-manual.html">菜鸟教程 - Docker 命令大全</a></p>
+</div>
+
+			<link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css">
+			<script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script>
+			<script>
+			var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+			if (!isMobile) {
+				try {
+					var plugin = new ReadmorePlugin();
+					plugin.init({
+						"id": "readmore-container",
+						"blogId": "96641-5333172926158-056",
+						"name": "全栈技术驿站",
+						"qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png",
+						"keyword": "Tech",
+						"lockToc": "yes",
+						"type": "hexo",
+						"random": "0.9",
+						"interval": "30",
+						"expires": "365",
+						"height": "auto"
+					});
+				} catch(e) {
+					console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);
+				}
+			}
+			</script>
+		
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/img/pay_wx.png" alt="Clay 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/img/pay_zfb.png" alt="Clay 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Clay
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://www.techgrow.cn/posts/77134a0f.html" title="Docker 之二 Docker 镜像管理命令">https://www.techgrow.cn/posts/77134a0f.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="contactme">
+  <div class="social-list">
+
+      <div class="social-item">
+        <span class="icon"><i class="fab fa-weixin"></i></span>
+        <span class="label">欢迎加入微信群</span>
+        <br>
+        <img src="/img/wx-group-qr-technology.png">
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <!-- 更改文章底部标签的样式 -->
+              <a href="/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/" rel="tag"> <i class="fa fa-tag"></i> 容器化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/67ba58dd.html" rel="prev" title="基于树莓派安装 ImageJ">
+                  <i class="fa fa-chevron-left"></i> 基于树莓派安装 ImageJ
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/99d66af5.html" rel="next" title="Docker 之三 Docker 容器管理命令">
+                  Docker 之三 Docker 容器管理命令 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+
+      <!-- Google Footer Adsense -->
+      
+  <div style="text-align:center">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4014850419768221" data-ad-slot="7586134725" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+<div class="copyright">
+  Copyright &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Clay</span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-chart-line"></i>
+      </span>
+        <span>站点总字数：</span>
+      <span title="站点总字数">779k</span>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-coffee"></i>
+      </span>
+        <span>站点阅读时长 &asymp;</span>
+      <span title="站点阅读时长">11:48</span>
+    </span>
+</div>
+
+
+  <div id="site-runtime">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-clock-o"></i>
+    </span>
+    <span id="runtime"></span>
+  </div>
+
+  <script language="javascript">
+    function isPC() {
+      var userAgentInfo = navigator.userAgent;
+      var agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+      for (var i = 0; i < agents.length; i++) {
+        if (userAgentInfo.indexOf(agents[i]) > 0) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function siteTime(openOnPC, start) {
+      window.setTimeout("siteTime(openOnPC, start)", 1000);
+      var seconds = 1000;
+      var minutes = seconds * 60;
+      var hours = minutes * 60;
+      var days = hours * 24;
+      var years = days * 365;
+        start = new Date("2018-12-27 08:00:00");
+      var now = new Date();
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1;
+      var date = now.getDate();
+      var hour = now.getHours();
+      var minute = now.getMinutes();
+      var second = now.getSeconds();
+      var diff = now - start;
+
+      var diffYears = Math.floor(diff / years);
+      var diffDays = Math.floor((diff / days) - diffYears * 365);
+      var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+      var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+      var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+
+      document.getElementById("runtime").innerHTML = "Powered by Hexo & Docker | " + diffYears + " 年 " + diffDays + " 日 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒 ";
+    }
+
+    var showOnMobile = false;
+    var openOnPC = isPC();
+    var start = new Date();
+    siteTime(openOnPC, start);
+
+    if (!openOnPC && !showOnMobile) {
+      document.getElementById('site-runtime').style.display = 'none';
+    }
+  </script>
+
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="beian">
+      <span>
+        <img src="/img/gonganbeian.png" alt>
+      </span>
+      <span><a href="https://beian.miit.gov.cn/" rel="external nofollow" target="_blank">粤ICP备19024664号 </a>
+      </span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script size="200" alpha="0.5" zindex="-1" src="/lib/ribbon.js/dist/ribbon.min.js"></script>
+  <script src="/lib/animejs/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="/lib/@next-theme/pjax/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="/lib/medium-zoom/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="/lib/lozad/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"/lib/pdfobject/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"/lib/mermaid/dist/mermaid.min.js","integrity":"sha256-ZfzwelSToHk5YAcr9wbXAmWgyn9Jyq08fSLrLhZE89w="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
 var options = {
   bottom: '64px',
   right: '32px',
@@ -15,7 +713,10 @@ var options = {
 const darkmode = new Darkmode(options);
 window.darkmode = darkmode;
 darkmode.showWidget();
-</script><script src="https://unpkg.com/qiniu-js@3.3.1/dist/qiniu.min.js"></script><script>
+</script>
+
+  <script src="https://unpkg.com/qiniu-js@3.3.1/dist/qiniu.min.js"></script>
+  <script>
     var qiniu_domain = "https://qiniu.techgrow.cn";
     var qiniu_token_url = "https://open.techgrow.cn/app/api/qiniu/token/upload";
     var qiniu_debug = "true" === "false";
@@ -146,7 +847,10 @@ darkmode.showWidget();
         });
       });
     }
-  </script><script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.techgrow.cn:9360","cssUrl":"https://unpkg.com/@waline/client@2.5.1/dist/waline.css","commentCount":true,"pageview":false,"copyright":false,"allowUploadImage":true,"libUrl":"https://unpkg.com/@waline/client@2.5.1/dist/waline.js","locale":{"placeholder":"支持匿名评论啦，若希望及时收到博主的反馈，建议登录评论或者在上方的邮箱输入框留下邮箱地址哦 (๑•̀ㅂ•́)و✧"},"dark":"body.darkmode--activated","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo"],"meta":["nick","mail","link"],"login":"enable","pageSize":10,"qiniuDebug":false,"qiniuDomain":"https://qiniu.techgrow.cn","qiniuTokenUrl":"https://open.techgrow.cn/app/api/qiniu/token/upload","el":"#waline","comment":true,"path":"/posts/77134a0f.html"}</script><link rel="stylesheet" href="https://unpkg.com/@waline/client@2.5.1/dist/waline.css"><script>
+  </script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.techgrow.cn:9360","cssUrl":"https://unpkg.com/@waline/client@2.5.1/dist/waline.css","commentCount":true,"pageview":false,"copyright":false,"allowUploadImage":true,"libUrl":"https://unpkg.com/@waline/client@2.5.1/dist/waline.js","locale":{"placeholder":"支持匿名评论啦，若希望及时收到博主的反馈，建议登录评论或者在上方的邮箱输入框留下邮箱地址哦 (๑•̀ㅂ•́)و✧"},"dark":"body.darkmode--activated","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo"],"meta":["nick","mail","link"],"login":"enable","pageSize":10,"qiniuDebug":false,"qiniuDomain":"https://qiniu.techgrow.cn","qiniuTokenUrl":"https://open.techgrow.cn/app/api/qiniu/token/upload","el":"#waline","comment":true,"path":"/posts/77134a0f.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@2.5.1/dist/waline.css">
+<script>
 document.addEventListener('page:loaded', () => {
   if (!CONFIG.waline.allowUploadImage) {
     CONFIG.waline.imageUploader = false;
@@ -162,4 +866,48 @@ document.addEventListener('page:loaded', () => {
     Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
   );
 });
-</script><div class="comments" id="waline-comments" style="display:none"></div><script>function isMobile(){var i=navigator.userAgent.toLowerCase(),e="ipad"==i.match(/ipad/i),a="iphone os"==i.match(/iphone os/i),o="midp"==i.match(/midp/i),n="rv:1.2.3.4"==i.match(/rv:1.2.3.4/i),r="ucweb"==i.match(/ucweb/i),c="android"==i.match(/android/i),l="windows ce"==i.match(/windows ce/i),d="windows mobile"==i.match(/windows mobile/i);return!!(e||a||o||n||r||c||l||d)}var openOnMobile=isMobile(),showOnMobile=!1,aplayerEnable=!0;jQuery(document).ready(function(){aplayerEnable&&(openOnMobile&&!showOnMobile||jQuery("#aplayer").css("display","block"))}),jQuery(window).on("load",function(){aplayerEnable&&jQuery(".aplayer\\-icon.aplayer\\-icon\\-lrc").trigger("click")})</script></body></html>
+</script>
+
+
+  <!-- Fix Scripts -->
+  <div class="comments" id="waline-comments" style="display: none"></div>
+
+<script>
+function isMobile() {
+  var sUserAgent = navigator.userAgent.toLowerCase();
+  var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+  var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+  var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+  var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+  var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+  var bIsAndroid = sUserAgent.match(/android/i) == "android";
+  var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+  var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+  if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+    return true;
+  }
+  return false;
+}
+
+var openOnMobile = isMobile();
+var showOnMobile = false;
+var aplayerEnable = true;
+
+jQuery(document).ready(function(){
+  if(aplayerEnable){
+    if(!openOnMobile || showOnMobile){
+      jQuery("#aplayer").css("display", "block");
+    }
+  }
+});
+
+jQuery(window).on('load', function() {
+  if(aplayerEnable){
+    jQuery(".aplayer\\-icon.aplayer\\-icon\\-lrc").trigger("click");
+  }
+});
+</script>
+
+
+</body>
+</html>
