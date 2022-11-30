@@ -6,7 +6,7 @@
   <link href="https://www.techgrow.cn/atom.xml" rel="self"/>
   
   <link href="https://www.techgrow.cn/"/>
-  <updated>2022-11-21T14:33:05.000Z</updated>
+  <updated>2022-11-30T14:33:05.000Z</updated>
   <id>https://www.techgrow.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java 的五种代理实现方式</title>
+    <link href="https://www.techgrow.cn/posts/aa402c78.html"/>
+    <id>https://www.techgrow.cn/posts/aa402c78.html</id>
+    <published>2022-11-30T14:33:05.000Z</published>
+    <updated>2022-11-30T14:33:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<div id="readmore-container"><!-- toc --></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script>var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);if (!isMobile) {try {var plugin = new ReadmorePlugin();plugin.init({"id": "readmore-container","blogId": "96641-5333172926158-056","name": "全栈技术驿站","qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png","keyword": "Tech","lockToc": "yes","type": "hexo","random": "0.9","interval": "30","expires": "365","height": "auto"});} catch(e) {console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);}}</script>]]></content>
+    
+    
+    <summary type="html">本文主要介绍 Java 的五种代理实现方式，包括 JDK、Cglib、ASM、Byte-Buddy、Javassist。</summary>
+    
+    
+    
+    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
+    
+    
+    <category term="Java" scheme="https://www.techgrow.cn/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>如何估算 Java 线程池的大小与队列数</title>
@@ -398,27 +419,6 @@
     
     
     <category term="在线支付" scheme="https://www.techgrow.cn/tags/%E5%9C%A8%E7%BA%BF%E6%94%AF%E4%BB%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决 GitHub DNS 被污染的问题</title>
-    <link href="https://www.techgrow.cn/posts/b7c0261d.html"/>
-    <id>https://www.techgrow.cn/posts/b7c0261d.html</id>
-    <published>2022-05-29T12:23:33.000Z</published>
-    <updated>2022-05-29T12:23:33.000Z</updated>
-    
-    <content type="html"><![CDATA[<div id="readmore-container"><!-- toc --><h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>访问 <a href="https://www.ipaddress.com/">IP 查询网站</a>，查询以下域名对应的 IP：</p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">github.com</span><br><span class="line">raw.githubusercontent.com</span><br><span class="line">camo.githubusercontent.com</span><br><span class="line">github.global.ssl.fastly.net</span><br></pre></td></tr></tbody></table></figure><h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><h3 id="Linux-系统"><a href="#Linux-系统" class="headerlink" title="Linux 系统"></a>Linux 系统</h3><p>编辑系统配置文件 <code>/etc/hosts</code>，新增以下内容（请自行更改查询到的 IP）：</p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">140.82.112.4 github.com</span><br><span class="line">185.199.108.133  raw.githubusercontent.com</span><br><span class="line">185.199.108.133 camo.githubusercontent.com</span><br><span class="line">199.232.69.194 github.global.ssl.fastly.net</span><br></pre></td></tr></tbody></table></figure><h3 id="Windows-系统"><a href="#Windows-系统" class="headerlink" title="Windows 系统"></a>Windows 系统</h3><p>编辑系统配置文件 <code>c:\windows\system32\drivers\etc\hosts</code>，新增以下内容（请自行更改查询到的 IP）：</p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">140.82.112.4 github.com</span><br><span class="line">185.199.108.133  raw.githubusercontent.com</span><br><span class="line">185.199.108.133 camo.githubusercontent.com</span><br><span class="line">199.232.69.194 github.global.ssl.fastly.net</span><br></pre></td></tr></tbody></table></figure><p>执行以下命令刷新 DNS 解析的缓存：</p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; ipconfig /flushdns</span><br></pre></td></tr></tbody></table></figure></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script>var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);if (!isMobile) {try {var plugin = new ReadmorePlugin();plugin.init({"id": "readmore-container","blogId": "96641-5333172926158-056","name": "全栈技术驿站","qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png","keyword": "Tech","lockToc": "yes","type": "hexo","random": "0.9","interval": "30","expires": "365","height": "auto"});} catch(e) {console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);}}</script>]]></content>
-    
-    
-    <summary type="html">本文主要介绍如何解决 GitHub DNS 被污染问题，加快 GitHub 的访问速度。</summary>
-    
-    
-    
-    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
-    
-    
-    <category term="开发随笔" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
