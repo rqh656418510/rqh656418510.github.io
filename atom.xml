@@ -400,23 +400,23 @@
   </entry>
   
   <entry>
-    <title>个人在线支付接入方案介绍</title>
-    <link href="https://www.techgrow.cn/posts/4d9ccdf3.html"/>
-    <id>https://www.techgrow.cn/posts/4d9ccdf3.html</id>
-    <published>2022-06-15T15:29:32.000Z</published>
-    <updated>2022-06-15T15:29:32.000Z</updated>
+    <title>VsCode 编程开发插件汇总</title>
+    <link href="https://www.techgrow.cn/posts/7d927a64.html"/>
+    <id>https://www.techgrow.cn/posts/7d927a64.html</id>
+    <published>2022-06-16T13:55:33.000Z</published>
+    <updated>2022-06-16T13:55:33.000Z</updated>
     
-    <content type="html"><![CDATA[<div id="readmore-container"><!-- toc --><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>移动支付大势所趋，互联网购物或者线上服务都需要用到支付，那作为开发者和商家，必须要跟第三方支付公司签约合作，开通商户我们才有能调用支付功能，大家最熟悉的是微信和支付宝，你要在里面实现在线购物支付功能，需要有一个微信商户号或者支付宝商户号，然后将商户号接入到网页、公众号、app、小程序中。当消费者支付时，我们通过接口把支付信息传给微信或者支付宝的服务器进行支付，它们收到款会把结果回调到我们的服务器进行订单处理，然后服务器实时响应到客户端上提示完成交易。以上，就是整个商户支付的流程。首先，整个支付流程的本质是公司对个人的，也就是我们常说的 B2C 模式。其次，线上支付是需要签约的。每个商户都是对应一个公司，微信商户号和支付宝商户号的开通都需要以公司的名义开通，而开通的时候，需要签约盖章审核等等各种手续。至于微信和支付宝为什么不给个人开通支付通道呢？笔者也想过，其实这是国家政策要求的，你想想，如果个人支付开通后，国家怎么管控税收、怎么管理网络安全？所以，微信和支付宝这么做，其实是不想大家钻了偷税漏税的空子。</p><span id="more"></span><h2 id="个人免签的三种支付模式"><a href="#个人免签的三种支付模式" class="headerlink" title="个人免签的三种支付模式"></a>个人免签的三种支付模式</h2><ul><li>1、使用个人收款码，通过手机 App 软件监测收款（不合法）</li><li>2、代收款，然后手动提现（存在二清，不合法，会跑路）</li><li>3、代签约，走官方的渠道（合法，直接到账，不存在二清）</li></ul><p>推荐第三种模式，前两种模式不合法，平台说不定哪天就会关闭。选择第三方支付平台时，应尽量考虑平台费率最低的、开户费最低的、开户操作最便捷的。</p><h3 id="App-软件监测收款模式"><a href="#App-软件监测收款模式" class="headerlink" title="App 软件监测收款模式"></a>App 软件监测收款模式</h3><p>市面上有不少通过安装特定收款监听 App 实现收款回调功能的平台，比如玎玎支付、PaysApi、收小钱等；这些虽然是零资质，而且收费也不是特别高，但是有几个弊端：</p><ul><li><p>收款金额上限额度小，上限金额为固定收款二维码每日的限额，额度较小</p></li><li><p>手机需要安装特定的收款监听 App，并且需要一直处于开机和网络良好状态，或者需要使用模拟器来运行 App</p></li><li><p>用户在扫描支付二维码后发现是跳转转账页面，而不是调起微信支付或支付宝支付，心中会有所怀疑，导致部分潜在付费用户流失，这是最致命的弊端</p></li><li><p>如果改动价格，需要上传多张收款二维码，操作繁琐，尽管有些平台通过安装 VirtualXposed，生成任意收款金额的二维码免去此操作，但是手机需要停留在微信或者支付宝界面、而且还要保持屏幕常亮状态</p></li><li><p>回调存在不稳定因素，由于收款回调是在安装了收款监听 App 的手机在接收到收款的通知栏通知后上报金额到该平台服务器，再通过该平台回调到设置好的回调地址，所以其中有些环节如果出问题，比如收款监听的手机断网了，或者该平台的服务器宕机，都会导致没有收到收款回调</p></li></ul><h2 id="个人第三方支付平台推荐"><a href="#个人第三方支付平台推荐" class="headerlink" title="个人第三方支付平台推荐"></a>个人第三方支付平台推荐</h2><p>由于没有公司账号，开发者在微信和支付宝是接入不了支付的，因此只能选第三方支付平台，<code>payjs</code> 官方做了很详细的 <a href="../../../asset/2022/10/payjs-chart.png">对比图表</a>。</p><ul><li><a href="https://7-pay.cn/">7-pay</a>，仅支持支付宝 </li><li><a href="https://payjs.cn/">Payjs</a>，仅支持微信支付</li><li><a href="https://mugglepay.com/">麻瓜宝数字货币支付</a>，仅支持数字货币</li></ul><h2 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h2><ul><li><a href="https://blog.csdn.net/weixin_56910287/article/details/115470367">微信支付宝，个人支付收款接口现状剖析</a></li></ul></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script>var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);if (!isMobile) {try {var plugin = new ReadmorePlugin();plugin.init({"id": "readmore-container","blogId": "96641-5333172926158-056","name": "全栈技术驿站","qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png","keyword": "Tech","lockToc": "yes","type": "hexo","random": "0.9","interval": "30","expires": "365","height": "auto"});} catch(e) {console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);}}</script>]]></content>
+    <content type="html"><![CDATA[<div id="readmore-container"><!-- toc --><h3 id="前端开发"><a href="#前端开发" class="headerlink" title="前端开发"></a>前端开发</h3><ul><li><code>EsLint</code> - 语法纠错</li><li><code>Auto Close Tag</code> - 自动闭合 HTML/XML 标签</li><li><code>Auto Rename Tag</code> - 自动完成另一侧标签的同步修改</li><li><code>JavaScript(ES6) code snippets</code> - ES6 语法智能提示以及快速输入，除 JS 外还支持 <code>.ts</code>、<code>.jsx</code>、<code>.tsx</code>、<code>.html</code>、<code>.vue</code></li><li><code>HTML CSS Support</code> - 在 HTML 标签上写 <code>class</code> 时，智能提示当前项目所支持的样式</li><li><code>HTML Snippets</code> - HTML 代码快速自动补全</li><li><code>Vetur</code> - Vue 语法高亮、智能感知、Emmet 等</li><li><code>Vue 3 Snippets</code> - Vue2、Vue3 代码片段快速生成</li><li><code>Open in browser</code> - 浏览器快速打开</li><li><code>Live Server</code> - 以内嵌服务器方式打开</li><li><code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - 中文语言包</li></ul><h3 id="MarkDown-开发"><a href="#MarkDown-开发" class="headerlink" title="MarkDown 开发"></a>MarkDown 开发</h3><ul><li><a href="/posts/3baa0a8d.html">VsCode 打造 MarkDown 编辑器</a></li></ul></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script>var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);if (!isMobile) {try {var plugin = new ReadmorePlugin();plugin.init({"id": "readmore-container","blogId": "96641-5333172926158-056","name": "全栈技术驿站","qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png","keyword": "Tech","lockToc": "yes","type": "hexo","random": "0.9","interval": "30","expires": "365","height": "auto"});} catch(e) {console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);}}</script>]]></content>
     
     
-    <summary type="html">本文主要记录个人在线支付接入的内容。</summary>
+    <summary type="html">本文主要介绍 VsCode 的各类编程开发插件。</summary>
     
     
     
     <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
     
-    <category term="在线支付" scheme="https://www.techgrow.cn/tags/%E5%9C%A8%E7%BA%BF%E6%94%AF%E4%BB%98/"/>
+    <category term="开发工具" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
