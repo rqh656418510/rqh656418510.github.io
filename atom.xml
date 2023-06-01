@@ -6,7 +6,7 @@
   <link href="https://www.techgrow.cn/atom.xml" rel="self"/>
   
   <link href="https://www.techgrow.cn/"/>
-  <updated>2023-05-19T13:19:25.000Z</updated>
+  <updated>2023-06-01T14:13:21.000Z</updated>
   <id>https://www.techgrow.cn/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo 主题兼容 Pjax</title>
+    <link href="https://www.techgrow.cn/posts/637e7b8f.html"/>
+    <id>https://www.techgrow.cn/posts/637e7b8f.html</id>
+    <published>2023-06-01T14:13:21.000Z</published>
+    <updated>2023-06-01T14:13:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<div id="readmore-container"><!-- toc --><h2 id="什么是-Pjax"><a href="#什么是-Pjax" class="headerlink" title="什么是 Pjax"></a>什么是 Pjax</h2><p><a href="https://github.com/MoOx/pjax">​Pjax​​​</a> 通过 Ajax 从服务器获取 HTML，然后用加载到的 HTML 替换页面上容器元素的内容。Pjax 使用 <code>pushState</code> 更新浏览器中的当前 URL，即 ​​pjax = pushState + ajax​​ 。最早的时候，​​Pjax​​​ 是一个基于 ​​jQuery​​ 的插件，后来推出了完全独立的版本，适应更广泛的应用场景。值得一提的是，Pjax 最大的优势在于，可以在网站本身无刷新的情况下，局部刷新页面内容，同时在现代浏览器中支持前进和后退，由于局部加载的数据量极小，加载速度极快，因此可以最大程度地提升用户体验。Pjax 的天生劣势在于，默认配置对 ​​SEO​​ 并不友好，同时非常依赖页面布局的一致性，需要大量改造来优化。</p><h2 id="Hexo-引入-Pjax"><a href="#Hexo-引入-Pjax" class="headerlink" title="Hexo 引入 Pjax"></a>Hexo 引入 Pjax</h2><p>很多较早使用 ​​Pjax​​ 的 Hexo 主题，都使用了基于 jQuery 的版本。因此如果是新引入，可以使用最新独立版本的 <a href="https://github.com/MoOx/pjax">​​Pjax​​</a>。</p><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure><span id="more"></span><h2 id="为什么引入-Pjax"><a href="#为什么引入-Pjax" class="headerlink" title="为什么引入 Pjax"></a>为什么引入 Pjax</h2><p>由于想在 Hexo 博客中整合 Aplayer 音乐播放器，但是如果不进行改造，跳转页面肯定会引起音乐播放的中断，于是就想到利用 ​​Pjax​​ 的特性，局部加载核心内容，从而不影响音乐播放器，整体效果类似网易云音乐的 PC 端。</p><h2 id="兼容处理"><a href="#兼容处理" class="headerlink" title="兼容处理"></a>兼容处理</h2><p>首先独立版的 Pjax 工作方式其实特别好理解。例如初始化：</p><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">    pjax = <span class="keyword">new</span> Pjax({</span><br><span class="line">        <span class="attr">elements</span>: <span class="string">'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox]):not([notallow="return false;"]):not([notallow="return!1"]):not([target="_blank"]):not([target="view_window"]):not([href$=".xml"])'</span>,</span><br><span class="line">        <span class="attr">selectors</span>: [</span><br><span class="line">            <span class="string">"head title"</span>, <span class="comment">// 标题</span></span><br><span class="line">            <span class="string">"head meta[name=keywords]"</span>, <span class="comment">// 关键词</span></span><br><span class="line">            <span class="string">"head meta[name=description]"</span>, <span class="comment">// 描述</span></span><br><span class="line">            <span class="string">".pjax"</span>,</span><br><span class="line">            <span class="string">"pjax"</span>, <span class="comment">// &lt;pjax&gt;&lt;/pjax&gt; 标签</span></span><br><span class="line">            <span class="string">"script[data-pjax], .pjax-reload script"</span> <span class="comment">// script 标签添加 data-pjax 或 script 标签外层添加 .pjax-reload 的 script 代码段重载</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">cacheBust</span>: &lt;%= theme.plugins.pjax.cacheBust %&gt;,   <span class="comment">// url 地址追加时间戳，用以避免浏览器缓存</span></span><br><span class="line">        timeout: &lt;%= theme.plugins.pjax.timeout %&gt;,</span><br><span class="line">    });</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure><p>然后是标签部分，主要是用在以下场景：</p><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pjax"</span>&gt;</span>我是将被 Pjax 重载的内容<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">data-pjax</span>&gt;</span>我是将被 Pjax 重载的内容<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pjax-reload"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span>我不是将被 Pjax 重载的内容<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span>我是将被 Pjax 重载的内容<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure><h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="Pjax-触发重载"><a href="#Pjax-触发重载" class="headerlink" title="Pjax 触发重载"></a>Pjax 触发重载</h3><p>这个是最严重的问题，独立版的 ​​Pjax​​ 会自动检测页面布局变化，如果变化过大，则会直接重载整个页面。实际测试就发现 Hexo 非常容易触发重载，尤其是 ​<code>​page​​​</code> 和 <code>​​post​​</code> ，因为这两种页面原本的处理就完全不同。测试了一下，如果完全相同，则不会触发重载。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://blog.csdn.net/nineya_com/article/details/124543222">网站访问速度优化之 Pjax</a></li></ul><div id="readmore-expansion" class="pjax"></div></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script data-pjax src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script data-pjax>var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);var isEncrypt = document.getElementById('hexo-blog-encrypt');var allowMobile = false;if (!isEncrypt && (!isMobile || (isMobile && allowMobile))) {try {var plugin = new ReadmorePlugin();plugin.init({"type": "hexo","id": "readmore-container","name": "全栈技术驿站","blogId": "96641-5333172926158-056","qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png","keyword": "Tech","random": "1","height": "auto","expires": "365","lockToc": "yes","interval": "30","baseUrl": ""});} catch(e) {console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);}}</script>]]></content>
+    
+    
+    <summary type="html">本文主要介绍 Hexo 如何兼容 Pjax。</summary>
+    
+    
+    
+    
+    <category term="静态博客" scheme="https://www.techgrow.cn/tags/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue 项目中禁用浏览器缓存配置</title>
@@ -408,27 +427,6 @@
     
     
     <category term="加密博客" scheme="https://www.techgrow.cn/tags/%E5%8A%A0%E5%AF%86%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>国产互联网产品汇总</title>
-    <link href="https://www.techgrow.cn/posts/3ccf5667.html"/>
-    <id>https://www.techgrow.cn/posts/3ccf5667.html</id>
-    <published>2022-12-26T13:30:00.000Z</published>
-    <updated>2022-12-26T13:30:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<div id="readmore-container"><!-- toc --><h2 id="国内数据库"><a href="#国内数据库" class="headerlink" title="国内数据库"></a>国内数据库</h2><h3 id="云厂商数据库"><a href="#云厂商数据库" class="headerlink" title="云厂商数据库"></a>云厂商数据库</h3><table><thead><tr><th align="center">数据库</th><th align="center">云厂商</th></tr></thead><tbody><tr><td align="center"> TDSQL</td><td align="center"> 腾讯云</td></tr><tr><td align="center"> GaussDB</td><td align="center"> 华为云</td></tr><tr><td align="center"> AnalyticDB</td><td align="center"> 阿里云</td></tr></tbody></table><span id="more"></span><h3 id="国产商用数据库"><a href="#国产商用数据库" class="headerlink" title="国产商用数据库"></a>国产商用数据库</h3><table><thead><tr><th align="center">数据库</th><th align="center">公司</th></tr></thead><tbody><tr><td align="center">武汉达梦</td><td align="center"> -</td></tr><tr><td align="center"> 人大金仓</td><td align="center"> -</td></tr><tr><td align="center"> 神州通用</td><td align="center"> -</td></tr><tr><td align="center">GBase</td><td align="center"> 南大通用</td></tr><tr><td align="center"> PolarDB</td><td align="center"> 阿里云</td></tr></tbody></table><h3 id="国产开源数据库"><a href="#国产开源数据库" class="headerlink" title="国产开源数据库"></a>国产开源数据库</h3><table><thead><tr><th align="center">数据库</th><th align="center">公司</th></tr></thead><tbody><tr><td align="center"> TiDB</td><td align="center">PingCAP</td></tr><tr><td align="center">openGauss</td><td align="center"> 华为</td></tr><tr><td align="center"> OceanBase</td><td align="center"> 阿里</td></tr></tbody></table><h2 id="国产-Linux-系统"><a href="#国产-Linux-系统" class="headerlink" title="国产 Linux 系统"></a>国产 Linux 系统</h2><table><thead><tr><th align="center">Linux 系统</th><th align="center">公司</th></tr></thead><tbody><tr><td align="center"> HarmonyOs</td><td align="center"> 华为</td></tr><tr><td align="center">统信 UOS</td><td align="center">-</td></tr><tr><td align="center"> 银河麒麟</td><td align="center"> -</td></tr><tr><td align="center">openEuler</td><td align="center"> 华为</td></tr><tr><td align="center"> Deepin</td><td align="center">-</td></tr><tr><td align="center"> 优麒麟</td><td align="center"> -</td></tr></tbody></table><style>    table {        width: fit-content;        border-collapse: unset;    }    th, td {        padding-left: 30px;        padding-right: 30px;        font-weight: normal;        border-bottom: 1px solid #ddd;    }</style><div id="readmore-expansion" class="pjax"></div></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script data-pjax src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script data-pjax>var isMobile = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);var isEncrypt = document.getElementById('hexo-blog-encrypt');var allowMobile = false;if (!isEncrypt && (!isMobile || (isMobile && allowMobile))) {try {var plugin = new ReadmorePlugin();plugin.init({"type": "hexo","id": "readmore-container","name": "全栈技术驿站","blogId": "96641-5333172926158-056","qrcode": "https://www.techgrow.cn/img/wx_mp_qr.png","keyword": "Tech","random": "1","height": "auto","expires": "365","lockToc": "yes","interval": "30","baseUrl": ""});} catch(e) {console.warn("readmore plugin occurred error: " + e.name + " | " + e.message);}}</script>]]></content>
-    
-    
-    <summary type="html">本文主要介绍国产的互联网产品。</summary>
-    
-    
-    
-    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
-    
-    
-    <category term="数据库" scheme="https://www.techgrow.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
