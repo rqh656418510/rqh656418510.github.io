@@ -6,7 +6,7 @@
   <link href="https://www.techgrow.cn/atom.xml" rel="self"/>
   
   <link href="https://www.techgrow.cn/"/>
-  <updated>2023-08-05T15:12:42.000Z</updated>
+  <updated>2023-08-05T15:12:43.000Z</updated>
   <id>https://www.techgrow.cn/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <title>SpringBoot3 自定义 Starter</title>
     <link href="https://www.techgrow.cn/posts/308cedc0.html"/>
     <id>https://www.techgrow.cn/posts/308cedc0.html</id>
-    <published>2023-08-05T15:12:42.000Z</published>
-    <updated>2023-08-05T15:12:42.000Z</updated>
+    <published>2023-08-05T15:12:43.000Z</published>
+    <updated>2023-08-05T15:12:43.000Z</updated>
     
-    <content type="html"><![CDATA[<!-- toc --><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要介绍 SpringBoot 3 如何自定 Starter，完整的案例代码可以直接从 <a href="https://github.com/rqh656418510/spring-cloud-share/tree/main/spring-boot-3/spring-boot-3-study">GitHub</a> 下载对应章节 <code>spring-boot3-09</code>。</p>]]></content>
+    <content type="html"><![CDATA[<!-- toc --><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要介绍 SpringBoot 3 如何自定 Starter，完整的案例代码可以直接从 <a href="https://github.com/rqh656418510/spring-cloud-share/tree/main/spring-boot-3/spring-boot-3-study">GitHub</a> 下载对应章节 <code>spring-boot3-09</code>。</p><h2 id="自定义-Starter"><a href="#自定义-Starter" class="headerlink" title="自定义 Starter"></a>自定义 Starter</h2>]]></content>
     
     
     <summary type="html">本文主要介绍 SpringBoot 3 如何自定义 Starter。</summary>
