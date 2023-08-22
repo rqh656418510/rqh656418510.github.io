@@ -56,9 +56,9 @@
     <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
     
-    <category term="Debian" scheme="https://www.techgrow.cn/tags/Debian/"/>
-    
     <category term="Web服务器" scheme="https://www.techgrow.cn/tags/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    <category term="Debian" scheme="https://www.techgrow.cn/tags/Debian/"/>
     
   </entry>
   
