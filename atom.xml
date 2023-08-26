@@ -126,6 +126,27 @@
   </entry>
   
   <entry>
+    <title>SpringBoot 3 整合 Spring Security</title>
+    <link href="https://www.techgrow.cn/posts/2cc2991f.html"/>
+    <id>https://www.techgrow.cn/posts/2cc2991f.html</id>
+    <published>2023-08-07T15:12:43.000Z</published>
+    <updated>2023-08-07T15:12:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<!-- toc -->]]></content>
+    
+    
+    <summary type="html">本文主要介绍 SpringBoot 3 如何整合 Spring Security。</summary>
+    
+    
+    
+    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
+    
+    
+    <category term="微服务" scheme="https://www.techgrow.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SpringBoot 3 自定义 Starter</title>
     <link href="https://www.techgrow.cn/posts/308cedc0.html"/>
     <id>https://www.techgrow.cn/posts/308cedc0.html</id>
@@ -418,27 +439,6 @@
     
     
     <category term="微服务" scheme="https://www.techgrow.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JetBrains IDEA 2022.2 破解激活教程</title>
-    <link href="https://www.techgrow.cn/posts/a74ccc85.html"/>
-    <id>https://www.techgrow.cn/posts/a74ccc85.html</id>
-    <published>2023-06-08T13:18:36.000Z</published>
-    <updated>2023-06-08T13:18:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<!-- toc --><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本教程适用于 JetBrains IDEA <code>2022.2.x</code> 版本的破解，亲测激活成功！！！</p><h2 id="资源下载"><a href="#资源下载" class="headerlink" title="资源下载"></a>资源下载</h2><ul><li>JetBrains IDEA 下载：<a href="https://www.jetbrains.com/idea/download/other.html">官网</a></li><li> JetBrains IDEA&nbsp;破解补丁下载：<a href="/downloads/2023/06/ja-netfilter.v3.zip">本站</a></li></ul><span id="more"></span><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h3><p>更改 hosts 文件，将有关 Jetbrains 的配置行全部删除掉，若没有则请忽略此步骤。Windows 系统的 hosts 文件路径为：<code>C:\Windows\System32\drivers\etc\hosts</code>，Linux 和 Mac 系统的 hosts 文件路径为：<code>/etc/hosts</code>，一般情况下只需删除以下两行内容即可：</p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0.0.0.0 www.jetbrains.com</span><br><span class="line">0.0.0.0 account.jetbrains.com</span><br></pre></td></tr></tbody></table></figure><h3 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h3><p>如果 IDEA 之前已经在试用或者试用过而且过期了，则需要先删除 IDEA 的所有配置文件。IDEA 配置文件所在的目录如下：</p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Windows系统</span><br><span class="line">C:\Documents and Settings\Administrator\.idea-2022.2\config</span><br><span class="line">C:\Documents and Settings\Administrator\.idea-2022.2\system</span><br><span class="line"></span><br><span class="line"># Linux/Mac系统</span><br><span class="line">~/.config/JetBrains/IntelliJIdea2022.2</span><br><span class="line">~/.local/share/JetBrains/IntelliJIdea2022.2</span><br></pre></td></tr></tbody></table></figure><h2 id="激活步骤"><a href="#激活步骤" class="headerlink" title="激活步骤"></a>激活步骤</h2><h3 id="第一步-1"><a href="#第一步-1" class="headerlink" title="第一步"></a>第一步</h3><p>在 <a href="https://www.jetbrains.com/idea/download/other.html">JetBrains 官网</a> 下载指定版本（如 <code>2022.2.5</code>）的 IDEA 安装包，下载完成后直接双击运行安装程序，接着一步步安装即可。</p><h3 id="第二步-1"><a href="#第二步-1" class="headerlink" title="第二步"></a>第二步</h3><p>解压破解补丁文件，并将 <code>ja-netfilter.v3</code> 文件夹拷贝到 IDEA 安装后的 <code>bin</code> 目录下。</p><p><img data-src="../../../asset/2023/06/idea-2022-crack-1.png"></p><h3 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h3><p>找到 IDEA 安装后 <code>bin</code> 目录下的 <code>idea.exe.vmoptions</code> 和 <code>idea64.exe.vmoptions</code> 配置文件，如果没有 <code>idea.exe.vmoptions</code>，只需修改 <code>idea64.exe.vmoptions</code> 即可，然后在配置文件的末尾追加以下内容（请自行更改 <code>ja-netfilter.jar</code> 文件的路径）：</p><figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED</span><br><span class="line">--add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED</span><br><span class="line">-javaagent:C:/Program Files/JetBrains/IntelliJ IDEA 2022.2/bin/ja-netfilter.v3/ja-netfilter.jar</span><br></pre></td></tr></tbody></table></figure><p><img data-src="../../../asset/2023/06/idea-2022-crack-5.png"></p><h3 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h3><p>启动 IDEA，并选择试用模式，进入 IDEA 的主界面。</p><p><img data-src="../../../asset/2023/06/idea-2022-crack-2.png"></p><h3 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h3><p>在 IDEA 的主界面，菜单栏导航到 <code>Help</code> -&gt; <code>Register</code>，然后输入以下激活码直接破解 IDEA。</p><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BKZ5XB6RJ8-eyJsaWNlbnNlSWQiOiJCS1o1WEI2Uko4IiwibGljZW5zZWVOYW1lIjoi5pyA5paw5r+A5rS756CB6I635Y+W77yM6K+35YWz5rOo5YWs5LyX5Y+344CM6Zuo6JC95peg5b2x44CNIiwiYXNzaWduZWVOYW1lIjoiIiwiYXNzaWduZWVFbWFpbCI6IiIsImxpY2Vuc2VSZXN0cmljdGlvbiI6IiIsImNoZWNrQ29uY3VycmVudFVzZSI6ZmFsc2UsInByb2R1Y3RzIjpbeyJjb2RlIjoiUERCIiwicGFpZFVwVG8iOiIyMDI3LTA4LTAxIiwiZmFsbGJhY2tEYXRlIjoiMjAyNy0wOC0wMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQU0kiLCJwYWlkVXBUbyI6IjIwMjctMDgtMDEiLCJmYWxsYmFja0RhdGUiOiIyMDI3LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBQQyIsInBhaWRVcFRvIjoiMjAyNy0wOC0wMSIsImZhbGxiYWNrRGF0ZSI6IjIwMjctMDgtMDEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUENXTVAiLCJwYWlkVXBUbyI6IjIwMjctMDgtMDEiLCJmYWxsYmFja0RhdGUiOiIyMDI3LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBQUyIsInBhaWRVcFRvIjoiMjAyNy0wOC0wMSIsImZhbGxiYWNrRGF0ZSI6IjIwMjctMDgtMDEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUFJCIiwicGFpZFVwVG8iOiIyMDI3LTA4LTAxIiwiZmFsbGJhY2tEYXRlIjoiMjAyNy0wOC0wMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJJSSIsInBhaWRVcFRvIjoiMjAyNy0wOC0wMSIsImZhbGxiYWNrRGF0ZSI6IjIwMjctMDgtMDEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IlBHTyIsInBhaWRVcFRvIjoiMjAyNy0wOC0wMSIsImZhbGxiYWNrRGF0ZSI6IjIwMjctMDgtMDEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUFNXIiwicGFpZFVwVG8iOiIyMDI3LTA4LTAxIiwiZmFsbGJhY2tEYXRlIjoiMjAyNy0wOC0wMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQV1MiLCJwYWlkVXBUbyI6IjIwMjctMDgtMDEiLCJmYWxsYmFja0RhdGUiOiIyMDI3LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9XSwibWV0YWRhdGEiOiIwMTIwMjAwNzI4RVBBSkEwMDgwMDYiLCJoYXNoIjoiMTI3OTY4NzcvMCIsImdyYWNlUGVyaW9kRGF5cyI6NywiYXV0b1Byb2xvbmdhdGVkIjpmYWxzZSwiaXNBdXRvUHJvbG9uZ2F0ZWQiOmZhbHNlfQ==-LTfxs43UcOTl+Vn0W80gmdm0gaiTBmnmOS+/aBqdxGyhgKR+t2CsUi7QVhRf2kShvWLt/mWGiS9HLfiUg1mhXCldI4HEEj8F+HMwqvZkMFXPDx8qltM7QZm88HCUCUfbg1p5X+8ENh709DK2bRQ484YMWYRAT8tFak981p0N/PwrzqGAgBh2FepOK7UqONOey4VoJpLnPD5TFpJV6wW0xjoKh0I608VHU1gorcyPR1DZfyK9NqoxW9ZKA0MbUV6byXhYQN118181LTl9VuMmtWX5mlEfTfpj1qJYmrz61YQEvcyffM3wpzK5gwVour8vBzqnrxRLXS4bc687bNvAyF/mBCqHAZB3a+AhxuDM+o/1uyWDiqqE1CO45hirOB/m+0qN6jyXEyhasCjCNVuxmtQLUTgKW+JML0Bm6K08d4q+vombWZQD10faCwMzgSm/lfEfqwbG67v4vqaZdfbE1zCkgQ9DfRYSOZV8gzCJZKs2e6A0hnjJ2Ojd+3m29XEKEatU0iCB5zwiJVcv0JK8o+TheGZkNLRSwCipz1LYdVDiAkOpZ1nucmR+fdaj9oSr0FYWpQJvhP7JdYeOZyKup3Bw5dtOkmX2KEEtzk8VKus2GjisbrhbaWzBQR9V/obQFXlfLBt86zFplHSUQvqx+IFyzpsAZJxXrhSGPbGq3w0=-MIIFTDCCAzSgAwIBAgIBDTANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBMB4XDTIwMTAxOTA5MDU1M1oXDTIyMTAyMTA5MDU1M1owHzEdMBsGA1UEAwwUcHJvZDJ5LWZyb20tMjAyMDEwMTkwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCFBZI051+HDN7SzhuH6ybvfgGG5/n+x91KvFCPvQtDIfSzzsNplzEGKQz4EZ2Y5TW1se1jigP6fdl5tUqHOkT3OndSGBuu4P7NFDvvtMhB6b3cZQzxvBHZSysCxHLz3SWDGTDD2fO2GBwWWWM+yrPpSBx5Vp26HyILvyOb2Qx0YQUjnPk31XISMTA4cy4M2i+tTRw9D7lPTRHrtcyDKQ9OjbTqDhTmAa3q7uo/Tle1pJRuezuLZpRpEvtYT881t8zU7Wzy4qiLmVHiepOxvtzvl0nZelnHMwBqHirjjjU1kf6fGk0fmtlV3uerV6QrZhhymSOA7i8pK1KP3FPmE2PFVeyJiYOydGNtRK9yNzemKFpF6x6TLIqgWzKfqE70E+zRyFKFqHhnDLF6D9D02Y5kp/QbjVyzP+li21HUVfBjVTJGVBfPUlTUsar6YQCczgtYNmZEZEfjLAzE88VXxq/pbcnzgJtk7a8AodEhFCMmF3OeTmEhEqVnYdrOydmHkYIS+/3DvkUyyGYXS4GJ85jN9wZ9MT3AVJTYqnH9d4gCe8jKxkDcHeAsOFRaBhwwqMQkNnSnLeBQf6shWCWxFmJcSf4fWY3kW400wdgGqvslx/oycOhvVP8c0iNGO+2zAHAnp6fHzv2PLbL7NShLNvN0go/M4kpRsLtTT0suigwcXwIDAQABo4GZMIGWMAkGA1UdEwQCMAAwHQYDVR0OBBYEFCTaESKW9YVBwJNH6DEjTPTAhAL/MEgGA1UdIwRBMD+AFKOetkhnQhI2Qb1t4Lm0oFKLl/GzoRykGjAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBggkA0myxg7KDeeEwEwYDVR0lBAwwCgYIKwYBBQUHAwEwCwYDVR0PBAQDAgWgMA0GCSqGSIb3DQEBCwUAA4ICAQBt0BHnlATtD6+wHtaT3W4iMXF0uve7DNRojwl2Y8pcXiBKQQiIDEc//Ar5RgzFPAKZuv1pUWRAc4JD4G7t+iIy4R3E/6TywhFOl9/fWxOaVEx81ZfxYKmFXLtKeuuFnXOIJ3/cDK8KqMMWq+rJVXQaDkMIRJ6cizgf3EhKB8wP6LgTGpFa2qW/F/FaIivbGL4JnRpj1H6t991jWQYzAf4xad/wy6V2K+Fl9eAPJRlwYiA2o0PjbVffqcWzxgGPlawOLRkRnzDOUqp4ZHw6YRp801wSz03KAYPtFS2+cUsykc4eKwwpKSA8rqwUNCaxpdUgBWqXCj0SetZm2OWuVpAZn2sO6iXDmNTkBVry8ee/AW87ZU4CuGMqLQeNDNQd/pHtk2Van89y7gfcRAP2waneRTudpjhTQo61fJoYNAGq1N1sE8Oew/eGxzV8ubnr+BAdi9gH23GVbG1e0/u/caOXIPL1ndiKBHVTqXWcjkuLRGGVtaOjN4Gfmjgu+z2CNhHe80V2IefsSuBd5wgA6BfYB8wy+LcfcXJ2zKJe7TKA44dys9atbdIB6HXfCcwV7U/N5M0LAIFbOPdk0yi8DPWTJCjQELytuy31g+vrbYePWANraRRcPStmw8zpP/ZcbDJ/419vGWG4RscVpt7Ewo/S7nPmGwpW5hf+/KVxmeBfxg==</span><br></pre></td></tr></tbody></table></figure><p><img data-src="../../../asset/2023/06/idea-2022-crack-3.png"></p><h3 id="第六步"><a href="#第六步" class="headerlink" title="第六步"></a>第六步</h3><p>查看 IDEA 是否破解成功，菜单栏导航到 <code>Help</code> -&gt; <code>About</code>，若出现下图的信息则说明破解成功。</p><p><img data-src="../../../asset/2023/06/idea-2022-crack-4.png"></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://www.cnblogs.com/yj-blogs/p/16549970.html">IDEA 2022 永久激活教程</a></li></ul>]]></content>
-    
-    
-    <summary type="html">本文主要介绍如何破解激活 IDEA 2022.2 版本，包括破解补丁和激活码的使用。</summary>
-    
-    
-    
-    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
-    
-    
-    <category term="开发工具" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
