@@ -23,7 +23,7 @@
     <published>2023-10-09T12:23:35.000Z</published>
     <updated>2023-10-09T12:23:35.000Z</updated>
     
-    <content type="html"><![CDATA[<!-- toc -->]]></content>
+    <content type="html"><![CDATA[<!-- toc --><h2 id="模块化概念"><a href="#模块化概念" class="headerlink" title="模块化概念"></a>模块化概念</h2><h3 id="模块化介绍"><a href="#模块化介绍" class="headerlink" title="模块化介绍"></a>模块化介绍</h3><p>模块化的本质是将一个复杂的程序依据一定的规则 (规范) 封装成几个块 (文件)，并进行组合在一起，块 (文件) 的内部数据和操作实现是私有的，只是向外部暴露一些接口 (方法) 与外部其它模块通信。</p><h3 id="模块化规范"><a href="#模块化规范" class="headerlink" title="模块化规范"></a>模块化规范</h3><p>JavaScript 的模块化规范分为四大类，分别是 CommonJS、AMD、CMD、ES 6。</p><span id="more"></span><h3 id="模块化的进化史"><a href="#模块化的进化史" class="headerlink" title="模块化的进化史"></a>模块化的进化史</h3><blockquote><p>最早的代码是这么写的</p></blockquote><ul><li>缺点：Global 被污染，很容易引起命名冲突</li></ul><p><img data-src="../../../asset/2023/10/javascript-modular-1.png"></p><blockquote><p>简单封装（Namespace 模式）</p></blockquote><ul><li>优点：减少 Global 上的变量数目</li><li>缺点：本质是对象，一点都不安全</li></ul><p><img data-src="../../../asset/2023/10/javascript-modular-2.png"></p><blockquote><p>匿名闭包（IIFE 模式）</p></blockquote><ul><li>优点：函数是 JavaScript 唯一的 Local Scope</li></ul><p><img data-src="../../../asset/2023/10/javascript-modular-3.png"></p><blockquote><p>再增强一点：引入依赖，这就是 <code>模块模式</code>，也是现代模块化实现的基石</p></blockquote><p><img data-src="../../../asset/2023/10/javascript-modular-4.png"></p>]]></content>
     
     
     <summary type="html">本文主要介绍 JavaScript 模块化的使用教程。</summary>
