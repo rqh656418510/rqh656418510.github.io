@@ -17,16 +17,16 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>MySQL 高可用方案</title>
+    <title>MySQL 高可用架构</title>
     <link href="https://www.techgrow.cn/posts/d6058b93.html"/>
     <id>https://www.techgrow.cn/posts/d6058b93.html</id>
     <published>2023-10-18T12:13:32.000Z</published>
     <updated>2023-10-18T12:13:32.000Z</updated>
     
-    <content type="html"><![CDATA[<!-- toc -->]]></content>
+    <content type="html"><![CDATA[<!-- toc --><h2 id="高可用架构方案"><a href="#高可用架构方案" class="headerlink" title="高可用架构方案"></a>高可用架构方案</h2><p>MySQL 的高可用架构包括以下几种常见方案：</p><ul><li><p><code>主从复制（Master-Slave Replication）</code>：</p><ul><li>主从复制是 MySQL 最经典和常用的高可用架构方案。其中，一个 MySQL 实例充当主服务器（Master），处理写操作，而多个 MySQL 从服务器（Slaves）复制主服务器的数据并处理读操作。</li><li>在主服务器发生故障时，可以快速切换到其中一个从服务器作为新的主服务器，以提供持续的可用性。</li></ul></li><li><p><code>主主复制（Master-Master Replication）</code>：</p><ul><li>主主复制也称为双主复制，是一种更高级别的复制方式。</li><li>允许多个 MySQL 实例同时充当主服务器，并通过相互之间的复制来保持数据的同步。这样，在任何一个主服务器发生故障时，都可以切换到另一个可用的主服务器上。</li></ul></li><li><p><code>MySQL Cluster</code>：</p><ul><li>MySQL Cluster 是一种分布式架构，利用共享存储和多个 MySQL 节点来存储和处理数据。这些节点之间进行数据同步和负载均衡，从而提供高可用性和高性能。</li><li>MySQL Cluster 还具有自动故障转移和恢复机制，可以在节点发生故障时自动重新平衡。</li></ul></li><li><p><code>Galera Cluster</code>：</p><ul><li>Galera Cluster 是使用 Percona XtraDB Cluster 或 MariaDB 的一个开源解决方案。它基于多主复制，并通过同步复制实现数据的一致性。</li><li>Galera Cluster 中的所有节点都可以处理读和写操作，且在一个节点发生故障时，其他节点可以继续提供服务。</li></ul></li><li><p><code>MySQL InnoDB 集群</code>：</p><ul><li>InnoDB 集群是 MySQL 8.0 版本引入的一个新特性，它基于 MySQL 原生的异步复制架构。</li><li>InnoDB 集群具有自动故障检测和恢复机制，并且可以自动缩放和负载均衡。</li></ul></li></ul><blockquote><p>上述这些是常见的 MySQL 高可用架构方案，每种架构都有其适用的场景和优缺点。根据业务需求、数据规模和预算等因素，选择适合的高可用架构是重要的。</p></blockquote>]]></content>
     
     
-    <summary type="html">本文主要记录 MySQL 的高可用方案。</summary>
+    <summary type="html">本文主要记录 MySQL 的高可用架构。</summary>
     
     
     
