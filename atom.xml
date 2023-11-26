@@ -38,6 +38,31 @@
   </entry>
   
   <entry>
+    <title>Kafka 云原生解决方案介绍</title>
+    <link href="https://www.techgrow.cn/posts/16a97c36.html"/>
+    <id>https://www.techgrow.cn/posts/16a97c36.html</id>
+    <published>2023-11-15T14:13:45.000Z</published>
+    <updated>2023-11-15T14:13:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<!-- toc --><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要介绍 Kafka 在生产实践中存在的问题，如运维操作、负载均衡、故障恢复等各方面，并简单介绍字节跳动、小红书是如何使用消息队列的云原生化来解决这些问题的。</p><h2 id="Kafka-实践遇到的问题"><a href="#Kafka-实践遇到的问题" class="headerlink" title="Kafka 实践遇到的问题"></a>Kafka 实践遇到的问题</h2><p>随着业务快速增长，经典消息队列 Kafka 的劣势开始逐渐暴露，在弹性、规模、成本及运维方面都无法满足业务需求。在本中，将介绍 Kafka 在生产实践中存在的问题，如运维操作、负载均衡、故障恢复等各方面。</p><span id="more"></span><h3 id="运维操作"><a href="#运维操作" class="headerlink" title="运维操作"></a>运维操作</h3><p>Kafka 的重启、扩缩容、分区迁移，这些运维操作都比较复杂。</p><p><img data-src="../../../asset/2023/10/kafka-note-1.png"></p><h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p><img data-src="../../../asset/2023/10/kafka-note-2.png"></p><h3 id="故障恢复"><a href="#故障恢复" class="headerlink" title="故障恢复"></a>故障恢复</h3><p>Kafka 自身支持处理单机故障，但对多机故障却无能为力。</p><p><img data-src="../../../asset/2023/10/kafka-note-3.png"></p><h3 id="Page-Cache"><a href="#Page-Cache" class="headerlink" title="Page Cache"></a>Page Cache</h3><p><img data-src="../../../asset/2023/10/kafka-note-4.png"></p><h3 id="存算一体架构"><a href="#存算一体架构" class="headerlink" title="存算一体架构"></a>存算一体架构</h3><p><img data-src="../../../asset/2023/10/kafka-note-5.png"></p><h2 id="字节跳动云原生消息队列方案"><a href="#字节跳动云原生消息队列方案" class="headerlink" title="字节跳动云原生消息队列方案"></a>字节跳动云原生消息队列方案</h2><p>BMQ 是字节跳动自研的一款消息队列，基于 C++ 开发，兼容 Kafka 协议，采用 HDFS 分布式存储来存放消息数据。</p><h3 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h3><p><img data-src="../../../asset/2023/10/kafka-note-6.png"></p><h3 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h3><p><img data-src="../../../asset/2023/10/kafka-note-7.png"></p><h3 id="Broker-运行机制"><a href="#Broker-运行机制" class="headerlink" title="Broker 运行机制"></a>Broker 运行机制</h3><p><img data-src="../../../asset/2023/10/kafka-note-8.png"></p><p><img data-src="../../../asset/2023/10/kafka-note-9.png"></p><p><img data-src="../../../asset/2023/10/kafka-note-10.png"></p><h3 id="Proxy-运行机制"><a href="#Proxy-运行机制" class="headerlink" title="Proxy 运行机制"></a>Proxy 运行机制</h3><p><img data-src="../../../asset/2023/10/kafka-note-11.png"></p><p><img data-src="../../../asset/2023/10/kafka-note-12.png"></p><h3 id="容灾容错-HDFS"><a href="#容灾容错-HDFS" class="headerlink" title="容灾容错 HDFS"></a>容灾容错 HDFS</h3><p><img data-src="../../../asset/2023/10/kafka-note-13.png"></p><p><img data-src="../../../asset/2023/10/kafka-note-14.png"></p><h3 id="线上业务使用场景"><a href="#线上业务使用场景" class="headerlink" title="线上业务使用场景"></a>线上业务使用场景</h3><p><img data-src="../../../asset/2023/10/kafka-note-15.png"></p><h2 id="小红书-Kafka-云原生最佳实践"><a href="#小红书-Kafka-云原生最佳实践" class="headerlink" title="小红书 Kafka 云原生最佳实践"></a>小红书 Kafka 云原生最佳实践</h2><p>小红书在 Kafka 原有的基础上，引入了分层存储、弹性扩容、消费隔离等特性。</p><h3 id="核心手段"><a href="#核心手段" class="headerlink" title="核心手段"></a>核心手段</h3><p><img data-src="../../../asset/2023/10/kafka-note-16.png"></p><h3 id="系统架构-1"><a href="#系统架构-1" class="headerlink" title="系统架构"></a>系统架构</h3><p><img data-src="../../../asset/2023/10/kafka-note-17.png"></p><h3 id="架构优势"><a href="#架构优势" class="headerlink" title="架构优势"></a>架构优势</h3><p><img data-src="../../../asset/2023/10/kafka-note-18.png"></p><h3 id="成本优化"><a href="#成本优化" class="headerlink" title="成本优化"></a>成本优化</h3><p><img data-src="../../../asset/2023/10/kafka-note-19.png"></p><h3 id="消费隔离"><a href="#消费隔离" class="headerlink" title="消费隔离"></a>消费隔离</h3><p><img data-src="../../../asset/2023/10/kafka-note-20.png"></p><h3 id="智能缓存"><a href="#智能缓存" class="headerlink" title="智能缓存"></a>智能缓存</h3><p><img data-src="../../../asset/2023/10/kafka-note-21.png"></p><h3 id="弹性扩容"><a href="#弹性扩容" class="headerlink" title="弹性扩容"></a>弹性扩容</h3><p><img data-src="../../../asset/2023/10/kafka-note-22.png"></p><p><img data-src="../../../asset/2023/10/kafka-note-23.png"></p><h3 id="容器化"><a href="#容器化" class="headerlink" title="容器化"></a>容器化</h3><p><img data-src="../../../asset/2023/10/kafka-note-24.png"></p><p><img data-src="../../../asset/2023/10/kafka-note-25.png"></p><p><img data-src="../../../asset/2023/10/kafka-note-26.png"></p><h3 id="未来展望"><a href="#未来展望" class="headerlink" title="未来展望"></a>未来展望</h3><h4 id="升级现有架构"><a href="#升级现有架构" class="headerlink" title="升级现有架构"></a>升级现有架构</h4><p><img data-src="../../../asset/2023/10/kafka-note-27.png"></p><h4 id="引入存算分离架构"><a href="#引入存算分离架构" class="headerlink" title="引入存算分离架构"></a>引入存算分离架构</h4><p><img data-src="../../../asset/2023/10/kafka-note-28.png"></p><h2 id="AutoMQ-云原生消息队列方案"><a href="#AutoMQ-云原生消息队列方案" class="headerlink" title="AutoMQ 云原生消息队列方案"></a>AutoMQ 云原生消息队列方案</h2><h3 id="AutoMQ-for-Kafka"><a href="#AutoMQ-for-Kafka" class="headerlink" title="AutoMQ for Kafka"></a>AutoMQ for Kafka</h3><p>由 <a href="https://www.automq.com/">AutoMQ</a> 开源的新一代消息流存储平台，面向开发者提供低成本、无状态、 100% 兼容 Apache Kafka 的消息服务。目前有两种版本，分别是商业版与开源版本。</p><ul><li><a href="https://docs.automq.com/zh/docs/automq-s3kafka/YUzOwI7AgiNIgDk1GJAcu6Uanog">官方中文文档</a></li><li><a href="https://github.com/AutoMQ/automq-for-kafka">GitHub 开源项目</a></li></ul><h3 id="AutoMQ-for-RocketMQ"><a href="#AutoMQ-for-RocketMQ" class="headerlink" title="AutoMQ for RocketMQ"></a>AutoMQ for RocketMQ</h3><p>由 <a href="https://www.automq.com/">AutoMQ</a> 基于 Apache RocketMQ 5.0 的云原生开源实现。目前有两种版本，分别是商业版与开源版本。</p><ul><li><a href="https://github.com/AutoMQ/automq-for-rocketmq">GitHub 开源项目</a></li></ul><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://juejin.cn/post/7199550396213542973">消息队列 | 青训营笔记</a></li><li><a href="https://www.bilibili.com/video/BV1Cc411R7kt">字节跳动云原生消息队列实践 - 视频</a></li><li><a href="https://www.bilibili.com/video/BV1dw411s7g8">小红书 Kafka 云原生化最佳实践 - 视频</a></li><li><a href="https://www.bilibili.com/video/BV1hM411S7PP">如何实现 Apache Kafka 十倍的降本增效 - 视频</a></li></ul>]]></content>
+    
+    
+    <summary type="html">本文主要介绍 Kafka 云原生解决方案。</summary>
+    
+    
+    
+    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
+    
+    
+    <category term="微服务" scheme="https://www.techgrow.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    <category term="分布式" scheme="https://www.techgrow.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    <category term="消息队列" scheme="https://www.techgrow.cn/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Linux 的 Xinetd 服务介绍</title>
     <link href="https://www.techgrow.cn/posts/7f134f1e.html"/>
     <id>https://www.techgrow.cn/posts/7f134f1e.html</id>
@@ -406,27 +431,6 @@
     <category term="Web服务器" scheme="https://www.techgrow.cn/tags/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
     <category term="Debian" scheme="https://www.techgrow.cn/tags/Debian/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计算机类电子书资源整理</title>
-    <link href="https://www.techgrow.cn/posts/f5d6bff2.html"/>
-    <id>https://www.techgrow.cn/posts/f5d6bff2.html</id>
-    <published>2023-08-15T13:23:30.000Z</published>
-    <updated>2023-08-15T13:23:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<!-- toc --><h2 id="电子书资源网站"><a href="#电子书资源网站" class="headerlink" title="电子书资源网站"></a>电子书资源网站</h2><table><thead><tr><th>网站名称</th><th>网站链接</th><th>说明</th></tr></thead><tbody><tr><td> aibooks</td><td><a href="https://www.aibooks.cc/">https://www.aibooks.cc/</a></td><td></td></tr><tr><td>Java 菜市场 </td><td><a href="https://javaweb.shop/">https://javaweb.shop/</a></td><td></td></tr><tr><td>Z-Library</td><td><a href="https://singlelogin.re/">https://singlelogin.re/</a></td><td> 全球最大的免费电子书网站</td></tr><tr><td> kanshuy1234</td><td><a href="http://kanshuy1234.com/">http://kanshuy1234.com</a></td><td></td></tr></tbody></table><span id="more"></span><h2 id="电子书资源项目"><a href="#电子书资源项目" class="headerlink" title="电子书资源项目"></a>电子书资源项目</h2><table><thead><tr><th>项目名称</th><th>项目地址</th><th>说明</th></tr></thead><tbody><tr><td>最新 1500 多本计算机电子书免费下载 </td><td><a href="https://github.com/BitTigerInst/itdevbooks_pdf">https://github.com/BitTigerInst/itdevbooks_pdf</a></td><td></td></tr><tr><td> 超过 1000 本的计算机经典书籍、个人笔记资料以及本人在各平台发表文章中所涉及的资源等 </td><td><a href="https://github.com/forthespada/CS-Books">https://github.com/forthespada/CS-Books</a></td><td> 拓拔阿秀</td></tr><tr><td>经典编程书籍大全，涵盖：计算机系统与网络、系统架构、算法与数据结构、前后端开发等 </td><td><a href="https://github.com/imarvinle/awesome-cs-books">https://github.com/imarvinle/awesome-cs-books</a></td><td></td></tr><tr><td> 计算机类常用电子书，并且附带下载链接 </td><td><a href="https://github.com/cosen1024/awesome-cs-books">https://github.com/cosen1024/awesome-cs-books</a></td><td></td></tr><tr><td> 专门收集计算机领域经典书籍 </td><td><a href="https://github.com/Jackpopc/CS-Books-Store">https://github.com/Jackpopc/CS-Books-Store</a></td><td></td></tr><tr><td> 计算机体系结构与 C++ 书籍收集 </td><td><a href="https://github.com/zhangyachen/ComputerArchitectureAndCppBooks">https://github.com/zhangyachen/ComputerArchitectureAndCppBooks</a></td><td></td></tr><tr><td>Java 程序员必读书单，超 1000 本 PDF 电子书 </td><td><a href="https://github.com/itwanger/JavaBooks">https://github.com/itwanger/JavaBooks</a></td><td></td></tr></tbody></table><h2 id="电子书资源文章"><a href="#电子书资源文章" class="headerlink" title="电子书资源文章"></a>电子书资源文章</h2><table><thead><tr><th>文章标题</th><th>文章地址</th><th>说明</th></tr></thead><tbody><tr><td>计算机类电子书下载宝藏库 </td><td><a href="https://zhuanlan.zhihu.com/p/599899143">https://zhuanlan.zhihu.com/p/599899143</a></td><td></td></tr></tbody></table>]]></content>
-    
-    
-    <summary type="html">本文主要整理计算机类的 PDF 电子书。</summary>
-    
-    
-    
-    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
-    
-    
-    <category term="生活随笔" scheme="https://www.techgrow.cn/tags/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
