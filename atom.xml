@@ -6,7 +6,7 @@
   <link href="https://www.techgrow.cn/atom.xml" rel="self"/>
   
   <link href="https://www.techgrow.cn/"/>
-  <updated>2024-05-11T12:52:08.000Z</updated>
+  <updated>2024-06-14T14:39:42.000Z</updated>
   <id>https://www.techgrow.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL 开发随笔</title>
+    <link href="https://www.techgrow.cn/posts/10c00880.html"/>
+    <id>https://www.techgrow.cn/posts/10c00880.html</id>
+    <published>2024-06-14T14:39:42.000Z</published>
+    <updated>2024-06-14T14:39:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<!-- toc --><h2 id="使用-SQL-语句手动加锁"><a href="#使用-SQL-语句手动加锁" class="headerlink" title="使用 SQL 语句手动加锁"></a>使用 SQL 语句手动加锁</h2><h3 id="锁机制的介绍"><a href="#锁机制的介绍" class="headerlink" title="锁机制的介绍"></a>锁机制的介绍</h3><p>在 MySQL 中，锁机制可以用来解决事务并发问题。</p><ul><li><strong>共享锁</strong>：允许事务读取数据，但不允许修改。</li><li><strong>排他锁</strong>：只允许一个事务读取和修改数据，其他事务不能读取或修改。</li></ul><span id="more"></span><h3 id="锁机制的使用"><a href="#锁机制的使用" class="headerlink" title="锁机制的使用"></a>锁机制的使用</h3><blockquote><p>SQL 语句加锁的语法</p></blockquote><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 加共享锁</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> <span class="keyword">condition</span> <span class="keyword">FOR</span> SHARE;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 加排他锁</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> <span class="keyword">condition</span> <span class="keyword">FOR</span> UPDATE;</span><br></pre></td></tr></tbody></table></figure><blockquote><p>SQL 语句加锁的案例</p></blockquote><p>假设有一张 <code>accounts</code> 表</p><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> accounts (</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    balance <span class="type">DECIMAL</span>(<span class="number">10</span>, <span class="number">2</span>)</span><br><span class="line">);</span><br></pre></td></tr></tbody></table></figure><p>如果希望防止脏读、不可重复读和幻读，可以这样使用事务和锁</p><figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 事务 1</span></span><br><span class="line"><span class="keyword">START</span> TRANSACTION;</span><br><span class="line"><span class="keyword">SELECT</span> balance <span class="keyword">FROM</span> accounts <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">1</span> <span class="keyword">FOR</span> UPDATE;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 事务 2</span></span><br><span class="line"><span class="keyword">START</span> TRANSACTION;</span><br><span class="line"><span class="keyword">SELECT</span> balance <span class="keyword">FROM</span> accounts <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">1</span> <span class="keyword">FOR</span> UPDATE;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 事务 1 可以修改 balance</span></span><br><span class="line">UPDATE accounts <span class="keyword">SET</span> balance <span class="operator">=</span> balance <span class="operator">-</span> <span class="number">100</span> <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 事务 2 在事务 1 提交之前无法继续执行</span></span><br></pre></td></tr></tbody></table></figure>]]></content>
+    
+    
+    <summary type="html">本文主要记录 MySQL 日常使用的笔记。</summary>
+    
+    
+    
+    
+    <category term="数据库" scheme="https://www.techgrow.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="开发随笔" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>Butterfly 主题整合 TechGrow 公众号引流工具</title>
@@ -430,27 +451,6 @@
     
     
     <category term="Debian" scheme="https://www.techgrow.cn/tags/Debian/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker 部署 PXC 8.0 单机集群</title>
-    <link href="https://www.techgrow.cn/posts/8dc5e7ed.html"/>
-    <id>https://www.techgrow.cn/posts/8dc5e7ed.html</id>
-    <published>2023-10-26T12:13:32.000Z</published>
-    <updated>2023-10-26T12:13:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<!-- toc --><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要介绍如何使用 Docker 部署 Percona XtraDB Cluster 8.0 集群（单机三个节点），并详细介绍集群可用性的验证。</p><h3 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h3><ul><li><a href="/posts/aba17375.html">Docker 部署 PXC 5.7 单机集群</a></li><li><a href="/posts/8dc5e7ed.html">Docker 部署 PXC 8.0 单机集群</a></li><li><a href="/posts/ff0f2d6.html">Debian 11 生产环境部署 PXC 8.0 集群</a></li></ul><h3 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h3><ul><li><a href="https://docs.percona.com/percona-xtradb-cluster/8.0/">Percona Xtradb Cluster 8.0 官方文档</a></li></ul><h2 id="PXC-集群介绍"><a href="#PXC-集群介绍" class="headerlink" title="PXC 集群介绍"></a>PXC 集群介绍</h2><div class="admonition note"><p class="admonition-title">提示</p><p>Percona Xtradb Cluster (PXC) 的详细介绍请看 <a href="/posts/cc846db2.html#Percona-XtraDB-Cluster">这里</a> 的教程。</p></div><span id="more"></span><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://www.cnblogs.com/wanglei957/p/11819547.html">Docker 部署 MySQL 集群</a></li><li><a href="https://cloud.tencent.com/developer/article/1929627">CentOS 7 部署 PXC 集群 【Docker + 单机多节点】</a></li><li><a href="https://www.cnblogs.com/ll409546297/p/17129532.html">MySQL 之 PXC 集群模式（Docker + MySQL + PXC 实现）</a></li><li><a href="https://www.cnblogs.com/nhdlb/p/14032657.html">Docker 部署 PXC 5.7 集群 - 搭建负载均衡实现双机热部署方案</a></li><li><a href="https://www.cnblogs.com/pengboke/p/15012571.html#node3">Docker 部署 PXC 集群 (Haproxy 负载均衡、Keepalived 高可用、XtraBackup 数据备份)</a></li></ul>]]></content>
-    
-    
-    <summary type="html">本文主要介绍如何基于 Docker 部署 MySQL 的 PXC 8.0 单机集群。</summary>
-    
-    
-    
-    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
-    
-    
-    <category term="容器化" scheme="https://www.techgrow.cn/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
     
   </entry>
   
