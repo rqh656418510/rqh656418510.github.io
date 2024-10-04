@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.techgrow.cn/posts/905c65b7.html</loc>
-    <lastmod>2024-10-01</lastmod>
-  </url>
-  <url>
     <loc>https://www.techgrow.cn/posts/da26833.html</loc>
     <lastmod>2024-10-01</lastmod>
   </url>
@@ -275,6 +271,10 @@
   <url>
     <loc>https://www.techgrow.cn/posts/29d74d90.html</loc>
     <lastmod>2024-02-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.techgrow.cn/posts/905c65b7.html</loc>
+    <lastmod>2024-01-29</lastmod>
   </url>
   <url>
     <loc>https://www.techgrow.cn/posts/ec5bafae.html</loc>
@@ -1782,7 +1782,7 @@
   </url>
   <url>
     <loc>https://www.techgrow.cn/posts/5fd2410c.html</loc>
-    <lastmod>2020-05-15</lastmod>
+    <lastmod>2020-05-14</lastmod>
   </url>
   <url>
     <loc>https://www.techgrow.cn/posts/b01a14e8.html</loc>
