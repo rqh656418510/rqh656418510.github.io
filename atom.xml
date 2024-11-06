@@ -6,7 +6,7 @@
   <link href="https://www.techgrow.cn/atom.xml" rel="self"/>
   
   <link href="https://www.techgrow.cn/"/>
-  <updated>2024-10-26T13:55:33.000Z</updated>
+  <updated>2024-11-06T12:05:42.000Z</updated>
   <id>https://www.techgrow.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker 安装单机版的 Seata</title>
+    <link href="https://www.techgrow.cn/posts/fe4931b7.html"/>
+    <id>https://www.techgrow.cn/posts/fe4931b7.html</id>
+    <published>2024-11-06T12:05:42.000Z</published>
+    <updated>2024-11-06T12:05:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<!-- toc -->]]></content>
+    
+    
+    <summary type="html">本文主要介绍如何使用 Docker 安装单机版的 Seata。</summary>
+    
+    
+    
+    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
+    
+    
+    <category term="容器化" scheme="https://www.techgrow.cn/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>C++ 巩固基础之一</title>
@@ -412,27 +433,6 @@
     
     
     <category term="Debian" scheme="https://www.techgrow.cn/tags/Debian/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件开发画图软件推荐</title>
-    <link href="https://www.techgrow.cn/posts/796276ab.html"/>
-    <id>https://www.techgrow.cn/posts/796276ab.html</id>
-    <published>2024-04-27T13:18:36.000Z</published>
-    <updated>2024-04-27T13:18:36.000Z</updated>
-    
-    <content type="html"><![CDATA[<!-- toc --><h2 id="画图软件"><a href="#画图软件" class="headerlink" title="画图软件"></a>画图软件</h2><table><thead><tr><th>软件</th><th>官网</th><th>适用场景</th><th>收费说明</th><th>版本说明</th></tr></thead><tbody><tr><td>亿图图示 </td><td><a href="https://www.edrawsoft.cn/edrawmax/">https://www.edrawsoft.cn/edrawmax/</a></td><td> 思维盗图、流程图、组织结构图、UML 图、软件架构图</td><td>基础功能免费，高级功能收费</td><td> PC 版、Web 版</td></tr><tr><td> ProcessOn</td><td><a href="https://www.processon.com/">https://www.processon.com/</a></td><td> 思维导图、流程图、组织结构图、原型图、UML 图、网络拓扑图</td><td>基础功能免费，高级功能收费</td><td> Web 版</td></tr><tr><td> Excalidraw</td><td><a href="https://excalidraw.com/">https://excalidraw.com/</a></td><td> 一个白板工具，可轻松绘制具有手绘感觉的图表</td><td><a href="https://github.com/excalidraw/excalidraw">开源项目</a>，免费使用</td><td> Web 版</td></tr></tbody></table><span id="more"></span>]]></content>
-    
-    
-    <summary type="html">本文主要推荐好用的画图软件。</summary>
-    
-    
-    
-    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
-    
-    
-    <category term="开发工具" scheme="https://www.techgrow.cn/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
