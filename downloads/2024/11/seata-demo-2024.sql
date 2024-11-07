@@ -1,4 +1,7 @@
+-- 基于 Seata Server 2.2.0
+
 -- -------------------- Seata 库 --------------------------------
+CREATE DATABASE seata default character set utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `global_table` (
 	`xid` VARCHAR(128) NOT NULL,
@@ -76,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `vgroup_table` (
 
 CREATE DATABASE seata_account default character set utf8mb4;
 
-CREATE TABLE t_account (
+CREATE TABLE IF NOT EXISTS `t_account` (
 	`id` BIGINT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'id',
 	`user_id` BIGINT(11) DEFAULT NULL COMMENT '用户id',
 	`total` DECIMAL(10, 0) DEFAULT NULL COMMENT '总额度',
@@ -104,7 +107,7 @@ INSERT INTO t_account(`id`,`user_id`,`total`,`used`,`residue`)VALUES('1','1','10
 
 CREATE DATABASE seata_storage default character set utf8mb4;
 
-CREATE TABLE t_storage (
+CREATE TABLE IF NOT EXISTS `t_storage` (
 	`id` BIGINT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`product_id` BIGINT(11) DEFAULT NULL COMMENT '产品id',
 	`total` INT(11) DEFAULT NULL COMMENT '总库存',
@@ -130,7 +133,7 @@ INSERT INTO t_storage(`id`,`product_id`,`total`,`used`,`residue`)VALUES('1','1',
 
 -- -------------------------------- 订单库 --------------------------------
 
-CREATE DATABASE seata_order default character set utf8mb4;
+CREATE TABLE IF NOT EXISTS `seata_order` default character set utf8mb4;
 
 CREATE TABLE t_order (
 	`id` BIGINT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
