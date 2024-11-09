@@ -1,3 +1,5 @@
+-- 基于 Seata Server（TC） 1.4.0
+
 -- -------------------- Seata 库 --------------------------------
 
 DROP DATABASE IF EXISTS seata;

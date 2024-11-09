@@ -1,7 +1,10 @@
--- 基于 Seata Server 2.2.0
+-- 基于 Seata Server（TC） 2.2.0
 
 -- -------------------- Seata 库 --------------------------------
-CREATE DATABASE seata default character set utf8mb4;
+
+CREATE DATABASE IF NOT EXISTS `seata` default character set utf8mb4;
+
+USE `seata`;
 
 CREATE TABLE IF NOT EXISTS `global_table` (
 	`xid` VARCHAR(128) NOT NULL,
@@ -77,14 +80,16 @@ CREATE TABLE IF NOT EXISTS `vgroup_table` (
 
 -- -------------------------------- 账户库 --------------------------------
 
-CREATE DATABASE seata_account default character set utf8mb4;
+CREATE DATABASE IF NOT EXISTS `seata_account` default character set utf8mb4;
+
+USE `seata_account`;
 
 CREATE TABLE IF NOT EXISTS `t_account` (
 	`id` BIGINT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'id',
 	`user_id` BIGINT(11) DEFAULT NULL COMMENT '用户id',
-	`total` DECIMAL(10, 0) DEFAULT NULL COMMENT '总额度',
-	`used` DECIMAL(10, 0) DEFAULT NULL COMMENT '已用账户余额',
-	`residue` DECIMAL(10, 0) DEFAULT '0' COMMENT '剩余可用额度'
+	`total` DECIMAL(18, 5) DEFAULT NULL COMMENT '总额度',
+	`used` DECIMAL(18, 5) DEFAULT NULL COMMENT '已用账户余额',
+	`residue` DECIMAL(18, 5) DEFAULT '0' COMMENT '剩余可用额度'
 ) ENGINE = INNODB AUTO_INCREMENT = 2 CHARSET = utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `undo_log`
@@ -105,7 +110,9 @@ INSERT INTO t_account(`id`,`user_id`,`total`,`used`,`residue`)VALUES('1','1','10
 
 -- -------------------------------- 库存库 --------------------------------
 
-CREATE DATABASE seata_storage default character set utf8mb4;
+CREATE DATABASE IF NOT EXISTS `seata_storage` default character set utf8mb4;
+
+USE `seata_storage`;
 
 CREATE TABLE IF NOT EXISTS `t_storage` (
 	`id` BIGINT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -133,14 +140,16 @@ INSERT INTO t_storage(`id`,`product_id`,`total`,`used`,`residue`)VALUES('1','1',
 
 -- -------------------------------- 订单库 --------------------------------
 
-CREATE TABLE IF NOT EXISTS `seata_order` default character set utf8mb4;
+CREATE DATABASE IF NOT EXISTS `seata_order` default character set utf8mb4;
 
-CREATE TABLE t_order (
+USE `seata_order`;
+
+CREATE TABLE IF NOT EXISTS t_order (
 	`id` BIGINT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`user_id` BIGINT(11) DEFAULT NULL COMMENT '用户id',
 	`product_id` BIGINT(11) DEFAULT NULL COMMENT '产品id',
 	`count` INT(11) DEFAULT NULL COMMENT '数量',
-	`money` DECIMAL(11, 0) DEFAULT NULL COMMENT '金额',
+	`money` DECIMAL(18, 5) DEFAULT NULL COMMENT '金额',
 	`status` INT(1) DEFAULT NULL COMMENT '订单状态: 0:创建中; 1:已完结'
 ) ENGINE = INNODB AUTO_INCREMENT = 1 CHARSET = utf8mb4;
 
