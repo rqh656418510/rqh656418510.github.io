@@ -78,16 +78,16 @@
   </entry>
   
   <entry>
-    <title>Linux 生产环境基于 Kraft 模式搭建 Kafka 集群</title>
+    <title>Linux 生产环境基于 KRaft 模式搭建 Kafka 集群</title>
     <link href="https://www.techgrow.cn/posts/e3aa2fd8.html"/>
     <id>https://www.techgrow.cn/posts/e3aa2fd8.html</id>
     <published>2024-11-15T13:30:00.000Z</published>
     <updated>2024-12-07T13:30:00.000Z</updated>
     
-    <content type="html"><![CDATA[<!-- toc --><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文将使用多台物理机器（至少三台），基于 Kraft 模式搭建 Kafka 集群，适用于在 CentOS/Debian/Ubuntu 等发行版。</p><h2 id="Kafka-Kraft-架构"><a href="#Kafka-Kraft-架构" class="headerlink" title="Kafka Kraft 架构"></a>Kafka Kraft 架构</h2>]]></content>
+    <content type="html"><![CDATA[<!-- toc --><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文将使用多台物理机器（至少三台），基于 KRaft 模式搭建 Kafka 集群，适用于在 CentOS/Debian/Ubuntu 等发行版。</p><span id="more"></span><h2 id="Kafka-KRaft-模式"><a href="#Kafka-KRaft-模式" class="headerlink" title="Kafka-KRaft 模式"></a>Kafka-KRaft 模式</h2><h3 id="KRaft-模式的概述"><a href="#KRaft-模式的概述" class="headerlink" title="KRaft 模式的概述"></a>KRaft 模式的概述</h3><p><img data-src="../../../asset/2024/12/kafka-kraft-1.png"></p><ul><li>左图为 Kafka 的 ZooKeeer 模式架构，元数据存储在 Zookeeper 中，运行时会动态选举一个 Broker 节点作为 Controller（唯一），由 Controller 进行 Kafka 集群管理。</li><li>左图为 Kafka 的 KRaft 模式架构，不再依赖 Zookeeper 集群，而是使用多个 Controller 节点来代替 Zookeeper，元数据保存在 Controller 中，由 Controller 直接管理 Kafka 集群。</li></ul><table><thead><tr><th>特性</th><th> ZooKeeper 模式</th><th> KRaft 模式</th></tr></thead><tbody><tr><td> Leader 选举依赖性</td><td>需要 ZooKeeper 提供元数据存储和通知机制</td><td>不依赖 ZooKeeper，完全有 Kafka 自己自行实现</td></tr><tr><td>元数据管理</td><td>由 ZooKeeper 管理</td><td>由 Kafka 自己的 Raft 集群管理</td></tr><tr><td>一致性保障</td><td> ZooKeeper 提供一致性</td><td> Raft 协议保障一致性</td></tr><tr><td>引入版本</td><td> Kafka 早期版本（默认是 ZooKeeper 模式）</td><td>Kafka <code>2.8.0+</code>（KRaft 模式）</td></tr></tbody></table><div class="admonition note"><p class="admonition-title">版本说明</p><p>从 Kafka <code>2.8.0</code> 版本开始，Kafka 自身实现了 Raft 分布式一致性机制，这意味着 Kafka 集群可以脱离 ZooKeeper 独立运行。</p></div><h3 id="KRaft-模式的优势"><a href="#KRaft-模式的优势" class="headerlink" title="KRaft 模式的优势"></a>KRaft 模式的优势</h3><ul><li>Kafka 不再依赖外部服务，而是能够独立运行。</li><li>Controller 管理集群时，不再需要从 Zookeeper 中先读取数据，提高了集群性能。</li><li>由于不依赖 Zookeeper，因此 Kafka 集群扩展时不再受到 Zookeeper 读写能力的限制。</li><li>Controller 节点不再是通过动态选举来决定，而是由配置文件指定，这样开发者可以有针对性地加强。</li><li>Controller 节点支持通过配置来指定，而不是像以前一样对随机 Controller 节点的高负载束手无策。</li></ul><h2 id="Kafka-KRaft-集群部署"><a href="#Kafka-KRaft-集群部署" class="headerlink" title="Kafka-KRaft 集群部署"></a>Kafka-KRaft 集群部署</h2>]]></content>
     
     
-    <summary type="html">本文主要介绍如何在 Linux 生产环境中，基于 Kraft 模式部署 Kafka 集群。</summary>
+    <summary type="html">本文主要介绍如何在 Linux 生产环境中，基于 KRaft 模式部署 Kafka 集群。</summary>
     
     
     
