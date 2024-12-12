@@ -243,9 +243,9 @@
     <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
     
-    <category term="Centos" scheme="https://www.techgrow.cn/tags/Centos/"/>
-    
     <category term="容器化" scheme="https://www.techgrow.cn/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
+    
+    <category term="Centos" scheme="https://www.techgrow.cn/tags/Centos/"/>
     
   </entry>
   
@@ -285,9 +285,9 @@
     <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
     
-    <category term="缓存" scheme="https://www.techgrow.cn/tags/%E7%BC%93%E5%AD%98/"/>
-    
     <category term="微服务" scheme="https://www.techgrow.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    <category term="缓存" scheme="https://www.techgrow.cn/tags/%E7%BC%93%E5%AD%98/"/>
     
   </entry>
   
