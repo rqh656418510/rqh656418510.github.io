@@ -23,7 +23,7 @@
     <published>2025-03-28T13:55:33.000Z</published>
     <updated>2025-03-28T13:55:33.000Z</updated>
     
-    <content type="html"><![CDATA[<!-- toc --><h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><ul><li><a href="/posts/e302ad63.html">C++ 巩固进阶之一</a>、<a href="/posts/2288a106.html">C++ 巩固进阶之二</a>、<a href="/posts/bd9d2710.html">C++ 巩固进阶之三</a></li><li><a href="/posts/6e5acd18.html">C++ 巩固进阶之四</a>、 <a href="/posts/73b8af5d.html">C++ 巩固进阶之五</a></li></ul><span id="more"></span><h2 id="C-语言级别的多线程编程"><a href="#C-语言级别的多线程编程" class="headerlink" title="C++ 语言级别的多线程编程"></a>C++ 语言级别的多线程编程</h2><div class="admonition note"><p class="admonition-title">提示</p><ul><li>现代 C++ 语言层面的多线程编程使用的是 <code>thread</code>，而其底层的实现依旧是区分不同平台的，比如：</li><li>Windows 平台使用的是 <code>createThread</code>。</li><li>Linux 平台使用的是 <code>pthread_create</code>。</li></ul></div>]]></content>
+    <content type="html"><![CDATA[<!-- toc --><h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><ul><li><a href="/posts/e302ad63.html">C++ 巩固进阶之一</a>、<a href="/posts/2288a106.html">C++ 巩固进阶之二</a>、<a href="/posts/bd9d2710.html">C++ 巩固进阶之三</a></li><li><a href="/posts/6e5acd18.html">C++ 巩固进阶之四</a>、 <a href="/posts/73b8af5d.html">C++ 巩固进阶之五</a></li></ul><span id="more"></span><h2 id="C-多线程编程"><a href="#C-多线程编程" class="headerlink" title="C++ 多线程编程"></a>C++ 多线程编程</h2><p>这里介绍的是 C++ 语言级别的多线程编程，支持跨平台。值得一提的是，现代 C++ 语言层面的多线程编程使用的是 <code>thread</code>，而其底层的实现依旧是区分不同平台的，比如：Windows 平台使用的是 <code>createThread</code>，Linux 平台使用的是 <code>pthread_create</code>。</p>]]></content>
     
     
     <summary type="html">本文主要介绍 C++ 的巩固教程。</summary>
@@ -301,9 +301,9 @@
     
     
     
-    <category term="Linux系统编程" scheme="https://www.techgrow.cn/tags/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/"/>
-    
     <category term="数据库" scheme="https://www.techgrow.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="Linux系统编程" scheme="https://www.techgrow.cn/tags/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/"/>
     
     <category term="C++" scheme="https://www.techgrow.cn/tags/C/"/>
     
@@ -452,9 +452,9 @@
     <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
     
-    <category term="微服务" scheme="https://www.techgrow.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
     <category term="分布式" scheme="https://www.techgrow.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    <category term="微服务" scheme="https://www.techgrow.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
     <category term="RPC" scheme="https://www.techgrow.cn/tags/RPC/"/>
     
