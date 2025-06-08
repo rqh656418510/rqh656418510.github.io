@@ -17,7 +17,7 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>C++ 实现分布式 RPC 网络通信框架</title>
+    <title>C++ 实现 RPC 分布式网络通信框架</title>
     <link href="https://www.techgrow.cn/posts/5e6aa28a.html"/>
     <id>https://www.techgrow.cn/posts/5e6aa28a.html</id>
     <published>2025-06-08T13:55:33.000Z</published>
@@ -26,7 +26,7 @@
     <content type="html"><![CDATA[<!-- toc -->]]></content>
     
     
-    <summary type="html">本文主要介绍 C++ 如何实现分布式 RPC 网络通信框架。</summary>
+    <summary type="html">本文主要介绍 C++ 如何实现 RPC 分布式网络通信框架。</summary>
     
     
     
