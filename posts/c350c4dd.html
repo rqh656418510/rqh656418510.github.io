@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0"><link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico"><link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#222"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic%7CRoboto+Slab:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&amp;display=swap&amp;subset=latin,latin-ext"><link rel="stylesheet" href="/lib/@fortawesome/fontawesome-free/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous"><link rel="stylesheet" href="/lib/animate.css/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous"><link rel="stylesheet" href="/lib/pace-js/themes/blue/pace-theme-minimal.css"><script src="/lib/pace-js/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script><script class="next-config" data-name="main" type="application/json">{"hostname":"www.techgrow.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script><meta name="description" content="基于 ESP32、SI4732、ATS MINI 开发收音机。"><meta property="og:type" content="article"><meta property="og:title" content="基于 ESP32、SI4732、ATS MINI 开发收音机之一"><meta property="og:url" content="https://www.techgrow.cn/posts/c350c4dd.html"><meta property="og:site_name" content="Clay 的技术空间"><meta property="og:description" content="基于 ESP32、SI4732、ATS MINI 开发收音机。"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2026-01-10T13:03:50.000Z"><meta property="article:modified_time" content="2026-01-10T13:03:50.000Z"><meta property="article:author" content="Clay"><meta property="article:tag" content="嵌入式开发"><meta name="twitter:card" content="summary"><link rel="canonical" href="https://www.techgrow.cn/posts/c350c4dd.html"><script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.techgrow.cn/posts/c350c4dd.html","path":"posts/c350c4dd.html","title":"基于 ESP32、SI4732、ATS MINI 开发收音机之一"}</script><script class="next-config" data-name="calendar" type="application/json">""</script><title>基于 ESP32、SI4732、ATS MINI 开发收音机之一 | Clay 的技术空间</title><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-135294383-1"></script><script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-135294383-1","only_pageview":false,"measure_protocol_api_secret":null}</script><script src="/js/third-party/analytics/google-analytics.js"></script><script class="next-config" data-name="baidu_analytics" type="application/json">"84c09b30349a65573c5c642ff336969b"</script><script src="/js/third-party/analytics/baidu-analytics.js"></script><link rel="dns-prefetch" href="https://waline.techgrow.cn"><link rel="stylesheet" type="text/css" href="/css/injector/main.css"><link rel="preload" as="style" href="/css/injector/light.css"><link rel="preload" as="style" href="/css/injector/dark.css"><noscript><link rel="stylesheet" href="/css/noscript.css"></noscript><style>.admonition{margin:1.5625em 0;padding:.6rem;overflow:hidden;font-size:.64rem;page-break-inside:avoid;border-left:.3rem solid #42b983;border-radius:.3rem;box-shadow:0 .1rem .4rem rgba(0,0,0,.05),0 0 .05rem rgba(0,0,0,.1);background-color:#fafafa}p.admonition-title{position:relative;margin:-.6rem -.6rem .8em -.6rem!important;padding:.4rem .6rem .4rem 2.5rem;font-weight:700;background-color:rgba(66,185,131,.1)}.admonition-title::before{position:absolute;top:.9rem;left:1rem;width:12px;height:12px;background-color:#42b983;border-radius:50%;content:' '}.info>.admonition-title,.todo>.admonition-title{background-color:rgba(0,184,212,.1)}.attention>.admonition-title,.caution>.admonition-title,.warning>.admonition-title{background-color:rgba(255,145,0,.1)}.error>.admonition-title,.fail>.admonition-title,.failure>.admonition-title,.missing>.admonition-title{background-color:rgba(255,82,82,.1)}.admonition.info,.admonition.todo{border-color:#00b8d4}.admonition.attention,.admonition.caution,.admonition.warning{border-color:#ff9100}.admonition.error,.admonition.fail,.admonition.failure,.admonition.missing{border-color:#ff5252}.info>.admonition-title::before,.todo>.admonition-title::before{background-color:#00b8d4;border-radius:50%}.attention>.admonition-title::before,.caution>.admonition-title::before,.warning>.admonition-title::before{background-color:#ff9100;border-radius:50%}.error>.admonition-title::before,.fail>.admonition-title::before,.failure>.admonition-title::before,.missing>.admonition-title::before{background-color:#ff5252;border-radius:50%}.admonition>:last-child{margin-bottom:0!important}</style><link rel="alternate" href="/atom.xml" title="Clay 的技术空间" type="application/atom+xml"><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head><body itemscope="" itemtype="http://schema.org/WebPage" class="use-motion"><script src="/lib/jquery/dist/jquery.min.js"></script><script data-pjax="">!function(){var t=window.location.host;if(-1==t.indexOf("127.0.0.1")&&-1==t.indexOf("localhost")){var o=document.createElement("script"),e=window.location.protocol.split(":")[0];o.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(o,n)}}()</script><link rel="stylesheet" href="/lib/aplayer/dist/APlayer.min.css"><div id="aplayer" style="display:none"></div><script src="/lib/aplayer/dist/APlayer.min.js"></script><script src="/lib/aplayer/dist/color-thief.js"></script><script src="/lib/aplayer-init.js"></script><script>
+  (function () {
+
+  // 防止 Pjax 重复绑定事件
+  if (window.__moonMenuCodeExpandBound) {
+    return;
+  }
+  window.__moonMenuCodeExpandBound = true;
+
+  const STORAGE_KEY = 'moon_menu_code_fold';
+
+  /* ===============================
+   * 1. 设置 moon-menu 按钮的 title
+   * =============================== */
+  (function bindMoonMenuTitles() {
+    const items = [
+      { selector: '#moon-menu-item-code',        title: '展开 / 折叠代码块' },
+      { selector: '#moon-menu-item-back2top',    title: '回到页面顶部' },
+      { selector: '#moon-menu-item-back2bottom', title: '回到页面底部' }
+    ];
+
+    let allReady = true;
+
+    items.forEach(item => {
+      const el = document.querySelector(item.selector);
+      if (!el) {
+        allReady = false;
+        return;
+      }
+      el.setAttribute('title', item.title);
+    });
+
+    if (!allReady) {
+      setTimeout(bindMoonMenuTitles, 100);
+    }
+  })();
+
+  /* =================================
+   * 2. 页面首次加载：代码块恢复展开或折叠状态
+   * ================================= */
+  function applyStoredCodeState() {
+    const containers = document.querySelectorAll('.code-container');
+    if (!containers.length) {
+      return;
+    }
+
+    const state = localStorage.getItem(STORAGE_KEY);
+    if (!state) {
+      return;
+    }
+
+    containers.forEach(container => {
+      if (state === 'expanded') {
+        // 展开代码块
+        container.classList.remove('highlight-fold');
+      } else if (state === 'folded') {
+        // 折叠代码块
+        container.classList.add('highlight-fold');
+      }
+    });
+  }
+
+  // 等代码块出现后，再恢复展开或折叠状态
+  function waitAndApplyState() {
+    const containers = document.querySelectorAll('.code-container');
+
+    if (!containers.length) {
+      setTimeout(waitAndApplyState, 100);
+      return;
+    }
+
+    applyStoredCodeState();
+  }
+
+  // 页面首次加载时恢复状态
+  waitAndApplyState();
+  
+  // Pjax 切换页面后，必须重新恢复状态
+  document.addEventListener('pjax:complete', function () {
+    waitAndApplyState();
+  });
+
+  /* ===============================
+   * 3. 点击按钮：切换状态并保存
+   * =============================== */
+  document.addEventListener('click', function (e) {
+    const codeMenu = e.target.closest('#moon-menu-item-code');
+    if (!codeMenu) {
+      return;
+    }
+
+    toggleAllCodeBlocks();
+  });
+
+  // 展开或折叠代码块
+  function toggleAllCodeBlocks() {
+    const containers = document.querySelectorAll('.code-container');
+    if (!containers.length) {
+      return;
+    }
+
+    // 只要存在折叠的代码块，就认为当前是折叠状态
+    const hasFolded = Array.from(containers).some(c => {
+      return c.classList.contains('highlight-fold');
+    });
+
+    containers.forEach(container => {
+      if (hasFolded) {
+        // 展开代码块
+        container.classList.remove('highlight-fold');
+      } else {
+        // 折叠代码块
+        container.classList.add('highlight-fold');
+      }
+    });
+
+    // 记录展开或折叠状态
+    localStorage.setItem(
+      STORAGE_KEY,
+      hasFolded ? 'expanded' : 'folded'
+    );
+  }
+
+})();
+</script><script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script><script>function getTitle(){var t=jQuery("meta[property='og:title']");return t?t.attr("content"):""}function getDesc(){var t=jQuery("meta[property='og:description']");return t?t.attr("content"):""}function randomString(t){for(var e="ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678",n=e.length,i="",r=0;r<t;++r)i+=e.charAt(Math.floor(Math.random()*n));return i}function initWx(t){wx.config({debug:!1,appId:t.appId,nonceStr:t.nonceStr,signature:t.signature,timestamp:t.timestamp,jsApiList:["checkJsApi","onMenuShareTimeline","onMenuShareAppMessage","onMenuShareQQ"]}),wx.ready(function(){wx.onMenuShareTimeline({title:t.title,link:t.link,imgUrl:t.imgUrl,success:function(){}}),wx.onMenuShareAppMessage({title:t.title,desc:t.desc,link:t.link,imgUrl:t.imgUrl,type:"link",dataUrl:"",success:function(){}}),wx.onMenuShareQQ({title:t.title,desc:t.desc,link:t.link,imgUrl:t.imgUrl,success:function(){},cancel:function(){}})}),wx.error(function(t){})}jQuery(function(){var e=getDesc(),n=getTitle(),i=randomString(16),r=(new Date).getTime(),a=window.location.href,t="https://open.techgrow.cn/api/wechat/js/signature?url="+a+"&noncestr="+i+"&timestamp="+r;jQuery.getJSON(t,function(t){initWx({desc:e,title:n,link:a,nonceStr:i,timestamp:r,signature:t.data,appId:"wx1fcf69355af43d41",imgUrl:"https://www.techgrow.cn/img/wx_share.jpg"})})})</script><div style="display:none"><img src="https://www.techgrow.cn/img/wx_share.jpg" alt=""></div><div class="headband"></div><main class="main"><div class="column"><header class="header" itemscope="" itemtype="http://schema.org/WPHeader"><div class="site-brand-container"><div class="site-nav-toggle"><div class="toggle" aria-label="切换导航栏" role="button"><span class="toggle-line"></span><span class="toggle-line"></span><span class="toggle-line"></span></div></div><div class="site-meta"><a href="/" class="brand" rel="start"><i class="logo-line"></i><p class="site-title">Clay 的技术空间</p><i class="logo-line"></i></a><p class="site-subtitle" itemprop="description">用进废退 | 艺不压身</p></div><div class="site-nav-right"><div class="toggle popup-trigger" aria-label="搜索" role="button"></div></div></div><nav class="site-nav"><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-search"><a href="/search" rel="section"><i class="fa fa-search fa-fw"></i>搜索</a></li><li class="menu-item menu-item-links"><a href="/links" rel="section"><i class="fas fa-link fa-fw"></i>友链</a></li><li class="menu-item menu-item-readingnotes"><a href="https://www.techgrow.cn/reading/" rel="section"><i class="fa fa-book-open-reader fa-fw"></i>读书笔记</a></li><li class="menu-item menu-item-commentmanage"><a href="https://waline.techgrow.cn/" rel="external nofollow" target="_blank"><i class="fa fa-comment fa-fw"></i>评论管理</a></li></ul></nav></header><aside class="sidebar"><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class="sidebar-nav"><li class="sidebar-nav-toc"> 文章目录</li><li class="sidebar-nav-overview"> 站点概览</li></ul><div class="sidebar-panel-container"><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E7%BA%B2"><span class="nav-text">大纲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF"><span class="nav-text">学习路线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="nav-text">必备知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="nav-text">开发工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A5%E9%97%A8%E6%AD%A5%E9%AA%A4"><span class="nav-text">入门步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90"><span class="nav-text">学习资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author animated" itemprop="author" itemscope="" itemtype="http://schema.org/Person"> <img class="site-author-image" itemprop="image" alt="Clay" src="/img/head.jpg"></div><div class="site-state-wrap animated"><nav class="site-state"><div class="site-state-item site-state-posts"> <span class="site-state-item-count">794</span> <span class="site-state-item-name">文章</span></div><div class="site-state-item site-state-tags"> <span class="site-state-item-count">56</span> <span class="site-state-item-name">标签</span></div></nav></div><div class="links-of-author animated"><span class="links-of-author-item"><a href="https://github.com/rqh656418510" title="GitHub → https://github.com/rqh656418510" rel="external nofollow" target="_blank"><i class="fab fa-github fa-fw"></i> GitHub</a></span><span class="links-of-author-item"><a href="mailto:rong656418510@gmail.com" title="E-Mail → mailto:rong656418510@gmail.com" rel="external nofollow" target="_blank"><i class="fa fa-envelope fa-fw"></i> E-Mail</a></span><span class="links-of-author-item"><a href="/atom.xml" title="RSS → /atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i> RSS</a></span><span class="links-of-author-item"><a href="/sitemap.xml" title="SiteMap → /sitemap.xml" rel="noopener me"><i class="fa fa-sitemap fa-fw"></i> SiteMap</a></span></div></div></div></div></aside></div><div class="main-inner post posts-expand"><div class="post-block"><article itemscope="" itemtype="http://schema.org/Article" class="post-content" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://www.techgrow.cn/posts/c350c4dd.html"><span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person"><meta itemprop="image" content="/img/head.jpg"><meta itemprop="name" content="Clay"></span><span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization"><meta itemprop="name" content="Clay 的技术空间"><meta itemprop="description" content="专注于 Java 后端、分布式、微服务、云原生、数据库、系统架构、大数据、云计算、虚拟化、人工智能学习的技术博客。"></span><span hidden="" itemprop="post" itemscope="" itemtype="http://schema.org/CreativeWork"><meta itemprop="name" content="基于 ESP32、SI4732、ATS MINI 开发收音机之一 | Clay 的技术空间"><meta itemprop="description" content="基于 ESP32、SI4732、ATS MINI 开发收音机。"></span><header class="post-header"><h1 class="post-title" itemprop="name headline"> 基于 ESP32、SI4732、ATS MINI 开发收音机之一</h1><div class="post-meta-container"><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建时间：2026-01-10 21:03:50" itemprop="dateCreated datePublished" datetime="2026-01-10T21:03:50+08:00">2026-01-10</time></span><span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv"><span class="post-meta-item-icon"><i class="far fa-eye"></i></span> <span class="post-meta-item-text">阅读次数：</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-comment"></i></span> <span class="post-meta-item-text">评论数：</span><a title="waline" href="/posts/c350c4dd.html#waline" itemprop="discussionUrl"><span class="post-comments-count waline-comment-count" data-path="/posts/c350c4dd.html" itemprop="commentCount"></span></a></span><span class="post-meta-item" title="本文字数"><span class="post-meta-item-icon"><i class="far fa-file-word"></i></span> <span class="post-meta-item-text">本文字数：</span> <span>3.2k</span></span><span class="post-meta-item" title="阅读时长"><span class="post-meta-item-icon"><i class="far fa-clock"></i></span> <span class="post-meta-item-text">阅读时长 ≈</span> <span>3 分钟</span></span></div></div></header><div class="post-body post-container" itemprop="articleBody" id="readmore-container"><h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><ul><li><a href="/posts/c350c4dd.html">基于 ESP32、SI4732、ATS MINI 开发收音机之一</a></li></ul><h2 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h2><p>基于 ESP32 + SI4732 + ATS MINI 的生态开发收音机，开发者并不需要从 51 单片机、寄存器操作等传统嵌入式底层知识开始，而可以利用现有的开源项目成果，以 “应用集成和修改” 为核心来切入，这会大大降低门槛。</p><table><thead><tr><th>个人的兴趣 / 目标</th><th>推荐入口</th><th>需要优先掌握的核心技能</th><th>学习难度</th><th>可能成果</th></tr></thead><tbody><tr><td>只想使用 / 小改现有功能（如改界面、调参数）</td><td>作为高级用户</td><td><br> - 1. Arduino IDE 基础使用<br> - 2. 代码编译与烧录<br> - 3. 配置文件修改</td><td>⭐⭐ 入门</td><td>成功编译并烧录官方固件，修改频率范围、显示语言等。</td></tr><tr><td>想深度定制功能（如增加新模块、改交互逻辑）</td><td>作为项目开发者</td><td><br> - 1. Arduino 框架下 C++ 基础<br> - 2. ESP32 基础外设使用（I2C， 旋钮编码器，显示屏）<br> - 3. 阅读理解开源代码的能力</td><td>⭐⭐⭐ 中等</td><td>为收音机增加蓝牙音频输出、修改菜单结构、支持新的显示屏。</td></tr><tr><td>想彻底重写 / 从底层理解（如研究算法、追求极致性能）</td><td>作为系统开发者</td><td><br> - 1. 扎实的 C/C++ 语言和数据结构<br> - 2. ESP-IDF 框架体系<br> - 3. 嵌入式操作系统基础<br> - 4. 射频电路基础知识</td><td>⭐⭐⭐⭐⭐ 困难</td><td>独立架构收音机软件，优化 DSP 音频处理算法，或移植到其他平台。</td></tr></tbody></table><span id="more"></span><div class="admonition note"><p class="admonition-title">学习路线选择</p><ul><li>对于绝大多数爱好者来说，前两个入口（"高级用户" 和 "项目开发者"）是最实际、最有成就感的起点。</li></ul></div><h2 id="必备知识"><a href="#必备知识" class="headerlink" title="必备知识"></a>必备知识</h2><p>基于 ESP32 + SI4732 + ATS MINI 的生态开发收音机，开发者不需要学习 “底层嵌入式全家桶”（寄存器、启动流程、裸机 RTOS 移植等），会 Arduino API 就能开发，但理解 I2C、GPIO、库结构、编译烧录流程是必须的。</p><ul><li><p>必须掌握的知识（重点）</p><ul><li>ESP32 基础使用<ul><li>会刷固件（USB / 串口）</li><li>会选开发板（ESP32 / ESP32-S3）</li><li>会看 GPIO 引脚定义</li></ul></li><li> Arduino 开发方式<ul><li>开发工具：Arduino IDE / PlatformIO</li><li> 开发框架：Arduino Core for ESP32</li><li> 使用 <code>setup()</code> / <code>loop()</code></li><li>编译 → 烧录 → 串口调试</li><li>修改现有 <code>.ino</code> / <code>.cpp</code></li></ul></li><li>I2C 基本概念<ul><li> SDA / SCL</li><li>SI4732 是 I2C 设备</li><li>会填正确的引脚即可（不需要写 I2C 驱动）</li></ul></li><li>读文档与改配置<ul><li>屏幕分辨率</li><li>按键 / 编码器引脚</li><li> FM / AM / SW 频段参数</li></ul></li><li>到这里，就已经能跑 ATS MINI 固件了</li></ul></li><li><p>不需要掌握的知识（忽略）</p><ul><li>裸机开发</li><li>寄存器级 GPIO / I2C</li><li>FreeRTOS 调度原理</li><li>链接脚本 / 启动代码</li><li>芯片 DataSheet 逐页啃</li></ul></li><li><p>只有在下面情况之一，才建议系统学习嵌入式</p><ul><li>自己写 SI4732 驱动</li><li>自己做低功耗管理</li><li>不用 Arduino IDE，改用 ESP-IDF</li><li> 做商业级产品 / 深度定制</li></ul></li></ul><div class="admonition note"><p class="admonition-title">ESP32 与 SI4732 的关系</p><ul><li>ESP32 是主控芯片（MCU），SI4732 是收音机芯片（射频 + 解调）。</li><li>ESP32：负责程序逻辑、按键处理、屏幕显示、存储、UI 界面、控制流程等。</li><li>SI4732：负责真正的收音工作（AM / FM / SW / SSB 的射频接收与解调等）。</li><li>两者之间，通过 I²C 通信，ESP32 向 SI4732 发送控制命令（调频、切台、模式切换等），SI4732 返回状态和信号质量数据。</li></ul></div><h2 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h2><ul><li>ESP32 开发的工具链：<ul><li>IDE：Arduino IDE</li><li>SDK：Arduino Core for ESP32</li><li> 硬件：ESP32 开发板 + SI4732 芯片 + 屏幕</li></ul></li></ul><hr><ul><li> Arduino 官方提供的 Arduino Core for ESP32 支持以下芯片：</li></ul><table><thead><tr><th>芯片</th><th> Arduino Core for ESP32 的支持</th><th>说明</th></tr></thead><tbody><tr><td> ESP32</td><td>✅ 完全支持</td><td>最成熟、资料最多</td></tr><tr><td> ESP32-S2</td><td>✅</td><td>USB 原生</td></tr><tr><td> ESP32-S3</td><td>✅ 完全支持</td><td>新一代，常用于 ATS MINI 项目</td></tr><tr><td> ESP32-C3</td><td>✅</td><td>RISC-V</td></tr></tbody></table><ul><li>Arduino Core for ESP32 对比 ESP-IDF（乐鑫官方原生 SDK）</li></ul><table><thead><tr><th>对比</th><th> Arduino Core for ESP32</th><th>ESP-IDF</th></tr></thead><tbody><tr><td> 上手速度</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐</td></tr><tr><td>ATS MINI 项目适配</td><td>⭐⭐⭐⭐⭐</td><td>❌</td></tr><tr><td>驱动成熟度</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr><tr><td>学习成本</td><td>低</td><td>高</td></tr></tbody></table><div class="admonition note"><p class="admonition-title">ESP-IDF 是什么</p><ul><li>ESP-IDF（Espressif IoT Development Framework）是乐鑫官方提供的 ESP32 系列底层开发框架（SDK）。</li><li>ESP-IDF 的特点是官方原生（乐鑫自己用），直接使用 FreeRTOS，多任务控制更细，代码更复杂。</li><li>ESP-IDF 适用于专业、灵活、产品级开发，比如做商业级产品 / 深度定制才会使用 ESP-IDF。</li></ul></div><div class="admonition note"><p class="admonition-title">Arduino IDE + ESP32 是怎么连起来的？</p><ul><li>使用 Arduino IDE + ESP32 进行开发时，使用的硬件仍然是 ESP32 开发板，并不是 Arduino 开发板。Arduino IDE 只是一个开发工具（IDE），用于编写、编译和烧录程序，ESP32 才是真正运行程序的硬件平台。</li><li>Arduino IDE 中使用的 Arduino Core for ESP32 相当于一层 "适配层 / 抽象层"，它基于 ESP-IDF 实现，将 ESP32 的底层能力封装为 Arduino 风格的 API，使开发者可以通过熟悉的 Arduino API 来开发 ESP32，而无需直接接触 ESP-IDF。</li><li>在 Arduino IDE 里，选的是 ESP32 开发板，写的是 Arduino API 风格代码，跑的是 ESP32 开发板（芯片）。</li><li>Arduino IDE 完全支持 ESP32 开发板，而且 ATS MINI、SI4732 项目本身就是基于 Arduino 体系开发的。</li></ul></div><h2 id="入门步骤"><a href="#入门步骤" class="headerlink" title="入门步骤"></a>入门步骤</h2><ul><li><p>第一步：搭建环境，跑通示例</p><ul><li>行动：安装 Arduino IDE，添加 ESP32 开发板支持；导入 ATS MINI 的源代码，尝试在电脑上成功编译。</li><li>学习点：嵌入式开发的第一步就是工具链的搭建，这能让你熟悉最基本的流程。</li></ul></li><li><p>第二步：购买开发板，点亮第一盏灯</p><ul><li>行动：购买一块 ESP32 开发板（如 ESP32-DevKitC），不接 SI4732，先学习如何控制一个 LED 闪烁，读取一个按键。</li><li>学习点：这是嵌入式开发的 <code>Hello World</code>，让你建立 “编写代码 -&gt; 硬件响应” 的直接概念，消除对硬件的陌生感。</li></ul></li><li><p>第三步：连接核心部件，理解通信</p><ul><li>行动：将 SI4732 模块通过 I2C 接口连接到 ESP32。不要急于用 ATS MINI 完整代码，而是先寻找 SI4732 的 Arduino 基础库，尝试写几行代码，让 ESP32 命令 SI4732 收一个已知的 FM 电台，并读出信号强度。</li><li>学习点：这是项目的核心，你将学会如何通过查阅芯片数据手册和使用现有驱动库来控制关键器件。I2C 通信是嵌入式开发中最常见的技能之一。</li></ul></li><li><p>第四步：深入研究 ATS MINI 源码</p><ul><li>行动：在完成了前三步的基础上，再打开 ATS MINI 的工程。此时你看代码的心态会完全不同。你能找到初始化 SI4732 的代码、扫描频段的函数、处理编码器输入的逻辑。</li><li>学习点：从 “读天书” 变成 “看图说话”。你能结合自己的实践经验，理解开源项目的架构设计，并知道在哪里修改以实现自己的功能。</li></ul></li></ul><div class="admonition note"><p class="admonition-title">学习顺序推荐</p><ul><li>对于 ESP32 + SI4732 + ATS MINI 开源收音机项目，"在实践中遇到问题，然后针对性地学习理论" 是最高效的方法。推荐的学习顺序如下：</li><li>购买硬件 -&gt; 搭建开发环境 -&gt; 运行 Demo -&gt; 修改小功能 -&gt; 遇到具体问题（如：I2C 通信失败、显示乱码）-&gt; 搜索问题、学习相关知识 -&gt; 解决问题 -&gt; 继续迭代。</li></ul></div><h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><ul><li>ESP32：乐鑫官方文档是最好资源，重点关注 Arduino Core for ESP32 部分。</li><li>SI4732：Silicon Labs 官方的 AN383（应用笔记） 和 SI4732 数据手册是必读文档，它详细说明了所有命令。</li><li>ATS MINI 项目：仔细阅读其 GitHub 仓库的 README 和 Wiki（如果有），这里面通常包含了硬件连接图、编译说明和常见问题。</li></ul><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="/posts/32f038a6.html">开源收音机开发技术调研</a></li><li><a target="_blank" rel="external nofollow" href="https://esp32-si4732.github.io/ats-mini/hardware.html">esp32-si4732/ats-mini 官方文档</a></li></ul><div id="readmore-expansion" class="pjax"></div><link rel="stylesheet" type="text/css" href="https://qiniu.techgrow.cn/readmore/dist/hexo.css"><script data-pjax="" src="https://qiniu.techgrow.cn/readmore/dist/readmore.js" type="text/javascript"></script><script data-pjax="">var isMobile=navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i),allowMobile=!1;if(!isMobile||isMobile&&allowMobile)try{var plugin=new ReadmorePlugin;plugin.init({type:"hexo",id:"readmore-container",name:"全栈技术驿站",blogId:"96641-5333172926158-056",qrcode:"https://www.techgrow.cn/img/wx_mp_qr.png",keyword:"Tech",random:"1",height:"auto",expires:"365",lockToc:"yes",interval:"30",baseUrl:"",execute:"yes",tocSelector:""})}catch(e){console.warn("readmore plugin occurred error: "+e.name+" | "+e.message)}</script></div><footer class="post-footer"><div class="reward-container"><div>支持一根棒棒糖！</div> <button> 赞赏</button><div class="post-reward"><div> <img src="/img/pay_wx.png" alt="Clay 微信"> <span>微信</span></div><div> <img src="/img/pay_zfb.png" alt="Clay 支付宝"> <span>支付宝</span></div></div></div><div class="post-copyright"><ul><li class="post-copyright-author"> <strong>本文作者：</strong> Clay</li><li class="post-copyright-link"> <strong>本文链接：</strong> <a href="https://www.techgrow.cn/posts/c350c4dd.html" title="基于 ESP32、SI4732、ATS MINI 开发收音机之一">https://www.techgrow.cn/posts/c350c4dd.html</a></li><li class="post-copyright-license"> <strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank"><i class="fab fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class="contactme"><div class="social-list"><div class="social-item"><span class="icon"><i class="fab fa-weixin"></i></span> <span class="label">欢迎添加博主微信，请备注 "博客"，届时会邀请您加入百人微信群</span><br> <img src="/img/wx_account_qr.png"></div></div></div><div class="post-tags"><a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> 嵌入式开发</a></div><div class="post-nav"><div class="post-nav-item"><a href="/posts/32f038a6.html" rel="prev" title="开源收音机开发技术调研"><i class="fa fa-angle-left"></i> 开源收音机开发技术调研</a></div><div class="post-nav-item"></div></div></footer></article></div><div class="comments" id="waline"></div></div></main><footer class="footer"><div class="footer-inner"><div class="copyright"> Copyright © 2018 – <span itemprop="copyrightYear">2026</span><span class="with-love"><i class="fa fa-heart"></i></span> <span class="author" itemprop="copyrightHolder">Clay</span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="fa fa-chart-line"></i></span> <span>站点总字数：</span> <span title="站点总字数">2.3m</span></span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="fa fa-coffee"></i></span> <span>站点阅读时长 ≈</span> <span title="站点阅读时长">35:22</span></span></div><div id="site-runtime"><span class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span><span id="runtime"></span></div><script language="javascript">function isPC(){for(var e=navigator.userAgent,t=["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"],n=0;n<t.length;n++)if(0<e.indexOf(t[n]))return!1;return!0}function siteTime(e,t){window.setTimeout("siteTime(openOnPC, start)",1e3);var n=36e5,o=24*n;t=new Date("2018-12-27 08:00:00");var i=new Date,r=(i.getFullYear(),i.getMonth(),i.getDate(),i.getHours(),i.getMinutes(),i.getSeconds(),i-t),a=Math.floor(r/31536e6),s=Math.floor(r/o-365*a),d=Math.floor((r-(365*a+s)*o)/n),l=Math.floor((r-(365*a+s)*o-d*n)/6e4),u=Math.floor((r-(365*a+s)*o-d*n-6e4*l)/1e3);document.getElementById("runtime").innerHTML="Powered by Hexo & Docker | "+a+" 年 "+s+" 日 "+d+" 小时 "+l+" 分钟 "+u+" 秒 "}var showOnMobile=!1,openOnPC=isPC(),start=new Date;siteTime(openOnPC,start),openOnPC||showOnMobile||(document.getElementById("site-runtime").style.display="none")</script><div class="beian"> <span><img src="/img/gonganbeian.png" alt=""></span> <span><a href="https://beian.miit.gov.cn/" rel="external nofollow" target="_blank">粤ICP备 19024664号-1</a></span> <span>|&nbsp;</span> <span><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44011302004035" rel="external nofollow" target="_blank">粤公网安备 44011302004035号</a></span></div><div class="busuanzi-count"><span class="post-meta-item" id="busuanzi_container_site_uv"><span class="post-meta-item-icon"><i class="fa fa-user"></i></span><span class="site-uv" title="总访客量"><span id="busuanzi_value_site_uv"></span></span></span><span class="post-meta-item" id="busuanzi_container_site_pv"><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span><span class="site-pv" title="总访问量"><span id="busuanzi_value_site_pv"></span></span></span></div></div></footer><div class="toggle sidebar-toggle" role="button"><span class="toggle-line"></span><span class="toggle-line"></span><span class="toggle-line"></span></div><div class="sidebar-dimmer"></div> <a href="https://github.com/rqh656418510" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="external nofollow" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0 0 115 115 130 115 142 142 250 250 250 0Z"></path><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4L133.7 101.6C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8Z" fill="currentColor" class="octo-body"></path></svg></a><noscript><div class="noscript-warning">Theme NexT works best with JavaScript enabled</div></noscript><script size="200" alpha="0.5" zindex="-1" src="/lib/ribbon.js/dist/ribbon.min.js"></script><script src="/lib/animejs/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script><script src="/lib/@next-theme/pjax/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script><script src="/lib/medium-zoom/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script><script src="/lib/lozad/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script><script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script><script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"/lib/pdfobject/pdfobject.min.js","integrity":"sha256-JJZNsid68vnh3/zyj0lY9BN5ynxVX/12XgOa1TlaYN0="},"url":"/lib/pdf/web/viewer.html"}</script><script src="/js/third-party/tags/pdf.js"></script><script src="/js/third-party/pace.js"></script><script data-pjax="" async="" src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://www.techgrow.cn/lib/darkmode/darkmode@1.5.7.min.js"></script><script>
+var options = {
+  bottom: '64px',
+  right: '30px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#282828',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script><script src="https://www.techgrow.cn/lib/qiniu/qiniu@3.3.1.min.js"></script><script>
+    var qiniu_domain = "https://oss.techgrow.cn";
+    var qiniu_token_url = "https://open.techgrow.cn/api/oss/qiniu/token/upload";
+    var qiniu_debug = "true" === "false";
+
+    // date format
+    Date.prototype.format = function (fmt) {
+      var o = {
+        "M+": this.getMonth() + 1,
+        "d+": this.getDate(),
+        "h+": this.getHours(),
+        "m+": this.getMinutes(),
+        "s+": this.getSeconds(),
+        "q+": Math.floor((this.getMonth() + 3) / 3),
+        "S": this.getMilliseconds()
+      };
+      if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+      }
+      for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+          fmt = fmt.replace(
+            RegExp.$1,
+            (RegExp.$1.length == 1)
+              ? (o[k])
+              : (("00" + o[k]).substr(("" + o[k]).length))
+          );
+        }
+      }
+      return fmt;
+    }
+
+    // generate uuid
+    function uuid() {
+      var s = [];
+      var hexDigits = "0123456789abcdef";
+      for (var i = 0; i < 36; i++) {
+        s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+      }
+      s[14] = "4";
+      s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);
+      s[8] = s[13] = s[18] = s[23] = "-";
+      var uuid = s.join("");
+      return uuid;
+    }
+
+    // sync get request
+    function syncGet(url) {
+      var xhr = null;
+      if (window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+      } else {
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xhr.open('GET', url, false);
+      xhr.send();
+      return xhr;
+    }
+
+    // get upload file path
+    function getUploadFilePath() {
+      var now = new Date();
+      var name = uuid().replace(/-/g, "");
+      var nowStr = now.format("/yyyy/MM/dd/");
+      return "uploads" + nowStr + name;
+    }
+
+    // get qiniu upload token
+    function getUploadToken() {
+      try {
+        var xhr = syncGet(qiniu_token_url);
+        var responseStatus = xhr.status;
+        var responseJson = JSON.parse(xhr.responseText);
+        if (responseStatus === 200) {
+          return responseJson.data;
+        } else if (responseStatus === 403) {
+          alert(responseJson.msg || "图片上传失败，无法获取UploadToken，非法请求来源！");
+        } else if (responseStatus === 429) {
+          alert(responseJson.msg || "图片上传失败，无法获取UploadToken，上传过于频繁！");
+        } else if (responseStatus === 500) {
+          alert(responseJson.msg || "图片上传失败，无法获取UploadToken，系统内部出错！");
+        } else {
+          alert("图片上传失败，无法获取UploadToken，未知Http响应状态码！");
+        }
+      } catch (err) {
+        if (qiniu_debug) {
+          console.error(err);
+        }
+        alert("图片上传失败，无法获取UploadToken，未知错误！");
+      }
+      return null;
+    }
+
+    // qiniu upload image
+    async function qiniuUploadImage(file) {
+      var image_path = null;
+      await uploadImage(file).then(function onFulfilled(res) {
+        image_path = res;
+      }).catch(function onRejected(err) {
+        if (qiniu_debug) {
+          console.error(err);
+        }
+      });
+      return image_path;
+    }
+
+    // upload image
+    function uploadImage(file) {
+      return new Promise((resolve, reject) => {
+        var config = null;
+        var putExtra = null;
+        var token = getUploadToken();
+        var key = getUploadFilePath();
+        // upload init
+        var observable = qiniu.upload(file, key, token, putExtra, config);
+        // upload start
+        observable.subscribe({
+          next(res) {
+            // upload progress
+          },
+          error(err) {
+            // upload falied
+            reject("falied to upload image for qiniu: " + err.name);
+          },
+          complete(res) {
+            // upload successed
+            resolve(qiniu_domain + "/" + key);
+          }
+        });
+      });
+    }
+  </script><script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.techgrow.cn","cssUrl":"https://www.techgrow.cn/lib/@waline/client/client@2.5.1.min.css","commentCount":true,"pageview":false,"copyright":false,"allowUploadImage":true,"libUrl":"https://www.techgrow.cn/lib/@waline/client/client@2.5.1.min.js","locale":{"placeholder":"支持匿名评论啦，若希望及时收到博主的反馈，建议登录评论或者在上方的邮箱输入框留下邮箱地址哦 (๑•̀ㅂ•́)و✧"},"dark":"body.darkmode--activated","emoji":["https://www.techgrow.cn/lib/@waline/emojis/1.0.1/weibo"],"meta":["nick","mail","link"],"login":"enable","pageSize":10,"qiniuDebug":false,"qiniuDomain":"https://oss.techgrow.cn","qiniuTokenUrl":"https://open.techgrow.cn/api/oss/qiniu/token/upload","qiniuLibUrl":"https://www.techgrow.cn/lib/qiniu/qiniu@3.3.1.min.js","el":"#waline","comment":true,"path":"/posts/c350c4dd.html"}</script><link rel="stylesheet" href="https://www.techgrow.cn/lib/@waline/client/client@2.5.1.min.css"><script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.waline.allowUploadImage) {
+    CONFIG.waline.imageUploader = false;
+  }
+  else if (CONFIG.waline.qiniuDomain && CONFIG.waline.qiniuTokenUrl) {
+    CONFIG.waline.imageUploader = qiniuUploadImage;
+  } else {
+   CONFIG.waline.imageUploader = true;
+  }
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script><div class="moon-menu"><div class="moon-menu-items"><div id="moon-menu-item-back2bottom" class="moon-menu-item"><i class="fas fa-chevron-down"></i></div><div id="moon-menu-item-back2top" class="moon-menu-item"><i class="fas fa-chevron-up"></i></div><div id="moon-menu-item-code" class="moon-menu-item"><i class="fa-solid fa-code"></i></div></div><div class="moon-menu-button"><svg class="moon-menu-bg"><circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle><circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle></svg><div class="moon-menu-content"><div class="moon-menu-icon"><i class="fas fa-ellipsis-v"></i></div><div class="moon-menu-text"></div></div></div></div><script src="/js/injector.js"></script><div class="comments" id="waline-comments" style="display:none"></div><script>function isMobile(){var i=navigator.userAgent.toLowerCase(),e="ipad"==i.match(/ipad/i),a="iphone os"==i.match(/iphone os/i),o="midp"==i.match(/midp/i),n="rv:1.2.3.4"==i.match(/rv:1.2.3.4/i),r="ucweb"==i.match(/ucweb/i),c="android"==i.match(/android/i),l="windows ce"==i.match(/windows ce/i),d="windows mobile"==i.match(/windows mobile/i);return!!(e||a||o||n||r||c||l||d)}var openOnMobile=isMobile(),showOnMobile=!1,aplayerEnable=!0;jQuery(document).ready(function(){aplayerEnable&&(openOnMobile&&!showOnMobile||jQuery("#aplayer").css("display","block"))}),jQuery(window).on("load",function(){aplayerEnable&&jQuery(".aplayer\\-icon.aplayer\\-icon\\-lrc").trigger("click")})</script></body></html>
