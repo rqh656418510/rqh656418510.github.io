@@ -63,7 +63,7 @@
     <published>2026-10-08T14:25:49.000Z</published>
     <updated>2026-10-08T14:25:49.000Z</updated>
     
-    <content type="html"><![CDATA[<!-- toc --><h2 id="官方资源"><a href="#官方资源" class="headerlink" title="官方资源"></a>官方资源</h2><ul><li><a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness 官方项目地址</a></li><li><a href="https://deepseek-harness.github.io/deepseek-harness/guide/quickstart">DeepSeek Harness 官方文档地址</a></li><li><a href="https://api-docs.deepseek.com/">DeepSeek API 官方文档地址</a></li></ul><span id="more"></span>]]></content>
+    <content type="html"><![CDATA[<!-- toc --><h2 id="官方资源"><a href="#官方资源" class="headerlink" title="官方资源"></a>官方资源</h2><ul><li><a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness 官方项目地址</a></li><li><a href="https://deepseek-harness.github.io/deepseek-harness/guide/quickstart">DeepSeek Harness 官方文档地址</a></li><li><a href="https://github.com/topics/dsh-plugin">DeepSeek Harness 社区插件地址</a></li><li><a href="https://api-docs.deepseek.com/">DeepSeek API 官方文档地址</a></li></ul><span id="more"></span>]]></content>
     
     
     <summary type="html">DeepSeek Harness 使用指南。</summary>
