@@ -94,9 +94,9 @@
     <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
     
-    <category term="C++" scheme="https://www.techgrow.cn/tags/C/"/>
-    
     <category term="并发编程" scheme="https://www.techgrow.cn/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    <category term="C++" scheme="https://www.techgrow.cn/tags/C/"/>
     
     <category term="Windows系统编程" scheme="https://www.techgrow.cn/tags/Windows%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/"/>
     
@@ -186,9 +186,9 @@
     <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
     
-    <category term="Debian" scheme="https://www.techgrow.cn/tags/Debian/"/>
-    
     <category term="容器化" scheme="https://www.techgrow.cn/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/"/>
+    
+    <category term="Debian" scheme="https://www.techgrow.cn/tags/Debian/"/>
     
   </entry>
   
@@ -230,9 +230,9 @@
     <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
     
-    <category term="Debian" scheme="https://www.techgrow.cn/tags/Debian/"/>
-    
     <category term="Web服务器" scheme="https://www.techgrow.cn/tags/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    <category term="Debian" scheme="https://www.techgrow.cn/tags/Debian/"/>
     
   </entry>
   
@@ -252,6 +252,29 @@
     
     <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
     
+    
+    <category term="AI大模型" scheme="https://www.techgrow.cn/tags/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 使用源码手动安装 ComfyUI</title>
+    <link href="https://www.techgrow.cn/posts/46acb301.html"/>
+    <id>https://www.techgrow.cn/posts/46acb301.html</id>
+    <published>2026-05-19T14:25:49.000Z</published>
+    <updated>2026-11-16T14:25:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<!-- toc --><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://docs.comfy.org/zh">ComfyUI 官方文档</a></li><li><a href="https://github.com/comfyanonymous/ComfyUI">ComfyUI 官方 GitHub 项目</a></li><li><a href="https://docs.comfy.org/zh/installation/manual_install">ComfyUI 手动安装（Windows、macOS、Linux）</a></li></ul>]]></content>
+    
+    
+    <summary type="html">本文主要介绍 Linux 如何使用源码手动安装 ComfyUI。</summary>
+    
+    
+    
+    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
+    
+    
+    <category term="Linux运维" scheme="https://www.techgrow.cn/tags/Linux%E8%BF%90%E7%BB%B4/"/>
     
     <category term="AI大模型" scheme="https://www.techgrow.cn/tags/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
     
@@ -424,27 +447,6 @@
     
     
     <category term="C++" scheme="https://www.techgrow.cn/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>电⼦元器件零基础⼊⻔教程之二</title>
-    <link href="https://www.techgrow.cn/posts/c1303b78.html"/>
-    <id>https://www.techgrow.cn/posts/c1303b78.html</id>
-    <published>2026-01-30T13:03:50.000Z</published>
-    <updated>2026-01-30T13:03:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<!-- toc --><h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><ul><li><a href="/posts/14c20f01.html">电⼦元器件零基础⼊⻔教程之一</a></li><li><a href="/posts/c1303b78.html">电⼦元器件零基础⼊⻔教程之二</a></li></ul><span id="more"></span><h2 id="常见电子元器件"><a href="#常见电子元器件" class="headerlink" title="常见电子元器件"></a>常见电子元器件</h2>]]></content>
-    
-    
-    <summary type="html">本文主要介绍电⼦元器件零基础⼊⻔教程。</summary>
-    
-    
-    
-    <category term="hide" scheme="https://www.techgrow.cn/categories/hide/"/>
-    
-    
-    <category term="嵌入式开发" scheme="https://www.techgrow.cn/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
